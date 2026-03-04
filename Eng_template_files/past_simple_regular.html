@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Past Simple – Regular Verbs</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--gr:#22c55e;--bl:#3b82f6;--or:#f97316;--pi:#ec4899;--pu:#8b5cf6;--ye:#eab308;--bg:#f0fdf4;--text:#1e1e2e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Nunito,sans-serif;background:var(--bg);padding:20px 14px 60px;min-height:100vh}
+.hero{text-align:center;margin-bottom:26px}
+.hero h1{font-family:"Fredoka One",cursive;font-size:clamp(1.9rem,6vw,3rem);color:#fff;text-shadow:3px 3px 0 var(--gr),6px 6px 0 rgba(0,0,0,.1);line-height:1.15}
+.hero p{color:#4ade80;font-weight:800;font-size:1rem;margin-top:6px}
+.card{max-width:720px;margin:0 auto 22px;background:#fff;border-radius:22px;padding:22px 24px;box-shadow:0 6px 24px rgba(0,0,0,.08)}
+.card.green{border:3px solid var(--gr)}.card.blue{border:3px solid var(--bl)}.card.orange{border:3px solid var(--or)}.card.pink{border:3px solid var(--pi)}.card.purple{border:3px solid var(--pu)}.card.yellow{border:3px solid var(--ye)}
+.ctit{font-family:"Fredoka One",cursive;font-size:1.2rem;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.cnum{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;color:#fff;flex-shrink:0}
+
+/* RULES TABLE */
+.rtable{width:100%;border-collapse:collapse;font-size:.93rem}
+.rtable th{padding:9px 12px;font-family:"Fredoka One",cursive;font-size:.95rem;color:#fff;background:var(--gr)}
+.rtable th:first-child{border-radius:10px 0 0 0}.rtable th:last-child{border-radius:0 10px 0 0}
+.rtable td{padding:9px 12px;border-bottom:1px solid #dcfce7;vertical-align:top}
+.rtable tr:nth-child(even) td{background:#f0fdf4}
+.rtable .rule{color:var(--gr);font-weight:800;font-size:.97rem}
+.rtable .ex{color:var(--bl);font-weight:700}
+.rtable .base{color:#888;font-weight:700}
+.warn{background:#fef9c3;border:2px solid var(--ye);border-radius:12px;padding:12px 16px;font-size:.93rem;margin-top:14px;line-height:1.7}
+.warn b{color:var(--or)}
+
+/* VERB CARDS */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:4px}
+.vcrd{background:#f8faff;border:2px solid #e0e7ff;border-radius:14px;padding:10px 12px;text-align:center}
+.vcrd .base2{font-size:.8rem;color:#888;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.vcrd .vb{font-size:1.05rem;font-weight:800;color:var(--bl);margin:2px 0}
+.vcrd .ved{font-size:1rem;font-weight:800;color:var(--gr)}
+
+/* Task 1 – click was/were → now click correct form */
+.opts{display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0}
+.opt{padding:6px 16px;border-radius:18px;border:2px solid;background:#fff;cursor:pointer;font-family:"Fredoka One",cursive;font-size:.95rem;transition:all .15s}
+.opt:hover{transform:scale(1.07)}
+.opt.a{border-color:var(--bl);color:var(--bl)}.opt.b{border-color:var(--pi);color:var(--pi)}.opt.c{border-color:var(--or);color:var(--or)}
+.opt.sel.a{background:var(--bl);color:#fff}.opt.sel.b{background:var(--pi);color:#fff}.opt.sel.c{background:var(--or);color:#fff}
+
+.qlist{display:flex;flex-direction:column;gap:11px}
+.qi{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:14px;background:#f8f8f8;font-size:.97rem;flex-wrap:wrap;border:2px solid transparent;transition:border-color .2s;line-height:1.6}
+.qi.correct{border-color:var(--gr);background:#f0fdf4}.qi.incorrect{border-color:#ef4444;background:#fef2f2}
+.qtxt{flex:1}
+
+/* Fill blanks */
+.fsen{margin-bottom:13px;font-size:.97rem;line-height:2}
+.bi{border:none;border-bottom:3px solid var(--ye);background:transparent;font-family:Nunito,sans-serif;font-size:.97rem;font-weight:800;width:90px;text-align:center;outline:none;padding:0 3px;transition:border-color .2s}
+.bi.ok{border-color:var(--gr);color:#16a34a}.bi.err{border-color:#ef4444;color:#dc2626}
+
+/* Translate */
+.trlist{display:flex;flex-direction:column;gap:12px}
+.tri{padding:12px 15px;border-radius:14px;background:#fafafa;border-left:4px solid #ddd;font-size:.96rem;transition:border-color .2s}
+.tri.correct{border-color:var(--gr);background:#f0fdf4}.tri.incorrect{border-color:#ef4444;background:#fef2f2}
+.ua{font-size:.85rem;color:#666;margin-bottom:8px;font-style:italic}
+.transinput{width:100%;border:2px solid #e0e0e0;border-radius:10px;padding:8px 12px;font-family:Nunito,sans-serif;font-size:.95rem;font-weight:700;outline:none;transition:border-color .2s}
+.transinput:focus{border-color:var(--bl)}
+.hint{font-size:.8rem;color:#aaa;margin-top:4px}
+
+/* True/False */
+.tlist{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ti{display:flex;align-items:center;gap:11px;padding:11px 14px;border-radius:13px;background:#fafafa;border-left:4px solid #ddd;font-size:.96rem;transition:border-color .2s}
+.ti.correct{border-color:var(--gr);background:#f0fdf4}.ti.incorrect{border-color:#ef4444;background:#fef2f2}
+.tt{flex:1}.tbtns{display:flex;gap:8px;flex-shrink:0}
+.tbtn{padding:4px 11px;border-radius:18px;border:2px solid #ccc;background:#fff;cursor:pointer;font-family:"Fredoka One",cursive;font-size:.88rem;transition:all .15s}
+.tbtn:hover{transform:scale(1.07)}
+.tbtn.tb{border-color:var(--gr);color:#16a34a}.tbtn.fb{border-color:#ef4444;color:#dc2626}
+.tbtn.sel.tb{background:var(--gr);color:#fff}.tbtn.sel.fb{background:#ef4444;color:#fff}
+
+/* Make sentence */
+.mi{margin-bottom:16px}
+.mw{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.tile{padding:6px 13px;border-radius:10px;font-weight:800;font-size:.93rem;cursor:pointer;border:2px solid;user-select:none;transition:all .15s}
+.tile:hover{transform:translateY(-2px)}.tile.used{opacity:.3;pointer-events:none}
+.tw{border-color:var(--bl);color:#1d4ed8;background:#eff6ff}
+.tg{border-color:var(--gr);color:#15803d;background:#f0fdf4}
+.ab{min-height:42px;border:2px dashed #ccc;border-radius:11px;padding:7px 13px;font-size:.95rem;display:flex;flex-wrap:wrap;gap:6px;align-items:center;cursor:pointer}
+.ab:hover{border-color:var(--or)}
+.pl{padding:3px 9px;border-radius:7px;background:#fef08a;color:#713f12;font-weight:800;font-size:.93rem}
+.sres{font-size:.87rem;margin-top:5px;font-weight:800;display:none}
+
+/* Buttons */
+.cbtn{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:10px 26px;border-radius:50px;border:none;color:#fff;font-family:"Fredoka One",cursive;font-size:1.05rem;cursor:pointer;transition:transform .15s;box-shadow:0 5px 14px rgba(0,0,0,.14)}
+.cbtn:hover{transform:translateY(-2px)}
+.badge{display:inline-block;margin-top:12px;padding:6px 18px;border-radius:18px;font-family:"Fredoka One",cursive;font-size:.98rem;background:#dcfce7;color:#166534;border:2px solid var(--gr)}
+
+/* Final */
+.fp{max-width:720px;margin:0 auto;text-align:center;padding:30px;background:#fff;border-radius:22px;box-shadow:0 6px 22px rgba(0,0,0,.08)}
+.fsc{font-family:"Fredoka One",cursive;font-size:2.8rem;color:var(--gr)}
+.stars{font-size:2.2rem;margin:10px 0}
+.cp{position:fixed;width:10px;height:10px;border-radius:2px;pointer-events:none;animation:fall 2.5s ease-in forwards;opacity:0}
+@keyframes fall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>&#9889; Past Simple &#9889;</h1>
+  <p>Regular Verbs &middot; +ed / +d / doubled</p>
+</div>
+
+<!-- RULES -->
+<div class="card green">
+  <div class="ctit" style="color:var(--gr)">&#128218; Rules: How to form Past Simple?</div>
+  <table class="rtable">
+    <tr><th>Rule</th><th>When?</th><th>Base form</th><th>Past Simple</th></tr>
+    <tr><td class="rule">+ ed</td><td>Most verbs</td><td class="base">play &nbsp; watch &nbsp; visit</td><td class="ex">play<b>ed</b> &nbsp; watch<b>ed</b> &nbsp; visit<b>ed</b></td></tr>
+    <tr><td class="rule">+ d</td><td>Ends in <b>-e</b></td><td class="base">live &nbsp; like &nbsp; dance</td><td class="ex">liv<b>ed</b> &nbsp; lik<b>ed</b> &nbsp; danc<b>ed</b></td></tr>
+    <tr><td class="rule">y &rarr; ied</td><td>consonant + <b>y</b></td><td class="base">study &nbsp; try &nbsp; carry</td><td class="ex">stud<b>ied</b> &nbsp; tr<b>ied</b> &nbsp; carr<b>ied</b></td></tr>
+    <tr><td class="rule">double + ed</td><td>CVC short vowel</td><td class="base">stop &nbsp; plan &nbsp; drop</td><td class="ex">stop<b>ped</b> &nbsp; plan<b>ned</b> &nbsp; drop<b>ped</b></td></tr>
+  </table>
+  <div class="warn">&#128161; <b>Sentence structure:</b> &nbsp; Subject + <b>verb+ed</b> + ... &nbsp; &nbsp; <b>&#9989; She played football. &nbsp; &#10060; She play football.</b><br>&#10071; <b>Negative:</b> Subject + <b>didn&apos;t</b> + base verb &nbsp; &rarr; &nbsp; She <b>didn&apos;t play</b> football.<br>&#10067; <b>Question:</b> <b>Did</b> + subject + base verb? &nbsp; &rarr; &nbsp; <b>Did</b> she <b>play</b> football?</div>
+</div>
+
+<!-- VERB LIST -->
+<div class="card blue">
+  <div class="ctit" style="color:var(--bl)">&#128196; Useful verbs</div>
+  <div class="vgrid">
+    <div class="vcrd"><div class="base2">base</div><div class="vb">play</div><div class="ved">played</div></div>
+    <div class="vcrd"><div class="base2">base</div><div class="vb">watch</div><div class="ved">watched</div></div>
+    <div class="vcrd"><div class="base2">base</div><div class="vb">visit</div><div class="ved">visited</div></div>
+    <div class="vcrd"><div class="base2">base</div><div class="vb">walk</div><div class="ved">walked</div></div>
+    <div class="vcrd"><div class="base2">base</div><div class="vb">talk</div><div class="ved">talked</div></div>
+    <div class="vcrd"><div class="base2">base</div><div class="vb">clean</div><div class="ved">cleaned</div></div>
+    <div class="vcrd"><div class="base2">base</div><div class="vb">live</div><div class="ved">lived</div></div>
+    <div class="vcrd"><div class="base2">base</div><div class="vb">like</div><div class="ved">liked</div></div>
+    <div class="vcrd"><div class="base2">base</div><div class="vb">dance</div><div class="ved">danced</div></div>
+    <div class="vcrd"><div class="base2">base</div><div class="vb">study</div><div class="ved">studied</div></div>
+    <div class="vcrd"><div class="base2">base</div><div class="vb">try</div><div class="ved">tried</div></div>
+    <div class="vcrd"><div class="base2">base</div><div class="vb">stop</div><div class="ved">stopped</div></div>
+  </div>
+</div>
+
+<!-- TASK 1: Choose correct form -->
+<div class="card green">
+  <div class="ctit"><span class="cnum" style="background:var(--gr)">1</span><span style="color:var(--gr)">Choose the correct Past Simple form!</span></div>
+  <div class="qlist" id="q1list">
+    <div class="qi" data-ans="a">
+      <div class="qtxt">She _____ TV all evening.</div>
+      <div class="opts">
+        <button class="opt a" onclick="pq(this,'a',1)">watched</button>
+        <button class="opt b" onclick="pq(this,'b',1)">watchd</button>
+        <button class="opt c" onclick="pq(this,'c',1)">watche</button>
+      </div>
+    </div>
+    <div class="qi" data-ans="b">
+      <div class="qtxt">They _____ football in the park yesterday.</div>
+      <div class="opts">
+        <button class="opt a" onclick="pq(this,'a',1)">plaied</button>
+        <button class="opt b" onclick="pq(this,'b',1)">played</button>
+        <button class="opt c" onclick="pq(this,'c',1)">playd</button>
+      </div>
+    </div>
+    <div class="qi" data-ans="c">
+      <div class="qtxt">He _____ for the exam last night.</div>
+      <div class="opts">
+        <button class="opt a" onclick="pq(this,'a',1)">studyed</button>
+        <button class="opt b" onclick="pq(this,'b',1)">studyeed</button>
+        <button class="opt c" onclick="pq(this,'c',1)">studied</button>
+      </div>
+    </div>
+    <div class="qi" data-ans="a">
+      <div class="qtxt">The bus _____ at the corner.</div>
+      <div class="opts">
+        <button class="opt a" onclick="pq(this,'a',1)">stopped</button>
+        <button class="opt b" onclick="pq(this,'b',1)">stoped</button>
+        <button class="opt c" onclick="pq(this,'c',1)">stoppd</button>
+      </div>
+    </div>
+    <div class="qi" data-ans="b">
+      <div class="qtxt">We _____ our grandmother last Sunday.</div>
+      <div class="opts">
+        <button class="opt a" onclick="pq(this,'a',1)">visitd</button>
+        <button class="opt b" onclick="pq(this,'b',1)">visited</button>
+        <button class="opt c" onclick="pq(this,'c',1)">visitted</button>
+      </div>
+    </div>
+    <div class="qi" data-ans="c">
+      <div class="qtxt">She _____ in London for five years.</div>
+      <div class="opts">
+        <button class="opt a" onclick="pq(this,'a',1)">liveed</button>
+        <button class="opt b" onclick="pq(this,'b',1)">liveved</button>
+        <button class="opt c" onclick="pq(this,'c',1)">lived</button>
+      </div>
+    </div>
+  </div>
+  <button class="cbtn" style="background:var(--gr)" onclick="ckQ()">&#10004; Check!</button>
+  <div id="q1s" style="display:none" class="badge"></div>
+</div>
+
+<!-- TASK 2: Fill in blanks -->
+<div class="card orange">
+  <div class="ctit"><span class="cnum" style="background:var(--or)">2</span><span style="color:var(--or)">Write the correct Past Simple form!</span></div>
+  <p style="font-size:.85rem;color:#888;margin-bottom:14px">(write the verb in brackets in Past Simple)</p>
+  <div class="fsen">1. I <input class="bi" data-a="walked" id="b1"> to school this morning. (walk)</div>
+  <div class="fsen">2. She <input class="bi" data-a="danced" id="b2"> at the party. (dance)</div>
+  <div class="fsen">3. They <input class="bi" data-a="cleaned" id="b3"> the house on Saturday. (clean)</div>
+  <div class="fsen">4. He <input class="bi" data-a="tried" id="b4"> to open the door. (try)</div>
+  <div class="fsen">5. We <input class="bi" data-a="talked" id="b5"> for two hours. (talk)</div>
+  <div class="fsen">6. It <input class="bi" data-a="dropped" id="b6"> from the table. (drop)</div>
+  <div class="fsen">7. She <input class="bi" data-a="liked" id="b7"> the movie a lot. (like)</div>
+  <div class="fsen">8. They <input class="bi" data-a="planned" id="b8"> a big trip. (plan)</div>
+  <button class="cbtn" style="background:var(--or)" onclick="ckF()">&#10004; Check!</button>
+  <div id="fls" style="display:none" class="badge"></div>
+</div>
+
+<!-- TASK 3: True/False (story) -->
+<div class="card pink">
+  <div class="ctit" style="color:var(--pi)">&#128218; Read and do Task 3 &amp; 4!</div>
+  <div style="font-size:1.02rem;line-height:2;background:#fff0f6;border-radius:14px;padding:14px 16px;border:2px solid #fbcfe8;margin-bottom:16px">
+    Last Saturday, <b>Anna</b> <span style="color:var(--gr);font-weight:800">cleaned</span> her room in the morning. Then she <span style="color:var(--gr);font-weight:800">walked</span> to the park with her dog. They <span style="color:var(--gr);font-weight:800">played</span> for an hour. In the afternoon, Anna <span style="color:var(--gr);font-weight:800">studied</span> English and <span style="color:var(--gr);font-weight:800">watched</span> a film. She <span style="color:var(--gr);font-weight:800">liked</span> the film very much. In the evening, she <span style="color:var(--gr);font-weight:800">talked</span> to her friend on the phone. It <span style="color:var(--gr);font-weight:800">was</span> a busy but happy day!
+  </div>
+  <div class="ctit"><span class="cnum" style="background:var(--pi)">3</span><span style="color:var(--pi)">True or False?</span></div>
+  <ul class="tlist" id="tl">
+    <li class="ti" data-a="true"><div class="tt">Anna cleaned her room on Saturday morning.</div><div class="tbtns"><button class="tbtn tb" onclick="pt(this,'true')">T</button><button class="tbtn fb" onclick="pt(this,'false')">F</button></div></li>
+    <li class="ti" data-a="false"><div class="tt">She walked to the park alone.</div><div class="tbtns"><button class="tbtn tb" onclick="pt(this,'true')">T</button><button class="tbtn fb" onclick="pt(this,'false')">F</button></div></li>
+    <li class="ti" data-a="true"><div class="tt">Anna studied English in the afternoon.</div><div class="tbtns"><button class="tbtn tb" onclick="pt(this,'true')">T</button><button class="tbtn fb" onclick="pt(this,'false')">F</button></div></li>
+    <li class="ti" data-a="false"><div class="tt">She didn't like the film.</div><div class="tbtns"><button class="tbtn tb" onclick="pt(this,'true')">T</button><button class="tbtn fb" onclick="pt(this,'false')">F</button></div></li>
+    <li class="ti" data-a="true"><div class="tt">In the evening she talked to her friend.</div><div class="tbtns"><button class="tbtn tb" onclick="pt(this,'true')">T</button><button class="tbtn fb" onclick="pt(this,'false')">F</button></div></li>
+  </ul>
+  <button class="cbtn" style="background:var(--pi)" onclick="ckT()">&#10004; Check!</button>
+  <div id="tfs" style="display:none" class="badge"></div>
+</div>
+
+<!-- TASK 4: Make sentences -->
+<div class="card purple">
+  <div class="ctit"><span class="cnum" style="background:var(--pu)">4</span><span style="color:var(--pu)">Make sentences! Click words in order &#128433;&#65039;</span></div>
+  <p style="font-size:.84rem;color:#888;margin-bottom:14px">Click the words to build a sentence. Click the answer box to undo the last word.</p>
+
+  <div class="mi" id="m1">
+    <b style="font-size:.93rem">Sentence 1:</b>
+    <div class="mw" style="margin-top:7px">
+      <span class="tile tw" onclick="aw(this,1)">in the park</span>
+      <span class="tile tg" onclick="aw(this,1)">played</span>
+      <span class="tile tw" onclick="aw(this,1)">Anna</span>
+      <span class="tile tw" onclick="aw(this,1)">yesterday</span>
+      <span class="tile tw" onclick="aw(this,1)">.</span>
+    </div>
+    <div class="ab" id="ab1" onclick="rw(1)"><span style="color:#bbb;font-style:italic;font-size:.85rem">Click here to undo</span></div>
+    <div class="sres" id="sr1"></div>
+  </div>
+
+  <div class="mi" id="m2" style="margin-top:16px">
+    <b style="font-size:.93rem">Sentence 2:</b>
+    <div class="mw" style="margin-top:7px">
+      <span class="tile tw" onclick="aw(this,2)">the film</span>
+      <span class="tile tg" onclick="aw(this,2)">liked</span>
+      <span class="tile tw" onclick="aw(this,2)">She</span>
+      <span class="tile tw" onclick="aw(this,2)">very much</span>
+      <span class="tile tw" onclick="aw(this,2)">.</span>
+    </div>
+    <div class="ab" id="ab2" onclick="rw(2)"><span style="color:#bbb;font-style:italic;font-size:.85rem">Click here to undo</span></div>
+    <div class="sres" id="sr2"></div>
+  </div>
+
+  <div class="mi" id="m3" style="margin-top:16px">
+    <b style="font-size:.93rem">Sentence 3:</b>
+    <div class="mw" style="margin-top:7px">
+      <span class="tile tw" onclick="aw(this,3)">her room</span>
+      <span class="tile tg" onclick="aw(this,3)">cleaned</span>
+      <span class="tile tw" onclick="aw(this,3)">on Saturday</span>
+      <span class="tile tw" onclick="aw(this,3)">Anna</span>
+      <span class="tile tw" onclick="aw(this,3)">.</span>
+    </div>
+    <div class="ab" id="ab3" onclick="rw(3)"><span style="color:#bbb;font-style:italic;font-size:.85rem">Click here to undo</span></div>
+    <div class="sres" id="sr3"></div>
+  </div>
+
+  <button class="cbtn" style="background:var(--pu)" onclick="ckS()">&#10004; Check sentences!</button>
+  <div id="mss" style="display:none" class="badge"></div>
+</div>
+
+<!-- TASK 5: Negatives -->
+<div class="card yellow">
+  <div class="ctit"><span class="cnum" style="background:var(--ye);color:#713f12">5</span><span style="color:#b45309">Make it NEGATIVE! Use didn&apos;t + base verb</span></div>
+  <p style="font-size:.85rem;color:#888;margin-bottom:14px">Rewrite using <b>didn&apos;t</b></p>
+  <div class="trlist" id="negl">
+    <div class="tri" data-a="She didn't watch TV." data-hint="watch">
+      <div class="ua">&#128247; She watched TV.</div>
+      <input class="transinput" placeholder="She didn't ..." oninput="this.closest('.tri').classList.remove('correct','incorrect')">
+      <div class="hint">Hint: didn&apos;t + watch</div>
+    </div>
+    <div class="tri" data-a="They didn't play football." data-hint="play">
+      <div class="ua">&#128247; They played football.</div>
+      <input class="transinput" placeholder="They didn't ..." oninput="this.closest('.tri').classList.remove('correct','incorrect')">
+      <div class="hint">Hint: didn&apos;t + play</div>
+    </div>
+    <div class="tri" data-a="He didn't study for the exam." data-hint="study">
+      <div class="ua">&#128247; He studied for the exam.</div>
+      <input class="transinput" placeholder="He didn't ..." oninput="this.closest('.tri').classList.remove('correct','incorrect')">
+      <div class="hint">Hint: didn&apos;t + study</div>
+    </div>
+    <div class="tri" data-a="I didn't walk to school." data-hint="walk">
+      <div class="ua">&#128247; I walked to school.</div>
+      <input class="transinput" placeholder="I didn't ..." oninput="this.closest('.tri').classList.remove('correct','incorrect')">
+      <div class="hint">Hint: didn&apos;t + walk</div>
+    </div>
+  </div>
+  <button class="cbtn" style="background:var(--ye);color:#713f12" onclick="ckN()">&#10004; Check!</button>
+  <div id="ns" style="display:none" class="badge"></div>
+</div>
+
+<!-- FINAL SCORE -->
+<div class="fp">
+  <div style="font-family:'Fredoka One',cursive;font-size:1rem;color:#999;margin-bottom:5px">Total score (Tasks 1-4)</div>
+  <div class="fsc" id="fsc">&#8212; / 24</div>
+  <div class="stars" id="stars">&#11088;&#11088;&#11088;</div>
+  <div style="font-weight:700;color:var(--text);font-size:1rem" id="fmsg">Complete the tasks to see your score! &#128640;</div>
+</div>
+
+<script>
+var q1d=false,q1s2=0,fls2=0,tfd=false,tfs2=0,mss2=0,ns2=0;
+
+// Task 1
+function pq(b,v,t){
+  if(q1d)return;
+  var i=b.closest(".qi");
+  i.querySelectorAll(".opt").forEach(function(x){x.classList.remove("sel")});
+  b.classList.add("sel");i.dataset.chosen=v;
+}
+function ckQ(){
+  q1s2=0;
+  document.querySelectorAll("#q1list .qi").forEach(function(i){
+    i.classList.remove("correct","incorrect");
+    if(!i.dataset.chosen)return;
+    if(i.dataset.chosen===i.dataset.ans){i.classList.add("correct");q1s2++;}
+    else i.classList.add("incorrect");
+  });
+  q1d=true;
+  var e=document.getElementById("q1s");e.style.display="inline-block";e.textContent="Score: "+q1s2+" / 6";upF();
+}
+
+// Task 2
+function ckF(){
+  fls2=0;
+  for(var i=1;i<=8;i++){
+    var n=document.getElementById("b"+i);
+    n.classList.remove("ok","err");
+    var v=n.value.trim().toLowerCase();
+    if(v===n.dataset.a){n.classList.add("ok");fls2++;}
+    else if(v)n.classList.add("err");
+  }
+  var e=document.getElementById("fls");e.style.display="inline-block";e.textContent="Score: "+fls2+" / 8";upF();
+}
+
+// Task 3
+function pt(b,v){
+  if(tfd)return;
+  var i=b.closest(".ti");
+  i.querySelectorAll(".tbtn").forEach(function(x){x.classList.remove("sel")});
+  b.classList.add("sel");i.dataset.chosen=v;
+}
+function ckT(){
+  tfs2=0;
+  document.querySelectorAll("#tl .ti").forEach(function(i){
+    i.classList.remove("correct","incorrect");
+    if(!i.dataset.chosen)return;
+    if(i.dataset.chosen===i.dataset.a){i.classList.add("correct");tfs2++;}
+    else i.classList.add("incorrect");
+  });
+  tfd=true;
+  var e=document.getElementById("tfs");e.style.display="inline-block";e.textContent="Score: "+tfs2+" / 5";upF();
+}
+
+// Task 4
+var sens={
+  1:{w:[],c:"Anna played in the park yesterday ."},
+  2:{w:[],c:"She liked the film very much ."},
+  3:{w:[],c:"Anna cleaned her room on Saturday ."}
+};
+function aw(t,n){if(t.classList.contains("used"))return;sens[n].w.push(t.textContent);t.classList.add("used");rb(n);}
+function rw(n){if(!sens[n].w.length)return;var rem=sens[n].w.pop();var ts=document.querySelectorAll("#m"+n+" .tile");for(var i=0;i<ts.length;i++){if(ts[i].classList.contains("used")&&ts[i].textContent===rem){ts[i].classList.remove("used");break;}}rb(n);}
+function rb(n){var b=document.getElementById("ab"+n);b.innerHTML="";if(!sens[n].w.length){b.innerHTML="<span style='color:#bbb;font-style:italic;font-size:.85rem'>Click here to undo</span>";return;}sens[n].w.forEach(function(w){var s=document.createElement("span");s.className="pl";s.textContent=w;b.appendChild(s);});}
+function ckS(){
+  mss2=0;
+  [1,2,3].forEach(function(n){
+    var r=document.getElementById("sr"+n);
+    var b=sens[n].w.join(" ");
+    r.style.display="block";
+    if(b===sens[n].c){r.textContent="Correct!";r.style.color="#16a34a";mss2++;}
+    else{r.textContent="Try again!";r.style.color="#dc2626";}
+  });
+  var e=document.getElementById("mss");e.style.display="inline-block";e.textContent="Score: "+mss2+" / 3";
+}
+
+// Task 5 negatives
+function ckN(){
+  ns2=0;
+  document.querySelectorAll("#negl .tri").forEach(function(i){
+    var inp=i.querySelector(".transinput");
+    var v=inp.value.trim();
+    i.classList.remove("correct","incorrect");
+    if(!v)return;
+    if(v.toLowerCase()===i.dataset.a.toLowerCase()){i.classList.add("correct");ns2++;}
+    else i.classList.add("incorrect");
+  });
+  var e=document.getElementById("ns");e.style.display="inline-block";e.textContent="Score: "+ns2+" / 4";
+}
+
+// Final
+function upF(){
+  var t=q1s2+fls2+tfs2;
+  document.getElementById("fsc").textContent=t+" / 19";
+  var p=t/19;
+  if(p>=.85){document.getElementById("stars").innerHTML="&#11088;&#11088;&#11088;";document.getElementById("fmsg").textContent="Excellent! You are a Past Simple master!";if(t>=16)conf();}
+  else if(p>=.6){document.getElementById("stars").innerHTML="&#11088;&#11088;";document.getElementById("fmsg").textContent="Good job! Keep going!";}
+  else{document.getElementById("stars").innerHTML="&#11088;";document.getElementById("fmsg").textContent="Read the rules and try again!";}
+}
+function conf(){
+  var c=["#22c55e","#3b82f6","#f97316","#ec4899","#8b5cf6","#eab308"];
+  for(var i=0;i<70;i++){
+    var e=document.createElement("div");e.className="cp";
+    e.style.left=Math.random()*100+"vw";e.style.top="-10px";
+    e.style.background=c[Math.floor(Math.random()*c.length)];
+    e.style.animationDelay=Math.random()*1.5+"s";
+    document.body.appendChild(e);
+    setTimeout((function(el){return function(){el.remove();}})(e),4000);
+  }
+}
+</script>
+</body>
+</html>
