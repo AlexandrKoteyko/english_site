@@ -1,444 +1,679 @@
 <!DOCTYPE html>
 <html lang="uk">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Past Simple для дітей</title>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
-<style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Nunito', sans-serif;
-  background: #fff9f0;
-  padding: 24px 14px 60px;
-  min-height: 100vh;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Past Simple для дітей</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-h1 {
-  font-family: 'Fredoka One', cursive;
-  text-align: center;
-  font-size: clamp(2rem,7vw,3.2rem);
-  color: #1e1e2e;
-  margin-bottom: 4px;
-}
-.sub {
-  text-align: center;
-  font-size: 1rem;
-  font-weight: 800;
-  color: #888;
-  margin-bottom: 30px;
-}
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #fff9f0;
+      padding: 24px 14px 60px;
+      min-height: 100vh;
+    }
 
-/* ---- BIG INTRO ---- */
-.intro {
-  max-width: 700px;
-  margin: 0 auto 30px;
-  background: #ffecd2;
-  border-radius: 24px;
-  padding: 22px 24px;
-  border: 3px solid #ffb347;
-  text-align: center;
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: #7c3500;
-  line-height: 1.8;
-}
-.intro .big { font-size: 1.6rem; display: block; margin-bottom: 6px; }
+    h1 {
+      font-family: 'Fredoka One', cursive;
+      text-align: center;
+      font-size: clamp(2rem, 7vw, 3.2rem);
+      color: #1e1e2e;
+      margin-bottom: 4px;
+    }
 
-/* ---- RULE CARDS ---- */
-.rules { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+    .sub {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #888;
+      margin-bottom: 30px;
+    }
 
-.rule {
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.10);
-  border: 3px solid;
-}
+    /* ---- BIG INTRO ---- */
+    .intro {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      background: #ffecd2;
+      border-radius: 24px;
+      padding: 22px 24px;
+      border: 3px solid #ffb347;
+      text-align: center;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #7c3500;
+      line-height: 1.8;
+    }
 
-.rule-head {
-  padding: 16px 22px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  cursor: pointer;
-  user-select: none;
-}
-.rule-emoji { font-size: 2.4rem; flex-shrink: 0; }
-.rule-title { font-family: 'Fredoka One', cursive; font-size: 1.5rem; color: #fff; line-height: 1.2; }
-.rule-ua    { font-size: .9rem; color: rgba(255,255,255,.9); font-weight: 800; margin-top: 2px; }
+    .intro .big {
+      font-size: 1.6rem;
+      display: block;
+      margin-bottom: 6px;
+    }
 
-.rule-body {
-  background: #fff;
-  padding: 20px 22px;
-}
+    /* ---- RULE CARDS ---- */
+    .rules {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
 
-/* formula */
-.formula-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 18px;
-  flex-wrap: wrap;
-}
-.fbox {
-  font-family: 'Fredoka One', cursive;
-  font-size: 1.4rem;
-  padding: 10px 22px;
-  border-radius: 16px;
-  text-align: center;
-}
-.farrow { font-size: 2rem; color: #ccc; }
+    .rule {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.10);
+      border: 3px solid;
+    }
 
-/* examples */
-.examples {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-@media(max-width:440px){ .examples { grid-template-columns: 1fr; } }
+    .rule-head {
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+      user-select: none;
+    }
 
-.ex {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border-radius: 14px;
-  padding: 10px 14px;
-  font-size: 1rem;
-  font-weight: 800;
-}
-.ex .base { color: #888; }
-.ex .arr  { color: #ccc; font-size: 1.1rem; }
-.ex .past { font-size: 1.05rem; }
-.ex .ending { text-decoration: underline; text-underline-offset: 3px; }
+    .rule-emoji {
+      font-size: 2.4rem;
+      flex-shrink: 0;
+    }
 
-/* colour schemes */
-.r1 { border-color: #3b82f6; }
-.r1 .rule-head { background: linear-gradient(90deg,#1d4ed8,#3b82f6); }
-.r1 .fbox.verb { background: #dbeafe; color: #1e3a8a; }
-.r1 .fbox.end  { background: #3b82f6; color: #fff; }
-.r1 .ex        { background: #eff6ff; border: 2px solid #bfdbfe; }
-.r1 .ex .past  { color: #1d4ed8; }
+    .rule-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem;
+      color: #fff;
+      line-height: 1.2;
+    }
 
-.r2 { border-color: #22c55e; }
-.r2 .rule-head { background: linear-gradient(90deg,#15803d,#22c55e); }
-.r2 .fbox.verb { background: #dcfce7; color: #14532d; }
-.r2 .fbox.end  { background: #22c55e; color: #fff; }
-.r2 .ex        { background: #f0fdf4; border: 2px solid #bbf7d0; }
-.r2 .ex .past  { color: #15803d; }
+    .rule-ua {
+      font-size: .9rem;
+      color: rgba(255, 255, 255, .9);
+      font-weight: 800;
+      margin-top: 2px;
+    }
 
-.r3 { border-color: #f97316; }
-.r3 .rule-head { background: linear-gradient(90deg,#c2410c,#f97316); }
-.r3 .fbox.verb { background: #ffedd5; color: #7c2d12; }
-.r3 .fbox.end  { background: #f97316; color: #fff; }
-.r3 .ex        { background: #fff7ed; border: 2px solid #fed7aa; }
-.r3 .ex .past  { color: #c2410c; }
+    .rule-body {
+      background: #fff;
+      padding: 20px 22px;
+    }
 
-.r4 { border-color: #a855f7; }
-.r4 .rule-head { background: linear-gradient(90deg,#7e22ce,#a855f7); }
-.r4 .fbox.verb { background: #f3e8ff; color: #581c87; }
-.r4 .fbox.end  { background: #a855f7; color: #fff; }
-.r4 .ex        { background: #faf5ff; border: 2px solid #e9d5ff; }
-.r4 .ex .past  { color: #7e22ce; }
+    /* formula */
+    .formula-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
 
-/* ---- SENTENCE SECTION ---- */
-.sent-section {
-  max-width: 700px;
-  margin: 18px auto 0;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
+    .fbox {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.4rem;
+      padding: 10px 22px;
+      border-radius: 16px;
+      text-align: center;
+    }
 
-.sent-card {
-  border-radius: 20px;
-  overflow: hidden;
-  border: 3px solid;
-  box-shadow: 0 4px 16px rgba(0,0,0,.08);
-}
-.sent-head {
-  padding: 14px 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.sent-head .sh-emoji { font-size: 1.8rem; }
-.sent-head .sh-title { font-family: 'Fredoka One', cursive; font-size: 1.3rem; color: #fff; }
-.sent-head .sh-ua    { font-size: .85rem; color: rgba(255,255,255,.9); font-weight: 800; }
-.sent-body {
-  background: #fff;
-  padding: 16px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+    .farrow {
+      font-size: 2rem;
+      color: #ccc;
+    }
 
-.pill-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-.pill {
-  font-family: 'Fredoka One', cursive;
-  font-size: 1rem;
-  padding: 6px 14px;
-  border-radius: 12px;
-}
-.pill.who  { background: #dbeafe; color: #1e3a8a; }
-.pill.verb { background: #dcfce7; color: #166534; }
-.pill.neg  { background: #fee2e2; color: #991b1b; }
-.pill.did  { background: #fef9c3; color: #713f12; }
-.pill.dot  { background: #f1f5f9; color: #475569; font-size: 1.2rem; }
-.pill.base { background: #f0fdf4; color: #166534; border: 2px dashed #86efac; }
-.sent-ex {
-  font-size: .93rem;
-  font-weight: 800;
-  color: #64748b;
-  padding: 8px 14px;
-  background: #f8fafc;
-  border-radius: 10px;
-  border-left: 4px solid #e2e8f0;
-}
-.sent-ex b { color: #1e1e2e; }
+    /* examples */
+    .examples {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
 
-.sc1 { border-color: #22c55e; }
-.sc1 .sent-head { background: linear-gradient(90deg,#15803d,#22c55e); }
-.sc2 { border-color: #ef4444; }
-.sc2 .sent-head { background: linear-gradient(90deg,#b91c1c,#ef4444); }
-.sc3 { border-color: #eab308; }
-.sc3 .sent-head { background: linear-gradient(90deg,#a16207,#eab308); }
+    @media(max-width:440px) {
+      .examples {
+        grid-template-columns: 1fr;
+      }
+    }
 
-/* time words */
-.time-box {
-  max-width: 700px;
-  margin: 18px auto 0;
-  background: #fff;
-  border-radius: 20px;
-  border: 3px solid #94a3b8;
-  padding: 18px 20px;
-  box-shadow: 0 4px 14px rgba(0,0,0,.07);
-}
-.time-title {
-  font-family: 'Fredoka One', cursive;
-  font-size: 1.2rem;
-  color: #475569;
-  margin-bottom: 12px;
-  text-align: center;
-}
-.time-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-}
-.tc {
-  padding: 7px 16px;
-  border-radius: 50px;
-  font-weight: 800;
-  font-size: .93rem;
-  background: #f1f5f9;
-  border: 2px solid #cbd5e1;
-  color: #334155;
-}
-.tc span { display: block; font-size: .75rem; color: #94a3b8; font-weight: 700; }
-</style>
+    .ex {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 14px;
+      padding: 10px 14px;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .ex .base {
+      color: #888;
+    }
+
+    .ex .arr {
+      color: #ccc;
+      font-size: 1.1rem;
+    }
+
+    .ex .past {
+      font-size: 1.05rem;
+    }
+
+    .ex .ending {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* colour schemes */
+    .r1 {
+      border-color: #3b82f6;
+    }
+
+    .r1 .rule-head {
+      background: linear-gradient(90deg, #1d4ed8, #3b82f6);
+    }
+
+    .r1 .fbox.verb {
+      background: #dbeafe;
+      color: #1e3a8a;
+    }
+
+    .r1 .fbox.end {
+      background: #3b82f6;
+      color: #fff;
+    }
+
+    .r1 .ex {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+    }
+
+    .r1 .ex .past {
+      color: #1d4ed8;
+    }
+
+    .r2 {
+      border-color: #22c55e;
+    }
+
+    .r2 .rule-head {
+      background: linear-gradient(90deg, #15803d, #22c55e);
+    }
+
+    .r2 .fbox.verb {
+      background: #dcfce7;
+      color: #14532d;
+    }
+
+    .r2 .fbox.end {
+      background: #22c55e;
+      color: #fff;
+    }
+
+    .r2 .ex {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+    }
+
+    .r2 .ex .past {
+      color: #15803d;
+    }
+
+    .r3 {
+      border-color: #f97316;
+    }
+
+    .r3 .rule-head {
+      background: linear-gradient(90deg, #c2410c, #f97316);
+    }
+
+    .r3 .fbox.verb {
+      background: #ffedd5;
+      color: #7c2d12;
+    }
+
+    .r3 .fbox.end {
+      background: #f97316;
+      color: #fff;
+    }
+
+    .r3 .ex {
+      background: #fff7ed;
+      border: 2px solid #fed7aa;
+    }
+
+    .r3 .ex .past {
+      color: #c2410c;
+    }
+
+    .r4 {
+      border-color: #a855f7;
+    }
+
+    .r4 .rule-head {
+      background: linear-gradient(90deg, #7e22ce, #a855f7);
+    }
+
+    .r4 .fbox.verb {
+      background: #f3e8ff;
+      color: #581c87;
+    }
+
+    .r4 .fbox.end {
+      background: #a855f7;
+      color: #fff;
+    }
+
+    .r4 .ex {
+      background: #faf5ff;
+      border: 2px solid #e9d5ff;
+    }
+
+    .r4 .ex .past {
+      color: #7e22ce;
+    }
+
+    /* ---- SENTENCE SECTION ---- */
+    .sent-section {
+      max-width: 700px;
+      margin: 18px auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .sent-card {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 3px solid;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .08);
+    }
+
+    .sent-head {
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sent-head .sh-emoji {
+      font-size: 1.8rem;
+    }
+
+    .sent-head .sh-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.3rem;
+      color: #fff;
+    }
+
+    .sent-head .sh-ua {
+      font-size: .85rem;
+      color: rgba(255, 255, 255, .9);
+      font-weight: 800;
+    }
+
+    .sent-body {
+      background: #fff;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pill-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1rem;
+      padding: 6px 14px;
+      border-radius: 12px;
+    }
+
+    .pill.who {
+      background: #dbeafe;
+      color: #1e3a8a;
+    }
+
+    .pill.verb {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .pill.neg {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .pill.did {
+      background: #fef9c3;
+      color: #713f12;
+    }
+
+    .pill.dot {
+      background: #f1f5f9;
+      color: #475569;
+      font-size: 1.2rem;
+    }
+
+    .pill.base {
+      background: #f0fdf4;
+      color: #166534;
+      border: 2px dashed #86efac;
+    }
+
+    .sent-ex {
+      font-size: .93rem;
+      font-weight: 800;
+      color: #64748b;
+      padding: 8px 14px;
+      background: #f8fafc;
+      border-radius: 10px;
+      border-left: 4px solid #e2e8f0;
+    }
+
+    .sent-ex b {
+      color: #1e1e2e;
+    }
+
+    .sc1 {
+      border-color: #22c55e;
+    }
+
+    .sc1 .sent-head {
+      background: linear-gradient(90deg, #15803d, #22c55e);
+    }
+
+    .sc2 {
+      border-color: #ef4444;
+    }
+
+    .sc2 .sent-head {
+      background: linear-gradient(90deg, #b91c1c, #ef4444);
+    }
+
+    .sc3 {
+      border-color: #eab308;
+    }
+
+    .sc3 .sent-head {
+      background: linear-gradient(90deg, #a16207, #eab308);
+    }
+
+    /* time words */
+    .time-box {
+      max-width: 700px;
+      margin: 18px auto 0;
+      background: #fff;
+      border-radius: 20px;
+      border: 3px solid #94a3b8;
+      padding: 18px 20px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .07);
+    }
+
+    .time-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.2rem;
+      color: #475569;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .time-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .tc {
+      padding: 7px 16px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: .93rem;
+      background: #f1f5f9;
+      border: 2px solid #cbd5e1;
+      color: #334155;
+    }
+
+    .tc span {
+      display: block;
+      font-size: .75rem;
+      color: #94a3b8;
+      font-weight: 700;
+    }
+  </style>
 </head>
+
 <body>
 
-<h1>&#9889; Past Simple</h1>
-<p class="sub">Минулий час &mdash; що робив / робила вчора?</p>
+  <h1>&#9889; Past Simple</h1>
+  <p class="sub">Минулий час &mdash; що робив / робила вчора?</p>
 
-<!-- INTRO -->
-<div class="intro">
-  <span class="big">&#128336; Коли щось вже трапилось &mdash; вчора, минулого тижня &mdash;<br>ми змінюємо дієслово!</span>
-  play &#8594; play<b>ed</b> &nbsp;&nbsp; walk &#8594; walk<b>ed</b> &nbsp;&nbsp; dance &#8594; danc<b>ed</b>
-</div>
-
-<div class="rules">
-
-  <!-- RULE 1 -->
-  <div class="rule r1">
-    <div class="rule-head">
-      <div class="rule-emoji">&#128640;</div>
-      <div>
-        <div class="rule-title">Правило 1 &mdash; просто додай <b>-ed</b></div>
-        <div class="rule-ua">Більшість дієслів</div>
-      </div>
-    </div>
-    <div class="rule-body">
-      <div class="formula-row">
-        <div class="fbox verb">дієслово</div>
-        <div class="farrow">+</div>
-        <div class="fbox end">ed</div>
-      </div>
-      <div class="examples">
-        <div class="ex"><span class="base">play</span><span class="arr">&#8594;</span><span class="past">play<span class="ending">ed</span></span></div>
-        <div class="ex"><span class="base">watch</span><span class="arr">&#8594;</span><span class="past">watch<span class="ending">ed</span></span></div>
-        <div class="ex"><span class="base">walk</span><span class="arr">&#8594;</span><span class="past">walk<span class="ending">ed</span></span></div>
-        <div class="ex"><span class="base">clean</span><span class="arr">&#8594;</span><span class="past">clean<span class="ending">ed</span></span></div>
-        <div class="ex"><span class="base">visit</span><span class="arr">&#8594;</span><span class="past">visit<span class="ending">ed</span></span></div>
-        <div class="ex"><span class="base">talk</span><span class="arr">&#8594;</span><span class="past">talk<span class="ending">ed</span></span></div>
-      </div>
-    </div>
+  <!-- INTRO -->
+  <div class="intro">
+    <span class="big">&#128336; Коли щось вже трапилось &mdash; вчора, минулого тижня &mdash;<br>ми змінюємо
+      дієслово!</span>
+    play &#8594; play<b>ed</b> &nbsp;&nbsp; walk &#8594; walk<b>ed</b> &nbsp;&nbsp; dance &#8594; danc<b>ed</b>
   </div>
 
-  <!-- RULE 2 -->
-  <div class="rule r2">
-    <div class="rule-head">
-      <div class="rule-emoji">&#128161;</div>
-      <div>
-        <div class="rule-title">Правило 2 &mdash; закінчується на <b>-e</b>?</div>
-        <div class="rule-ua">Додай лише <b>-d</b> (бо <b>e</b> вже є!)</div>
+  <div class="rules">
+
+    <!-- RULE 1 -->
+    <div class="rule r1">
+      <div class="rule-head">
+        <div class="rule-emoji">&#128640;</div>
+        <div>
+          <div class="rule-title">Правило 1 &mdash; просто додай <b>-ed</b></div>
+          <div class="rule-ua">Більшість дієслів</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div class="formula-row">
+          <div class="fbox verb">дієслово</div>
+          <div class="farrow">+</div>
+          <div class="fbox end">ed</div>
+        </div>
+        <div class="examples">
+          <div class="ex"><span class="base">play</span><span class="arr">&#8594;</span><span class="past">play<span
+                class="ending">ed</span></span></div>
+          <div class="ex"><span class="base">watch</span><span class="arr">&#8594;</span><span class="past">watch<span
+                class="ending">ed</span></span></div>
+          <div class="ex"><span class="base">walk</span><span class="arr">&#8594;</span><span class="past">walk<span
+                class="ending">ed</span></span></div>
+          <div class="ex"><span class="base">clean</span><span class="arr">&#8594;</span><span class="past">clean<span
+                class="ending">ed</span></span></div>
+          <div class="ex"><span class="base">visit</span><span class="arr">&#8594;</span><span class="past">visit<span
+                class="ending">ed</span></span></div>
+          <div class="ex"><span class="base">talk</span><span class="arr">&#8594;</span><span class="past">talk<span
+                class="ending">ed</span></span></div>
+        </div>
       </div>
     </div>
-    <div class="rule-body">
-      <div class="formula-row">
-        <div class="fbox verb">дієслово + <b style="color:#15803d">e</b></div>
-        <div class="farrow">+</div>
-        <div class="fbox end">d</div>
+
+    <!-- RULE 2 -->
+    <div class="rule r2">
+      <div class="rule-head">
+        <div class="rule-emoji">&#128161;</div>
+        <div>
+          <div class="rule-title">Правило 2 &mdash; закінчується на <b>-e</b>?</div>
+          <div class="rule-ua">Додай лише <b>-d</b> (бо <b>e</b> вже є!)</div>
+        </div>
       </div>
-      <div class="examples">
-        <div class="ex"><span class="base">like</span><span class="arr">&#8594;</span><span class="past">lik<span class="ending">ed</span></span></div>
-        <div class="ex"><span class="base">live</span><span class="arr">&#8594;</span><span class="past">liv<span class="ending">ed</span></span></div>
-        <div class="ex"><span class="base">dance</span><span class="arr">&#8594;</span><span class="past">danc<span class="ending">ed</span></span></div>
-        <div class="ex"><span class="base">love</span><span class="arr">&#8594;</span><span class="past">lov<span class="ending">ed</span></span></div>
+      <div class="rule-body">
+        <div class="formula-row">
+          <div class="fbox verb">дієслово + <b style="color:#15803d">e</b></div>
+          <div class="farrow">+</div>
+          <div class="fbox end">d</div>
+        </div>
+        <div class="examples">
+          <div class="ex"><span class="base">like</span><span class="arr">&#8594;</span><span class="past">lik<span
+                class="ending">ed</span></span></div>
+          <div class="ex"><span class="base">live</span><span class="arr">&#8594;</span><span class="past">liv<span
+                class="ending">ed</span></span></div>
+          <div class="ex"><span class="base">dance</span><span class="arr">&#8594;</span><span class="past">danc<span
+                class="ending">ed</span></span></div>
+          <div class="ex"><span class="base">love</span><span class="arr">&#8594;</span><span class="past">lov<span
+                class="ending">ed</span></span></div>
+        </div>
       </div>
     </div>
+
+    <!-- RULE 3 -->
+    <div class="rule r3">
+      <div class="rule-head">
+        <div class="rule-emoji">&#128260;</div>
+        <div>
+          <div class="rule-title">Правило 3 &mdash; закінчується на <b>-y</b>?</div>
+          <div class="rule-ua">Змінюємо <b>y</b> на <b>ied</b></div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div class="formula-row">
+          <div class="fbox verb">дієслово + <b style="color:#c2410c">y</b></div>
+          <div class="farrow">&#8594;</div>
+          <div class="fbox end">ied</div>
+        </div>
+        <div class="examples">
+          <div class="ex"><span class="base">study</span><span class="arr">&#8594;</span><span class="past">stud<span
+                class="ending">ied</span></span></div>
+          <div class="ex"><span class="base">try</span><span class="arr">&#8594;</span><span class="past">tr<span
+                class="ending">ied</span></span></div>
+          <div class="ex"><span class="base">carry</span><span class="arr">&#8594;</span><span class="past">carr<span
+                class="ending">ied</span></span></div>
+          <div class="ex"><span class="base">cry</span><span class="arr">&#8594;</span><span class="past">cr<span
+                class="ending">ied</span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RULE 4 -->
+    <div class="rule r4">
+      <div class="rule-head">
+        <div class="rule-emoji">&#9889;</div>
+        <div>
+          <div class="rule-title">Правило 4 &mdash; коротке слово? Подвій!</div>
+          <div class="rule-ua">приголосна + голосна + приголосна &#8594; подвоїти останню</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div class="formula-row">
+          <div class="fbox verb">stop</div>
+          <div class="farrow">&#8594;</div>
+          <div class="fbox end">stop<b>p</b>ed</div>
+        </div>
+        <div class="examples">
+          <div class="ex"><span class="base">stop</span><span class="arr">&#8594;</span><span
+              class="past">stop<b>p</b><span class="ending">ed</span></span></div>
+          <div class="ex"><span class="base">plan</span><span class="arr">&#8594;</span><span
+              class="past">plan<b>n</b><span class="ending">ed</span></span></div>
+          <div class="ex"><span class="base">drop</span><span class="arr">&#8594;</span><span
+              class="past">drop<b>p</b><span class="ending">ed</span></span></div>
+          <div class="ex"><span class="base">clap</span><span class="arr">&#8594;</span><span
+              class="past">clap<b>p</b><span class="ending">ed</span></span></div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- RULE 3 -->
-  <div class="rule r3">
-    <div class="rule-head">
-      <div class="rule-emoji">&#128260;</div>
-      <div>
-        <div class="rule-title">Правило 3 &mdash; закінчується на <b>-y</b>?</div>
-        <div class="rule-ua">Змінюємо <b>y</b> на <b>ied</b></div>
+  <!-- SENTENCES -->
+  <div class="sent-section">
+
+    <div class="sent-card sc1">
+      <div class="sent-head">
+        <div class="sh-emoji">&#9989;</div>
+        <div>
+          <div class="sh-title">Стверджувальне речення</div>
+          <div class="sh-ua">Щось зробив / зробила</div>
+        </div>
+      </div>
+      <div class="sent-body">
+        <div class="pill-row">
+          <span class="pill who">Хто?</span>
+          <span style="font-size:1.3rem;color:#ccc">+</span>
+          <span class="pill verb">дієслово + ed</span>
+          <span style="font-size:1.3rem;color:#ccc">+</span>
+          <span class="pill dot">...</span>
+        </div>
+        <div class="sent-ex">She <b>watched</b> TV. &nbsp;&#9474;&nbsp; They <b>played</b> football. &nbsp;&#9474;&nbsp;
+          I <b>walked</b> to school.</div>
       </div>
     </div>
-    <div class="rule-body">
-      <div class="formula-row">
-        <div class="fbox verb">дієслово + <b style="color:#c2410c">y</b></div>
-        <div class="farrow">&#8594;</div>
-        <div class="fbox end">ied</div>
+
+    <div class="sent-card sc2">
+      <div class="sent-head">
+        <div class="sh-emoji">&#10060;</div>
+        <div>
+          <div class="sh-title">Заперечення</div>
+          <div class="sh-ua">Не зробив / не зробила</div>
+        </div>
       </div>
-      <div class="examples">
-        <div class="ex"><span class="base">study</span><span class="arr">&#8594;</span><span class="past">stud<span class="ending">ied</span></span></div>
-        <div class="ex"><span class="base">try</span><span class="arr">&#8594;</span><span class="past">tr<span class="ending">ied</span></span></div>
-        <div class="ex"><span class="base">carry</span><span class="arr">&#8594;</span><span class="past">carr<span class="ending">ied</span></span></div>
-        <div class="ex"><span class="base">cry</span><span class="arr">&#8594;</span><span class="past">cr<span class="ending">ied</span></span></div>
+      <div class="sent-body">
+        <div class="pill-row">
+          <span class="pill who">Хто?</span>
+          <span style="font-size:1.3rem;color:#ccc">+</span>
+          <span class="pill neg">didn&apos;t</span>
+          <span style="font-size:1.3rem;color:#ccc">+</span>
+          <span class="pill base">дієслово (без -ed!)</span>
+          <span style="font-size:1.3rem;color:#ccc">+</span>
+          <span class="pill dot">...</span>
+        </div>
+        <div class="sent-ex">She <b>didn&apos;t watch</b> TV. &nbsp;&#9474;&nbsp; They <b>didn&apos;t play</b>.
+          &nbsp;&#9474;&nbsp; I <b>didn&apos;t walk</b>.</div>
       </div>
     </div>
+
+    <div class="sent-card sc3">
+      <div class="sent-head">
+        <div class="sh-emoji">&#10067;</div>
+        <div>
+          <div class="sh-title">Питання</div>
+          <div class="sh-ua">Чи зробив / зробила?</div>
+        </div>
+      </div>
+      <div class="sent-body">
+        <div class="pill-row">
+          <span class="pill did">Did</span>
+          <span style="font-size:1.3rem;color:#ccc">+</span>
+          <span class="pill who">Хто?</span>
+          <span style="font-size:1.3rem;color:#ccc">+</span>
+          <span class="pill base">дієслово (без -ed!)</span>
+          <span style="font-size:1.3rem;color:#ccc">+</span>
+          <span class="pill dot">... ?</span>
+        </div>
+        <div class="sent-ex"><b>Did</b> she <b>watch</b> TV? &nbsp;&#9474;&nbsp; <b>Did</b> they <b>play</b>?
+          &nbsp;&#9474;&nbsp; <b>Did</b> you <b>walk</b>?</div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- RULE 4 -->
-  <div class="rule r4">
-    <div class="rule-head">
-      <div class="rule-emoji">&#9889;</div>
-      <div>
-        <div class="rule-title">Правило 4 &mdash; коротке слово? Подвій!</div>
-        <div class="rule-ua">приголосна + голосна + приголосна &#8594; подвоїти останню</div>
-      </div>
-    </div>
-    <div class="rule-body">
-      <div class="formula-row">
-        <div class="fbox verb">stop</div>
-        <div class="farrow">&#8594;</div>
-        <div class="fbox end">stop<b>p</b>ed</div>
-      </div>
-      <div class="examples">
-        <div class="ex"><span class="base">stop</span><span class="arr">&#8594;</span><span class="past">stop<b>p</b><span class="ending">ed</span></span></div>
-        <div class="ex"><span class="base">plan</span><span class="arr">&#8594;</span><span class="past">plan<b>n</b><span class="ending">ed</span></span></div>
-        <div class="ex"><span class="base">drop</span><span class="arr">&#8594;</span><span class="past">drop<b>p</b><span class="ending">ed</span></span></div>
-        <div class="ex"><span class="base">clap</span><span class="arr">&#8594;</span><span class="past">clap<b>p</b><span class="ending">ed</span></span></div>
-      </div>
+  <!-- TIME WORDS -->
+  <div class="time-box">
+    <div class="time-title">&#8987; Слова-підказки: коли вживаємо Past Simple?</div>
+    <div class="time-chips">
+      <div class="tc">yesterday <span>вчора</span></div>
+      <div class="tc">last week <span>минулого тижня</span></div>
+      <div class="tc">last year <span>минулого року</span></div>
+      <div class="tc">an hour ago <span>годину тому</span></div>
+      <div class="tc">on Monday <span>у понеділок</span></div>
+      <div class="tc">in 2020 <span>у 2020 році</span></div>
+      <div class="tc">this morning <span>сьогодні вранці</span></div>
     </div>
   </div>
-
-</div>
-
-<!-- SENTENCES -->
-<div class="sent-section">
-
-  <div class="sent-card sc1">
-    <div class="sent-head">
-      <div class="sh-emoji">&#9989;</div>
-      <div>
-        <div class="sh-title">Стверджувальне речення</div>
-        <div class="sh-ua">Щось зробив / зробила</div>
-      </div>
-    </div>
-    <div class="sent-body">
-      <div class="pill-row">
-        <span class="pill who">Хто?</span>
-        <span style="font-size:1.3rem;color:#ccc">+</span>
-        <span class="pill verb">дієслово + ed</span>
-        <span style="font-size:1.3rem;color:#ccc">+</span>
-        <span class="pill dot">...</span>
-      </div>
-      <div class="sent-ex">She <b>watched</b> TV. &nbsp;&#9474;&nbsp; They <b>played</b> football. &nbsp;&#9474;&nbsp; I <b>walked</b> to school.</div>
-    </div>
-  </div>
-
-  <div class="sent-card sc2">
-    <div class="sent-head">
-      <div class="sh-emoji">&#10060;</div>
-      <div>
-        <div class="sh-title">Заперечення</div>
-        <div class="sh-ua">Не зробив / не зробила</div>
-      </div>
-    </div>
-    <div class="sent-body">
-      <div class="pill-row">
-        <span class="pill who">Хто?</span>
-        <span style="font-size:1.3rem;color:#ccc">+</span>
-        <span class="pill neg">didn&apos;t</span>
-        <span style="font-size:1.3rem;color:#ccc">+</span>
-        <span class="pill base">дієслово (без -ed!)</span>
-        <span style="font-size:1.3rem;color:#ccc">+</span>
-        <span class="pill dot">...</span>
-      </div>
-      <div class="sent-ex">She <b>didn&apos;t watch</b> TV. &nbsp;&#9474;&nbsp; They <b>didn&apos;t play</b>. &nbsp;&#9474;&nbsp; I <b>didn&apos;t walk</b>.</div>
-    </div>
-  </div>
-
-  <div class="sent-card sc3">
-    <div class="sent-head">
-      <div class="sh-emoji">&#10067;</div>
-      <div>
-        <div class="sh-title">Питання</div>
-        <div class="sh-ua">Чи зробив / зробила?</div>
-      </div>
-    </div>
-    <div class="sent-body">
-      <div class="pill-row">
-        <span class="pill did">Did</span>
-        <span style="font-size:1.3rem;color:#ccc">+</span>
-        <span class="pill who">Хто?</span>
-        <span style="font-size:1.3rem;color:#ccc">+</span>
-        <span class="pill base">дієслово (без -ed!)</span>
-        <span style="font-size:1.3rem;color:#ccc">+</span>
-        <span class="pill dot">... ?</span>
-      </div>
-      <div class="sent-ex"><b>Did</b> she <b>watch</b> TV? &nbsp;&#9474;&nbsp; <b>Did</b> they <b>play</b>? &nbsp;&#9474;&nbsp; <b>Did</b> you <b>walk</b>?</div>
-    </div>
-  </div>
-
-</div>
-
-<!-- TIME WORDS -->
-<div class="time-box">
-  <div class="time-title">&#8987; Слова-підказки: коли вживаємо Past Simple?</div>
-  <div class="time-chips">
-    <div class="tc">yesterday <span>вчора</span></div>
-    <div class="tc">last week <span>минулого тижня</span></div>
-    <div class="tc">last year <span>минулого року</span></div>
-    <div class="tc">an hour ago <span>годину тому</span></div>
-    <div class="tc">on Monday <span>у понеділок</span></div>
-    <div class="tc">in 2020 <span>у 2020 році</span></div>
-    <div class="tc">this morning <span>сьогодні вранці</span></div>
-  </div>
-</div>
 
 </body>
+
 </html>

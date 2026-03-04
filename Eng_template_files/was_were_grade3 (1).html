@@ -1,177 +1,708 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Was and Were Grade 3</title>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
-<style>
-:root{--sky:#5bc8f5;--sun:#ffd93d;--grass:#6bcb77;--pink:#ff6b9d;--purple:#a855f7;--orange:#ff9f43;--bg:#e8f7ff;--text:#2d2d2d}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Nunito,sans-serif;background:var(--bg);min-height:100vh;padding:24px 14px 60px}
-.hero{text-align:center;margin-bottom:28px}
-.hero h1{font-family:"Fredoka One",cursive;font-size:2.8rem;color:#fff;text-shadow:3px 3px 0 var(--pink),6px 6px 0 rgba(0,0,0,.1)}
-.hero .sub{font-size:1rem;color:#4a90b8;font-weight:700;margin-top:6px}
-.box{max-width:680px;margin:0 auto 24px;background:white;border-radius:22px;padding:22px 24px;box-shadow:0 6px 22px rgba(0,0,0,.08)}
-.gb{border:3px solid var(--sky)}.sb{border:3px solid var(--pink);background:linear-gradient(135deg,#fff9f0,#fff0fa)}
-.gt{font-family:"Fredoka One",cursive;font-size:1.2rem;color:var(--sky);margin-bottom:12px}
-.st{font-family:"Fredoka One",cursive;font-size:1.2rem;color:var(--pink);margin-bottom:12px}
-table{width:100%;border-collapse:collapse;font-size:.95rem}
-th{background:var(--sky);color:white;padding:8px 12px;font-family:"Fredoka One",cursive}
-td{padding:8px 12px;border-bottom:1px solid #e8f7ff}
-tr:nth-child(even) td{background:#f0fbff}
-.was{color:var(--pink);font-weight:800}.were{color:var(--purple);font-weight:800}
-.chars{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
-.chip{padding:5px 12px;border-radius:50px;font-weight:800;font-size:.88rem;background:white;border:2px solid}
-.c1{border-color:var(--sky);color:#1a7fa8}.c2{border-color:var(--pink);color:#c0185a}.c3{border-color:var(--orange);color:#b85a00}
-.story{font-size:1.05rem;line-height:2.1}
-.hw{color:var(--pink);font-weight:800;background:#ffe8f0;padding:1px 6px;border-radius:6px}
-.sec{max-width:680px;margin:0 auto 22px;background:white;border-radius:22px;padding:22px 24px;box-shadow:0 6px 22px rgba(0,0,0,.07)}
-.sectit{font-family:"Fredoka One",cursive;font-size:1.15rem;margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.snum{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;color:white;flex-shrink:0}
-.wl{display:flex;flex-direction:column;gap:11px}
-.wi{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:14px;background:#f8f8f8;font-size:.97rem;flex-wrap:wrap;border:2px solid transparent;transition:border-color .2s}
-.wi.correct{border-color:var(--grass);background:#f0fdf4}.wi.incorrect{border-color:#ef4444;background:#fef2f2}
-.wbtns{display:flex;gap:8px;flex-shrink:0}
-.wbtn{padding:5px 14px;border-radius:18px;border:2px solid;background:white;cursor:pointer;font-family:"Fredoka One",cursive;font-size:.95rem;transition:all .15s}
-.wbtn:hover{transform:scale(1.07)}
-.wb{border-color:var(--pink);color:var(--pink)}.wr{border-color:var(--purple);color:var(--purple)}
-.wbtn.sel.wb{background:var(--pink);color:white}.wbtn.sel.wr{background:var(--purple);color:white}
-.fsen{margin-bottom:13px;font-size:.97rem;line-height:1.9}
-.bi{border:none;border-bottom:3px solid var(--sun);background:transparent;font-family:Nunito,sans-serif;font-size:.97rem;font-weight:800;width:75px;text-align:center;outline:none;padding:0 3px}
-.bi.ok{border-color:var(--grass);color:#16a34a}.bi.err{border-color:#ef4444;color:#dc2626}
-.tl{list-style:none;display:flex;flex-direction:column;gap:10px}
-.ti{display:flex;align-items:center;gap:11px;padding:11px 14px;border-radius:13px;background:#fafafa;border-left:4px solid #ddd;font-size:.96rem;transition:border-color .2s}
-.ti.correct{border-color:var(--grass);background:#f0fdf4}.ti.incorrect{border-color:#ef4444;background:#fef2f2}
-.tt{flex:1}.tbtns{display:flex;gap:8px;flex-shrink:0}
-.tbtn{padding:4px 11px;border-radius:18px;border:2px solid #ccc;background:white;cursor:pointer;font-family:"Fredoka One",cursive;font-size:.88rem;transition:all .15s}
-.tbtn:hover{transform:scale(1.07)}
-.tbtn.tb{border-color:var(--grass);color:#16a34a}.tbtn.fb{border-color:#ef4444;color:#dc2626}
-.tbtn.sel.tb{background:var(--grass);color:white}.tbtn.sel.fb{background:#ef4444;color:white}
-.mi{margin-bottom:16px}
-.mw{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
-.tile{padding:6px 13px;border-radius:10px;font-weight:800;font-size:.93rem;cursor:pointer;border:2px solid;user-select:none;transition:all .15s}
-.tile:hover{transform:translateY(-2px)}.tile.used{opacity:.3;pointer-events:none}
-.tw{border-color:var(--sky);color:#1a7fa8;background:#f0fbff}
-.tws{border-color:var(--pink);color:var(--pink);background:#fff0f6}
-.twr{border-color:var(--purple);color:var(--purple);background:#faf0ff}
-.ab{min-height:42px;border:2px dashed #ccc;border-radius:11px;padding:7px 13px;font-size:.95rem;display:flex;flex-wrap:wrap;gap:6px;align-items:center;cursor:pointer}
-.ab:hover{border-color:var(--orange)}
-.pl{padding:3px 9px;border-radius:7px;background:var(--sun);color:#5a3a00;font-weight:800;font-size:.93rem}
-.cbtn{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:10px 26px;border-radius:50px;border:none;color:white;font-family:"Fredoka One",cursive;font-size:1.05rem;cursor:pointer;transition:transform .15s;box-shadow:0 5px 14px rgba(0,0,0,.14)}
-.cbtn:hover{transform:translateY(-2px)}
-.badge{display:inline-block;margin-top:12px;padding:6px 18px;border-radius:18px;font-family:"Fredoka One",cursive;font-size:.98rem;background:#dcfce7;color:#166534;border:2px solid var(--grass)}
-.fp{max-width:680px;margin:0 auto;text-align:center;padding:30px;background:white;border-radius:22px;box-shadow:0 6px 22px rgba(0,0,0,.08)}
-.fsc{font-family:"Fredoka One",cursive;font-size:2.8rem;color:var(--pink)}
-.stars{font-size:2.2rem;margin:10px 0}
-.cp{position:fixed;width:10px;height:10px;border-radius:2px;pointer-events:none;animation:fall 2.5s ease-in forwards;opacity:0}
-@keyframes fall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Was and Were Grade 3</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --sky: #5bc8f5;
+      --sun: #ffd93d;
+      --grass: #6bcb77;
+      --pink: #ff6b9d;
+      --purple: #a855f7;
+      --orange: #ff9f43;
+      --bg: #e8f7ff;
+      --text: #2d2d2d
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font-family: Nunito, sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+      padding: 24px 14px 60px
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 28px
+    }
+
+    .hero h1 {
+      font-family: "Fredoka One", cursive;
+      font-size: 2.8rem;
+      color: #fff;
+      text-shadow: 3px 3px 0 var(--pink), 6px 6px 0 rgba(0, 0, 0, .1)
+    }
+
+    .hero .sub {
+      font-size: 1rem;
+      color: #4a90b8;
+      font-weight: 700;
+      margin-top: 6px
+    }
+
+    .box {
+      max-width: 680px;
+      margin: 0 auto 24px;
+      background: white;
+      border-radius: 22px;
+      padding: 22px 24px;
+      box-shadow: 0 6px 22px rgba(0, 0, 0, .08)
+    }
+
+    .gb {
+      border: 3px solid var(--sky)
+    }
+
+    .sb {
+      border: 3px solid var(--pink);
+      background: linear-gradient(135deg, #fff9f0, #fff0fa)
+    }
+
+    .gt {
+      font-family: "Fredoka One", cursive;
+      font-size: 1.2rem;
+      color: var(--sky);
+      margin-bottom: 12px
+    }
+
+    .st {
+      font-family: "Fredoka One", cursive;
+      font-size: 1.2rem;
+      color: var(--pink);
+      margin-bottom: 12px
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .95rem
+    }
+
+    th {
+      background: var(--sky);
+      color: white;
+      padding: 8px 12px;
+      font-family: "Fredoka One", cursive
+    }
+
+    td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #e8f7ff
+    }
+
+    tr:nth-child(even) td {
+      background: #f0fbff
+    }
+
+    .was {
+      color: var(--pink);
+      font-weight: 800
+    }
+
+    .were {
+      color: var(--purple);
+      font-weight: 800
+    }
+
+    .chars {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px
+    }
+
+    .chip {
+      padding: 5px 12px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: .88rem;
+      background: white;
+      border: 2px solid
+    }
+
+    .c1 {
+      border-color: var(--sky);
+      color: #1a7fa8
+    }
+
+    .c2 {
+      border-color: var(--pink);
+      color: #c0185a
+    }
+
+    .c3 {
+      border-color: var(--orange);
+      color: #b85a00
+    }
+
+    .story {
+      font-size: 1.05rem;
+      line-height: 2.1
+    }
+
+    .hw {
+      color: var(--pink);
+      font-weight: 800;
+      background: #ffe8f0;
+      padding: 1px 6px;
+      border-radius: 6px
+    }
+
+    .sec {
+      max-width: 680px;
+      margin: 0 auto 22px;
+      background: white;
+      border-radius: 22px;
+      padding: 22px 24px;
+      box-shadow: 0 6px 22px rgba(0, 0, 0, .07)
+    }
+
+    .sectit {
+      font-family: "Fredoka One", cursive;
+      font-size: 1.15rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .snum {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .95rem;
+      color: white;
+      flex-shrink: 0
+    }
+
+    .wl {
+      display: flex;
+      flex-direction: column;
+      gap: 11px
+    }
+
+    .wi {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      background: #f8f8f8;
+      font-size: .97rem;
+      flex-wrap: wrap;
+      border: 2px solid transparent;
+      transition: border-color .2s
+    }
+
+    .wi.correct {
+      border-color: var(--grass);
+      background: #f0fdf4
+    }
+
+    .wi.incorrect {
+      border-color: #ef4444;
+      background: #fef2f2
+    }
+
+    .wbtns {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0
+    }
+
+    .wbtn {
+      padding: 5px 14px;
+      border-radius: 18px;
+      border: 2px solid;
+      background: white;
+      cursor: pointer;
+      font-family: "Fredoka One", cursive;
+      font-size: .95rem;
+      transition: all .15s
+    }
+
+    .wbtn:hover {
+      transform: scale(1.07)
+    }
+
+    .wb {
+      border-color: var(--pink);
+      color: var(--pink)
+    }
+
+    .wr {
+      border-color: var(--purple);
+      color: var(--purple)
+    }
+
+    .wbtn.sel.wb {
+      background: var(--pink);
+      color: white
+    }
+
+    .wbtn.sel.wr {
+      background: var(--purple);
+      color: white
+    }
+
+    .fsen {
+      margin-bottom: 13px;
+      font-size: .97rem;
+      line-height: 1.9
+    }
+
+    .bi {
+      border: none;
+      border-bottom: 3px solid var(--sun);
+      background: transparent;
+      font-family: Nunito, sans-serif;
+      font-size: .97rem;
+      font-weight: 800;
+      width: 75px;
+      text-align: center;
+      outline: none;
+      padding: 0 3px
+    }
+
+    .bi.ok {
+      border-color: var(--grass);
+      color: #16a34a
+    }
+
+    .bi.err {
+      border-color: #ef4444;
+      color: #dc2626
+    }
+
+    .tl {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .ti {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 11px 14px;
+      border-radius: 13px;
+      background: #fafafa;
+      border-left: 4px solid #ddd;
+      font-size: .96rem;
+      transition: border-color .2s
+    }
+
+    .ti.correct {
+      border-color: var(--grass);
+      background: #f0fdf4
+    }
+
+    .ti.incorrect {
+      border-color: #ef4444;
+      background: #fef2f2
+    }
+
+    .tt {
+      flex: 1
+    }
+
+    .tbtns {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0
+    }
+
+    .tbtn {
+      padding: 4px 11px;
+      border-radius: 18px;
+      border: 2px solid #ccc;
+      background: white;
+      cursor: pointer;
+      font-family: "Fredoka One", cursive;
+      font-size: .88rem;
+      transition: all .15s
+    }
+
+    .tbtn:hover {
+      transform: scale(1.07)
+    }
+
+    .tbtn.tb {
+      border-color: var(--grass);
+      color: #16a34a
+    }
+
+    .tbtn.fb {
+      border-color: #ef4444;
+      color: #dc2626
+    }
+
+    .tbtn.sel.tb {
+      background: var(--grass);
+      color: white
+    }
+
+    .tbtn.sel.fb {
+      background: #ef4444;
+      color: white
+    }
+
+    .mi {
+      margin-bottom: 16px
+    }
+
+    .mw {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px
+    }
+
+    .tile {
+      padding: 6px 13px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: .93rem;
+      cursor: pointer;
+      border: 2px solid;
+      user-select: none;
+      transition: all .15s
+    }
+
+    .tile:hover {
+      transform: translateY(-2px)
+    }
+
+    .tile.used {
+      opacity: .3;
+      pointer-events: none
+    }
+
+    .tw {
+      border-color: var(--sky);
+      color: #1a7fa8;
+      background: #f0fbff
+    }
+
+    .tws {
+      border-color: var(--pink);
+      color: var(--pink);
+      background: #fff0f6
+    }
+
+    .twr {
+      border-color: var(--purple);
+      color: var(--purple);
+      background: #faf0ff
+    }
+
+    .ab {
+      min-height: 42px;
+      border: 2px dashed #ccc;
+      border-radius: 11px;
+      padding: 7px 13px;
+      font-size: .95rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      cursor: pointer
+    }
+
+    .ab:hover {
+      border-color: var(--orange)
+    }
+
+    .pl {
+      padding: 3px 9px;
+      border-radius: 7px;
+      background: var(--sun);
+      color: #5a3a00;
+      font-weight: 800;
+      font-size: .93rem
+    }
+
+    .cbtn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      padding: 10px 26px;
+      border-radius: 50px;
+      border: none;
+      color: white;
+      font-family: "Fredoka One", cursive;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: transform .15s;
+      box-shadow: 0 5px 14px rgba(0, 0, 0, .14)
+    }
+
+    .cbtn:hover {
+      transform: translateY(-2px)
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 6px 18px;
+      border-radius: 18px;
+      font-family: "Fredoka One", cursive;
+      font-size: .98rem;
+      background: #dcfce7;
+      color: #166534;
+      border: 2px solid var(--grass)
+    }
+
+    .fp {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 30px;
+      background: white;
+      border-radius: 22px;
+      box-shadow: 0 6px 22px rgba(0, 0, 0, .08)
+    }
+
+    .fsc {
+      font-family: "Fredoka One", cursive;
+      font-size: 2.8rem;
+      color: var(--pink)
+    }
+
+    .stars {
+      font-size: 2.2rem;
+      margin: 10px 0
+    }
+
+    .cp {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      pointer-events: none;
+      animation: fall 2.5s ease-in forwards;
+      opacity: 0
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 1
+      }
+
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="hero">
-  <h1>&#127775; WAS &amp; WERE &#127775;</h1>
-  <p class="sub">Grade 3 &middot; Past Simple &middot; Be verb</p>
-</div>
-<div class="box gb">
-  <div class="gt">&#128218; Remember!</div>
-  <table><tr><th>Pronoun</th><th>Verb</th><th>Example</th></tr>
-  <tr><td>I</td><td><span class="was">was</span></td><td>I <span class="was">was</span> happy.</td></tr>
-  <tr><td>He / She / It</td><td><span class="was">was</span></td><td>She <span class="was">was</span> at school.</td></tr>
-  <tr><td>You</td><td><span class="were">were</span></td><td>You <span class="were">were</span> kind.</td></tr>
-  <tr><td>We / They</td><td><span class="were">were</span></td><td>They <span class="were">were</span> tired.</td></tr>
-  </table>
-</div>
-<div class="box sb">
-  <div class="st">&#128218; Read the story</div>
-  <div class="chars">
-    <span class="chip c1">&#129489; Tom</span>
-    <span class="chip c2">&#128103; Lily</span>
-    <span class="chip c3">&#128054; Max (dog)</span>
+  <div class="hero">
+    <h1>&#127775; WAS &amp; WERE &#127775;</h1>
+    <p class="sub">Grade 3 &middot; Past Simple &middot; Be verb</p>
   </div>
-  <div class="story">Yesterday <span class="hw">was</span> a sunny day. Tom and Lily <span class="hw">were</span> in the park. Tom <span class="hw">was</span> happy because his dog Max <span class="hw">was</span> there too. The children <span class="hw">were</span> tired after lunch, so they <span class="hw">were</span> under a big tree. Max <span class="hw">was</span> a funny dog. He <span class="hw">was</span> very fast! The birds <span class="hw">were</span> in the sky. It <span class="hw">was</span> a wonderful day!</div>
-</div>
-<div class="sec">
-  <div class="sectit"><span class="snum" style="background:var(--pink)">1</span><span style="color:var(--pink)">Was or Were? Click the right word!</span></div>
-  <div class="wl" id="wl">
-    <div class="wi" data-ans="was"><div style="flex:1">Yesterday _____ a sunny day.</div><div class="wbtns"><button class="wbtn wb" onclick="pw(this,&apos;was&apos;)">was</button><button class="wbtn wr" onclick="pw(this,&apos;were&apos;)">were</button></div></div>
-    <div class="wi" data-ans="were"><div style="flex:1">Tom and Lily _____ in the park.</div><div class="wbtns"><button class="wbtn wb" onclick="pw(this,&apos;was&apos;)">was</button><button class="wbtn wr" onclick="pw(this,&apos;were&apos;)">were</button></div></div>
-    <div class="wi" data-ans="was"><div style="flex:1">Max _____ a funny dog.</div><div class="wbtns"><button class="wbtn wb" onclick="pw(this,&apos;was&apos;)">was</button><button class="wbtn wr" onclick="pw(this,&apos;were&apos;)">were</button></div></div>
-    <div class="wi" data-ans="were"><div style="flex:1">The children _____ tired after lunch.</div><div class="wbtns"><button class="wbtn wb" onclick="pw(this,&apos;was&apos;)">was</button><button class="wbtn wr" onclick="pw(this,&apos;were&apos;)">were</button></div></div>
-    <div class="wi" data-ans="was"><div style="flex:1">It _____ a wonderful day!</div><div class="wbtns"><button class="wbtn wb" onclick="pw(this,&apos;was&apos;)">was</button><button class="wbtn wr" onclick="pw(this,&apos;were&apos;)">were</button></div></div>
-    <div class="wi" data-ans="were"><div style="flex:1">The birds _____ in the sky.</div><div class="wbtns"><button class="wbtn wb" onclick="pw(this,&apos;was&apos;)">was</button><button class="wbtn wr" onclick="pw(this,&apos;were&apos;)">were</button></div></div>
+  <div class="box gb">
+    <div class="gt">&#128218; Remember!</div>
+    <table>
+      <tr>
+        <th>Pronoun</th>
+        <th>Verb</th>
+        <th>Example</th>
+      </tr>
+      <tr>
+        <td>I</td>
+        <td><span class="was">was</span></td>
+        <td>I <span class="was">was</span> happy.</td>
+      </tr>
+      <tr>
+        <td>He / She / It</td>
+        <td><span class="was">was</span></td>
+        <td>She <span class="was">was</span> at school.</td>
+      </tr>
+      <tr>
+        <td>You</td>
+        <td><span class="were">were</span></td>
+        <td>You <span class="were">were</span> kind.</td>
+      </tr>
+      <tr>
+        <td>We / They</td>
+        <td><span class="were">were</span></td>
+        <td>They <span class="were">were</span> tired.</td>
+      </tr>
+    </table>
   </div>
-  <button class="cbtn" style="background:var(--pink)" onclick="ckW()">Check!</button>
-  <div id="ws" style="display:none" class="badge"></div>
-</div>
-<div class="sec">
-  <div class="sectit"><span class="snum" style="background:var(--purple)">2</span><span style="color:var(--purple)">Fill in: was or were</span></div>
-  <div class="fsen">1. Tom <input class="bi" data-a="was" id="f1"> happy.</div>
-  <div class="fsen">2. Lily and Tom <input class="bi" data-a="were" id="f2"> under a big tree.</div>
-  <div class="fsen">3. Max <input class="bi" data-a="was" id="f3"> very fast.</div>
-  <div class="fsen">4. I <input class="bi" data-a="was" id="f4"> at home yesterday.</div>
-  <div class="fsen">5. We <input class="bi" data-a="were" id="f5"> at school on Monday.</div>
-  <div class="fsen">6. She <input class="bi" data-a="was" id="f6"> in the park with her dog.</div>
-  <button class="cbtn" style="background:var(--purple)" onclick="ckF()">Check!</button>
-  <div id="fs" style="display:none" class="badge"></div>
-</div>
-<div class="sec">
-  <div class="sectit"><span class="snum" style="background:var(--sky)">3</span><span style="color:#1a7fa8">True or False?</span></div>
-  <ul class="tl" id="tl">
-    <li class="ti" data-a="true"><div class="tt">Yesterday was a sunny day.</div><div class="tbtns"><button class="tbtn tb" onclick="pt(this,&apos;true&apos;)">T</button><button class="tbtn fb" onclick="pt(this,&apos;false&apos;)">F</button></div></li>
-    <li class="ti" data-a="false"><div class="tt">Tom and Lily were at school.</div><div class="tbtns"><button class="tbtn tb" onclick="pt(this,&apos;true&apos;)">T</button><button class="tbtn fb" onclick="pt(this,&apos;false&apos;)">F</button></div></li>
-    <li class="ti" data-a="true"><div class="tt">Max was a funny dog.</div><div class="tbtns"><button class="tbtn tb" onclick="pt(this,&apos;true&apos;)">T</button><button class="tbtn fb" onclick="pt(this,&apos;false&apos;)">F</button></div></li>
-    <li class="ti" data-a="false"><div class="tt">The children were under a small tree.</div><div class="tbtns"><button class="tbtn tb" onclick="pt(this,&apos;true&apos;)">T</button><button class="tbtn fb" onclick="pt(this,&apos;false&apos;)">F</button></div></li>
-    <li class="ti" data-a="true"><div class="tt">The birds were in the sky.</div><div class="tbtns"><button class="tbtn tb" onclick="pt(this,&apos;true&apos;)">T</button><button class="tbtn fb" onclick="pt(this,&apos;false&apos;)">F</button></div></li>
-  </ul>
-  <button class="cbtn" style="background:var(--sky)" onclick="ckT()">Check!</button>
-  <div id="ts" style="display:none" class="badge"></div>
-</div>
-<div class="sec">
-  <div class="sectit"><span class="snum" style="background:var(--orange)">4</span><span style="color:var(--orange)">Make sentences! Click words in order</span></div>
-  <p style="font-size:.85rem;color:#888;margin-bottom:14px">Click words to build. Click answer box to undo.</p>
-  <div class="mi" id="m1">
-    <div style="font-weight:800;margin-bottom:7px">Sentence 1:</div>
-    <div class="mw" id="mw1"><span class="tile tw" onclick="aw(this,1)">happy</span><span class="tile tws" onclick="aw(this,1)">was</span><span class="tile tw" onclick="aw(this,1)">Tom</span><span class="tile tw" onclick="aw(this,1)">yesterday</span><span class="tile tw" onclick="aw(this,1)">.</span></div>
-    <div class="ab" id="ab1" onclick="rw(1)"><span style="color:#bbb;font-style:italic;font-size:.86rem">Click here to undo</span></div>
-    <div id="r1" style="font-size:.87rem;margin-top:5px;font-weight:800;display:none"></div>
+  <div class="box sb">
+    <div class="st">&#128218; Read the story</div>
+    <div class="chars">
+      <span class="chip c1">&#129489; Tom</span>
+      <span class="chip c2">&#128103; Lily</span>
+      <span class="chip c3">&#128054; Max (dog)</span>
+    </div>
+    <div class="story">Yesterday <span class="hw">was</span> a sunny day. Tom and Lily <span class="hw">were</span> in
+      the park. Tom <span class="hw">was</span> happy because his dog Max <span class="hw">was</span> there too. The
+      children <span class="hw">were</span> tired after lunch, so they <span class="hw">were</span> under a big tree.
+      Max <span class="hw">was</span> a funny dog. He <span class="hw">was</span> very fast! The birds <span
+        class="hw">were</span> in the sky. It <span class="hw">was</span> a wonderful day!</div>
   </div>
-  <div class="mi" id="m2" style="margin-top:16px">
-    <div style="font-weight:800;margin-bottom:7px">Sentence 2:</div>
-    <div class="mw" id="mw2"><span class="tile tw" onclick="aw(this,2)">in</span><span class="tile twr" onclick="aw(this,2)">were</span><span class="tile tw" onclick="aw(this,2)">the park</span><span class="tile tw" onclick="aw(this,2)">Lily and Tom</span><span class="tile tw" onclick="aw(this,2)">.</span></div>
-    <div class="ab" id="ab2" onclick="rw(2)"><span style="color:#bbb;font-style:italic;font-size:.86rem">Click here to undo</span></div>
-    <div id="r2" style="font-size:.87rem;margin-top:5px;font-weight:800;display:none"></div>
+  <div class="sec">
+    <div class="sectit"><span class="snum" style="background:var(--pink)">1</span><span style="color:var(--pink)">Was or
+        Were? Click the right word!</span></div>
+    <div class="wl" id="wl">
+      <div class="wi" data-ans="was">
+        <div style="flex:1">Yesterday _____ a sunny day.</div>
+        <div class="wbtns"><button class="wbtn wb" onclick="pw(this,&apos;was&apos;)">was</button><button
+            class="wbtn wr" onclick="pw(this,&apos;were&apos;)">were</button></div>
+      </div>
+      <div class="wi" data-ans="were">
+        <div style="flex:1">Tom and Lily _____ in the park.</div>
+        <div class="wbtns"><button class="wbtn wb" onclick="pw(this,&apos;was&apos;)">was</button><button
+            class="wbtn wr" onclick="pw(this,&apos;were&apos;)">were</button></div>
+      </div>
+      <div class="wi" data-ans="was">
+        <div style="flex:1">Max _____ a funny dog.</div>
+        <div class="wbtns"><button class="wbtn wb" onclick="pw(this,&apos;was&apos;)">was</button><button
+            class="wbtn wr" onclick="pw(this,&apos;were&apos;)">were</button></div>
+      </div>
+      <div class="wi" data-ans="were">
+        <div style="flex:1">The children _____ tired after lunch.</div>
+        <div class="wbtns"><button class="wbtn wb" onclick="pw(this,&apos;was&apos;)">was</button><button
+            class="wbtn wr" onclick="pw(this,&apos;were&apos;)">were</button></div>
+      </div>
+      <div class="wi" data-ans="was">
+        <div style="flex:1">It _____ a wonderful day!</div>
+        <div class="wbtns"><button class="wbtn wb" onclick="pw(this,&apos;was&apos;)">was</button><button
+            class="wbtn wr" onclick="pw(this,&apos;were&apos;)">were</button></div>
+      </div>
+      <div class="wi" data-ans="were">
+        <div style="flex:1">The birds _____ in the sky.</div>
+        <div class="wbtns"><button class="wbtn wb" onclick="pw(this,&apos;was&apos;)">was</button><button
+            class="wbtn wr" onclick="pw(this,&apos;were&apos;)">were</button></div>
+      </div>
+    </div>
+    <button class="cbtn" style="background:var(--pink)" onclick="ckW()">Check!</button>
+    <div id="ws" style="display:none" class="badge"></div>
   </div>
-  <div class="mi" id="m3" style="margin-top:16px">
-    <div style="font-weight:800;margin-bottom:7px">Sentence 3:</div>
-    <div class="mw" id="mw3"><span class="tile tw" onclick="aw(this,3)">very fast</span><span class="tile tws" onclick="aw(this,3)">was</span><span class="tile tw" onclick="aw(this,3)">He</span><span class="tile tw" onclick="aw(this,3)">!</span></div>
-    <div class="ab" id="ab3" onclick="rw(3)"><span style="color:#bbb;font-style:italic;font-size:.86rem">Click here to undo</span></div>
-    <div id="r3" style="font-size:.87rem;margin-top:5px;font-weight:800;display:none"></div>
+  <div class="sec">
+    <div class="sectit"><span class="snum" style="background:var(--purple)">2</span><span
+        style="color:var(--purple)">Fill in: was or were</span></div>
+    <div class="fsen">1. Tom <input class="bi" data-a="was" id="f1"> happy.</div>
+    <div class="fsen">2. Lily and Tom <input class="bi" data-a="were" id="f2"> under a big tree.</div>
+    <div class="fsen">3. Max <input class="bi" data-a="was" id="f3"> very fast.</div>
+    <div class="fsen">4. I <input class="bi" data-a="was" id="f4"> at home yesterday.</div>
+    <div class="fsen">5. We <input class="bi" data-a="were" id="f5"> at school on Monday.</div>
+    <div class="fsen">6. She <input class="bi" data-a="was" id="f6"> in the park with her dog.</div>
+    <button class="cbtn" style="background:var(--purple)" onclick="ckF()">Check!</button>
+    <div id="fs" style="display:none" class="badge"></div>
   </div>
-  <button class="cbtn" style="background:var(--orange)" onclick="ckS()">Check sentences!</button>
-  <div id="mss" style="display:none" class="badge"></div>
-</div>
-<div class="fp">
-  <div style="font-family:Fredoka One,cursive;font-size:1rem;color:#999;margin-bottom:5px">Total score (Tasks 1-3)</div>
-  <div class="fsc" id="fsc">- / 17</div>
-  <div class="stars" id="stars">&#11088;&#11088;&#11088;</div>
-  <div style="font-weight:700;color:var(--text)" id="fmsg">Complete the tasks to see your score!</div>
-</div>
-<script>
-var wd=false,ws2=0,fs2=0,td=false,ts2=0;
-function pw(b,v){if(wd)return;var i=b.closest(".wi");i.querySelectorAll(".wbtn").forEach(function(x){x.classList.remove("sel")});b.classList.add("sel");i.dataset.chosen=v}
-function ckW(){ws2=0;document.querySelectorAll("#wl .wi").forEach(function(i){i.classList.remove("correct","incorrect");if(!i.dataset.chosen)return;if(i.dataset.chosen===i.dataset.ans){i.classList.add("correct");ws2++}else i.classList.add("incorrect")});wd=true;var e=document.getElementById("ws");e.style.display="inline-block";e.textContent="Score: "+ws2+" / 6";upF()}
-function ckF(){fs2=0;for(var i=1;i<=6;i++){var n=document.getElementById("f"+i);n.classList.remove("ok","err");var v=n.value.trim().toLowerCase();if(v===n.dataset.a){n.classList.add("ok");fs2++}else if(v)n.classList.add("err")}var e=document.getElementById("fs");e.style.display="inline-block";e.textContent="Score: "+fs2+" / 6";upF()}
-function pt(b,v){if(td)return;var i=b.closest(".ti");i.querySelectorAll(".tbtn").forEach(function(x){x.classList.remove("sel")});b.classList.add("sel");i.dataset.chosen=v}
-function ckT(){ts2=0;document.querySelectorAll("#tl .ti").forEach(function(i){i.classList.remove("correct","incorrect");if(!i.dataset.chosen)return;if(i.dataset.chosen===i.dataset.a){i.classList.add("correct");ts2++}else i.classList.add("incorrect")});td=true;var e=document.getElementById("ts");e.style.display="inline-block";e.textContent="Score: "+ts2+" / 5";upF()}
-var sens={1:{w:[],c:"Tom was happy yesterday ."},2:{w:[],c:"Lily and Tom were in the park ."},3:{w:[],c:"He was very fast !"}};
-function aw(t,n){if(t.classList.contains("used"))return;sens[n].w.push(t.textContent);t.classList.add("used");rb(n)}
-function rw(n){if(!sens[n].w.length)return;var rem=sens[n].w.pop();var ts=document.querySelectorAll("#m"+n+" .tile");for(var i=0;i<ts.length;i++){if(ts[i].classList.contains("used")&&ts[i].textContent===rem){ts[i].classList.remove("used");break}}rb(n)}
-function rb(n){var b=document.getElementById("ab"+n);b.innerHTML="";if(!sens[n].w.length){b.innerHTML="<span style=color:#bbb;font-style:italic;font-size:.86rem>Click here to undo</span>";return}sens[n].w.forEach(function(w){var s=document.createElement("span");s.className="pl";s.textContent=w;b.appendChild(s)})}
-var mss2=0;
-function ckS(){mss2=0;[1,2,3].forEach(function(n){var r=document.getElementById("r"+n);var b=sens[n].w.join(" ");r.style.display="block";if(b===sens[n].c){r.textContent="Correct!";r.style.color="#16a34a";mss2++}else{r.textContent="Try again!";r.style.color="#dc2626"}});var e=document.getElementById("mss");e.style.display="inline-block";e.textContent="Score: "+mss2+" / 3"}
-function upF(){var t=ws2+fs2+ts2;document.getElementById("fsc").textContent=t+" / 17";var p=t/17;if(p>=.85){document.getElementById("stars").textContent="&#11088;&#11088;&#11088;";document.getElementById("fmsg").textContent="Excellent! You are a grammar star!";if(t>=14)conf()}else if(p>=.6){document.getElementById("stars").textContent="&#11088;&#11088;";document.getElementById("fmsg").textContent="Good job! Keep practising!"}else{document.getElementById("stars").textContent="&#11088;";document.getElementById("fmsg").textContent="Read the story again and try!"}}
-function conf(){var c=["#ffd93d","#ff6b9d","#5bc8f5","#6bcb77","#a855f7","#ff9f43"];for(var i=0;i<60;i++){var e=document.createElement("div");e.className="cp";e.style.left=Math.random()*100+"vw";e.style.top="-10px";e.style.background=c[Math.floor(Math.random()*c.length)];e.style.animationDelay=Math.random()*1.5+"s";document.body.appendChild(e);setTimeout((function(el){return function(){el.remove()}})(e),4000)}}
-</script>
+  <div class="sec">
+    <div class="sectit"><span class="snum" style="background:var(--sky)">3</span><span style="color:#1a7fa8">True or
+        False?</span></div>
+    <ul class="tl" id="tl">
+      <li class="ti" data-a="true">
+        <div class="tt">Yesterday was a sunny day.</div>
+        <div class="tbtns"><button class="tbtn tb" onclick="pt(this,&apos;true&apos;)">T</button><button class="tbtn fb"
+            onclick="pt(this,&apos;false&apos;)">F</button></div>
+      </li>
+      <li class="ti" data-a="false">
+        <div class="tt">Tom and Lily were at school.</div>
+        <div class="tbtns"><button class="tbtn tb" onclick="pt(this,&apos;true&apos;)">T</button><button class="tbtn fb"
+            onclick="pt(this,&apos;false&apos;)">F</button></div>
+      </li>
+      <li class="ti" data-a="true">
+        <div class="tt">Max was a funny dog.</div>
+        <div class="tbtns"><button class="tbtn tb" onclick="pt(this,&apos;true&apos;)">T</button><button class="tbtn fb"
+            onclick="pt(this,&apos;false&apos;)">F</button></div>
+      </li>
+      <li class="ti" data-a="false">
+        <div class="tt">The children were under a small tree.</div>
+        <div class="tbtns"><button class="tbtn tb" onclick="pt(this,&apos;true&apos;)">T</button><button class="tbtn fb"
+            onclick="pt(this,&apos;false&apos;)">F</button></div>
+      </li>
+      <li class="ti" data-a="true">
+        <div class="tt">The birds were in the sky.</div>
+        <div class="tbtns"><button class="tbtn tb" onclick="pt(this,&apos;true&apos;)">T</button><button class="tbtn fb"
+            onclick="pt(this,&apos;false&apos;)">F</button></div>
+      </li>
+    </ul>
+    <button class="cbtn" style="background:var(--sky)" onclick="ckT()">Check!</button>
+    <div id="ts" style="display:none" class="badge"></div>
+  </div>
+  <div class="sec">
+    <div class="sectit"><span class="snum" style="background:var(--orange)">4</span><span
+        style="color:var(--orange)">Make sentences! Click words in order</span></div>
+    <p style="font-size:.85rem;color:#888;margin-bottom:14px">Click words to build. Click answer box to undo.</p>
+    <div class="mi" id="m1">
+      <div style="font-weight:800;margin-bottom:7px">Sentence 1:</div>
+      <div class="mw" id="mw1"><span class="tile tw" onclick="aw(this,1)">happy</span><span class="tile tws"
+          onclick="aw(this,1)">was</span><span class="tile tw" onclick="aw(this,1)">Tom</span><span class="tile tw"
+          onclick="aw(this,1)">yesterday</span><span class="tile tw" onclick="aw(this,1)">.</span></div>
+      <div class="ab" id="ab1" onclick="rw(1)"><span style="color:#bbb;font-style:italic;font-size:.86rem">Click here to
+          undo</span></div>
+      <div id="r1" style="font-size:.87rem;margin-top:5px;font-weight:800;display:none"></div>
+    </div>
+    <div class="mi" id="m2" style="margin-top:16px">
+      <div style="font-weight:800;margin-bottom:7px">Sentence 2:</div>
+      <div class="mw" id="mw2"><span class="tile tw" onclick="aw(this,2)">in</span><span class="tile twr"
+          onclick="aw(this,2)">were</span><span class="tile tw" onclick="aw(this,2)">the park</span><span
+          class="tile tw" onclick="aw(this,2)">Lily and Tom</span><span class="tile tw" onclick="aw(this,2)">.</span>
+      </div>
+      <div class="ab" id="ab2" onclick="rw(2)"><span style="color:#bbb;font-style:italic;font-size:.86rem">Click here to
+          undo</span></div>
+      <div id="r2" style="font-size:.87rem;margin-top:5px;font-weight:800;display:none"></div>
+    </div>
+    <div class="mi" id="m3" style="margin-top:16px">
+      <div style="font-weight:800;margin-bottom:7px">Sentence 3:</div>
+      <div class="mw" id="mw3"><span class="tile tw" onclick="aw(this,3)">very fast</span><span class="tile tws"
+          onclick="aw(this,3)">was</span><span class="tile tw" onclick="aw(this,3)">He</span><span class="tile tw"
+          onclick="aw(this,3)">!</span></div>
+      <div class="ab" id="ab3" onclick="rw(3)"><span style="color:#bbb;font-style:italic;font-size:.86rem">Click here to
+          undo</span></div>
+      <div id="r3" style="font-size:.87rem;margin-top:5px;font-weight:800;display:none"></div>
+    </div>
+    <button class="cbtn" style="background:var(--orange)" onclick="ckS()">Check sentences!</button>
+    <div id="mss" style="display:none" class="badge"></div>
+  </div>
+  <div class="fp">
+    <div style="font-family:Fredoka One,cursive;font-size:1rem;color:#999;margin-bottom:5px">Total score (Tasks 1-3)
+    </div>
+    <div class="fsc" id="fsc">- / 17</div>
+    <div class="stars" id="stars">&#11088;&#11088;&#11088;</div>
+    <div style="font-weight:700;color:var(--text)" id="fmsg">Complete the tasks to see your score!</div>
+  </div>
+  <script>
+    var wd = false, ws2 = 0, fs2 = 0, td = false, ts2 = 0;
+    function pw(b, v) { if (wd) return; var i = b.closest(".wi"); i.querySelectorAll(".wbtn").forEach(function (x) { x.classList.remove("sel") }); b.classList.add("sel"); i.dataset.chosen = v }
+    function ckW() { ws2 = 0; document.querySelectorAll("#wl .wi").forEach(function (i) { i.classList.remove("correct", "incorrect"); if (!i.dataset.chosen) return; if (i.dataset.chosen === i.dataset.ans) { i.classList.add("correct"); ws2++ } else i.classList.add("incorrect") }); wd = true; var e = document.getElementById("ws"); e.style.display = "inline-block"; e.textContent = "Score: " + ws2 + " / 6"; upF() }
+    function ckF() { fs2 = 0; for (var i = 1; i <= 6; i++) { var n = document.getElementById("f" + i); n.classList.remove("ok", "err"); var v = n.value.trim().toLowerCase(); if (v === n.dataset.a) { n.classList.add("ok"); fs2++ } else if (v) n.classList.add("err") } var e = document.getElementById("fs"); e.style.display = "inline-block"; e.textContent = "Score: " + fs2 + " / 6"; upF() }
+    function pt(b, v) { if (td) return; var i = b.closest(".ti"); i.querySelectorAll(".tbtn").forEach(function (x) { x.classList.remove("sel") }); b.classList.add("sel"); i.dataset.chosen = v }
+    function ckT() { ts2 = 0; document.querySelectorAll("#tl .ti").forEach(function (i) { i.classList.remove("correct", "incorrect"); if (!i.dataset.chosen) return; if (i.dataset.chosen === i.dataset.a) { i.classList.add("correct"); ts2++ } else i.classList.add("incorrect") }); td = true; var e = document.getElementById("ts"); e.style.display = "inline-block"; e.textContent = "Score: " + ts2 + " / 5"; upF() }
+    var sens = { 1: { w: [], c: "Tom was happy yesterday ." }, 2: { w: [], c: "Lily and Tom were in the park ." }, 3: { w: [], c: "He was very fast !" } };
+    function aw(t, n) { if (t.classList.contains("used")) return; sens[n].w.push(t.textContent); t.classList.add("used"); rb(n) }
+    function rw(n) { if (!sens[n].w.length) return; var rem = sens[n].w.pop(); var ts = document.querySelectorAll("#m" + n + " .tile"); for (var i = 0; i < ts.length; i++) { if (ts[i].classList.contains("used") && ts[i].textContent === rem) { ts[i].classList.remove("used"); break } } rb(n) }
+    function rb(n) { var b = document.getElementById("ab" + n); b.innerHTML = ""; if (!sens[n].w.length) { b.innerHTML = "<span style=color:#bbb;font-style:italic;font-size:.86rem>Click here to undo</span>"; return } sens[n].w.forEach(function (w) { var s = document.createElement("span"); s.className = "pl"; s.textContent = w; b.appendChild(s) }) }
+    var mss2 = 0;
+    function ckS() { mss2 = 0;[1, 2, 3].forEach(function (n) { var r = document.getElementById("r" + n); var b = sens[n].w.join(" "); r.style.display = "block"; if (b === sens[n].c) { r.textContent = "Correct!"; r.style.color = "#16a34a"; mss2++ } else { r.textContent = "Try again!"; r.style.color = "#dc2626" } }); var e = document.getElementById("mss"); e.style.display = "inline-block"; e.textContent = "Score: " + mss2 + " / 3" }
+    function upF() { var t = ws2 + fs2 + ts2; document.getElementById("fsc").textContent = t + " / 17"; var p = t / 17; if (p >= .85) { document.getElementById("stars").textContent = "&#11088;&#11088;&#11088;"; document.getElementById("fmsg").textContent = "Excellent! You are a grammar star!"; if (t >= 14) conf() } else if (p >= .6) { document.getElementById("stars").textContent = "&#11088;&#11088;"; document.getElementById("fmsg").textContent = "Good job! Keep practising!" } else { document.getElementById("stars").textContent = "&#11088;"; document.getElementById("fmsg").textContent = "Read the story again and try!" } }
+    function conf() { var c = ["#ffd93d", "#ff6b9d", "#5bc8f5", "#6bcb77", "#a855f7", "#ff9f43"]; for (var i = 0; i < 60; i++) { var e = document.createElement("div"); e.className = "cp"; e.style.left = Math.random() * 100 + "vw"; e.style.top = "-10px"; e.style.background = c[Math.floor(Math.random() * c.length)]; e.style.animationDelay = Math.random() * 1.5 + "s"; document.body.appendChild(e); setTimeout((function (el) { return function () { el.remove() } })(e), 4000) } }
+  </script>
 </body>
+
 </html>

@@ -1,383 +1,534 @@
 <!DOCTYPE html>
 <html lang="uk">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Present Simple – 3 клас</title>
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    padding: 20px;
-  }
-  h1 {
-    text-align: center;
-    color: white;
-    font-size: 2em;
-    margin-bottom: 6px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-  }
-  .subtitle {
-    text-align: center;
-    color: rgba(255,255,255,0.85);
-    margin-bottom: 20px;
-    font-size: 1em;
-  }
-  /* TABS */
-  .tabs {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 22px;
-  }
-  .tab {
-    background: rgba(255,255,255,0.2);
-    color: white;
-    border: 2px solid rgba(255,255,255,0.4);
-    padding: 9px 18px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 0.9em;
-    font-weight: 600;
-    transition: all .2s;
-  }
-  .tab.active, .tab:hover {
-    background: white;
-    color: #764ba2;
-    border-color: white;
-  }
-  /* CARD */
-  .card {
-    background: white;
-    border-radius: 20px;
-    padding: 28px;
-    max-width: 700px;
-    margin: 0 auto;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-  }
-  .section { display: none; }
-  .section.active { display: block; }
-  .section-title {
-    font-size: 1.3em;
-    font-weight: 700;
-    color: #5a3e8f;
-    margin-bottom: 18px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Present Simple – 3 клас</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  /* TASK 1 – Rule box */
-  .rule-box {
-    background: linear-gradient(135deg, #f0e6ff, #e6f0ff);
-    border-left: 5px solid #764ba2;
-    border-radius: 12px;
-    padding: 16px 20px;
-    margin-bottom: 18px;
-    font-size: 0.95em;
-    line-height: 1.7;
-    color: #333;
-  }
-  .rule-box b { color: #764ba2; }
-  .rule-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 12px 0;
-    font-size: 0.9em;
-  }
-  .rule-table th {
-    background: #764ba2;
-    color: white;
-    padding: 8px 12px;
-    text-align: left;
-    border-radius: 4px;
-  }
-  .rule-table td {
-    padding: 8px 12px;
-    border-bottom: 1px solid #e0d0f5;
-  }
-  .rule-table tr:nth-child(even) td { background: #f7f0ff; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
 
-  /* TASK 2 – Choose correct */
-  .question-block {
-    background: #f9f6ff;
-    border-radius: 14px;
-    padding: 16px 18px;
-    margin-bottom: 14px;
-  }
-  .question-text {
-    font-size: 1em;
-    color: #333;
-    margin-bottom: 10px;
-    font-weight: 600;
-    line-height: 1.5;
-  }
-  .options {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  .opt-btn {
-    background: white;
-    border: 2px solid #c4a8f0;
-    color: #5a3e8f;
-    padding: 7px 18px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 0.9em;
-    font-weight: 600;
-    transition: all .2s;
-  }
-  .opt-btn:hover:not(:disabled) { background: #ede0ff; }
-  .opt-btn.correct { background: #d4f5d4; border-color: #4caf50; color: #2e7d32; }
-  .opt-btn.wrong { background: #ffd6d6; border-color: #f44336; color: #c62828; }
-  .feedback {
-    margin-top: 8px;
-    font-size: 0.85em;
-    font-weight: 600;
-    min-height: 18px;
-  }
-  .feedback.ok { color: #2e7d32; }
-  .feedback.no { color: #c62828; }
+    h1 {
+      text-align: center;
+      color: white;
+      font-size: 2em;
+      margin-bottom: 6px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
 
-  /* TASK 3 – Fill blank */
-  .fill-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 12px;
-    flex-wrap: wrap;
-    background: #f9f6ff;
-    padding: 12px 14px;
-    border-radius: 12px;
-  }
-  .fill-row span { font-size: 0.95em; color: #333; font-weight: 500; }
-  .fill-input {
-    border: 2px solid #c4a8f0;
-    border-radius: 10px;
-    padding: 5px 10px;
-    font-size: 0.9em;
-    width: 110px;
-    outline: none;
-    color: #333;
-    font-weight: 600;
-    transition: border-color .2s;
-  }
-  .fill-input:focus { border-color: #764ba2; }
-  .fill-input.correct { border-color: #4caf50; background: #d4f5d4; }
-  .fill-input.wrong { border-color: #f44336; background: #ffd6d6; }
-  .hint { font-size: 0.78em; color: #888; font-style: italic; }
+    .subtitle {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 20px;
+      font-size: 1em;
+    }
 
-  /* TASK 4 – Drag & sort */
-  .drag-area {
-    min-height: 50px;
-    border: 2px dashed #c4a8f0;
-    border-radius: 12px;
-    padding: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 12px;
-    background: #faf7ff;
-    transition: background .2s;
-  }
-  .drag-area.over { background: #ede0ff; }
-  .word-chip {
-    background: linear-gradient(135deg, #764ba2, #667eea);
-    color: white;
-    padding: 7px 15px;
-    border-radius: 20px;
-    cursor: grab;
-    font-size: 0.9em;
-    font-weight: 600;
-    user-select: none;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    transition: transform .1s;
-  }
-  .word-chip:active { cursor: grabbing; transform: scale(1.05); }
-  .sentence-result {
-    font-size: 0.95em;
-    color: #5a3e8f;
-    font-weight: 600;
-    padding: 8px 12px;
-    background: #f0e6ff;
-    border-radius: 10px;
-    min-height: 36px;
-    margin-bottom: 6px;
-  }
+    /* TABS */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
 
-  /* TASK 5 – Match */
-  .match-container {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
-  }
-  .match-col { flex: 1; min-width: 140px; }
-  .match-col h4 { font-size: 0.85em; color: #888; margin-bottom: 8px; }
-  .match-item {
-    background: #f0e6ff;
-    border: 2px solid #c4a8f0;
-    border-radius: 12px;
-    padding: 9px 14px;
-    margin-bottom: 8px;
-    cursor: pointer;
-    font-size: 0.9em;
-    font-weight: 600;
-    color: #5a3e8f;
-    transition: all .2s;
-    text-align: center;
-  }
-  .match-item.selected { background: #764ba2; color: white; border-color: #764ba2; }
-  .match-item.matched-ok { background: #d4f5d4; border-color: #4caf50; color: #2e7d32; cursor: default; }
-  .match-item.matched-no { background: #ffd6d6; border-color: #f44336; color: #c62828; }
+    .tab {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      padding: 9px 18px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 0.9em;
+      font-weight: 600;
+      transition: all .2s;
+    }
 
-  /* Buttons */
-  .check-btn {
-    background: linear-gradient(135deg, #764ba2, #667eea);
-    color: white;
-    border: none;
-    padding: 11px 28px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 0.95em;
-    font-weight: 700;
-    margin-top: 10px;
-    transition: transform .1s, box-shadow .2s;
-    box-shadow: 0 4px 15px rgba(118,75,162,0.4);
-  }
-  .check-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(118,75,162,0.5); }
-  .reset-btn {
-    background: white;
-    color: #764ba2;
-    border: 2px solid #764ba2;
-    padding: 9px 22px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 0.88em;
-    font-weight: 700;
-    margin-top: 10px;
-    margin-left: 10px;
-    transition: all .2s;
-  }
-  .reset-btn:hover { background: #f0e6ff; }
+    .tab.active,
+    .tab:hover {
+      background: white;
+      color: #764ba2;
+      border-color: white;
+    }
 
-  /* Score */
-  .score-bar {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: #f0e6ff;
-    border-radius: 12px;
-    padding: 10px 16px;
-    margin-bottom: 18px;
-  }
-  .stars { font-size: 1.4em; letter-spacing: 2px; }
-  .score-text { font-size: 0.9em; color: #5a3e8f; font-weight: 700; }
+    /* CARD */
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 28px;
+      max-width: 700px;
+      margin: 0 auto;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
 
-  /* Congrats */
-  .congrats {
-    text-align: center;
-    padding: 20px;
-    display: none;
-  }
-  .congrats.show { display: block; }
-  .congrats-emoji { font-size: 3em; margin-bottom: 10px; }
-  .congrats h2 { color: #5a3e8f; font-size: 1.5em; }
-</style>
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .section-title {
+      font-size: 1.3em;
+      font-weight: 700;
+      color: #5a3e8f;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* TASK 1 – Rule box */
+    .rule-box {
+      background: linear-gradient(135deg, #f0e6ff, #e6f0ff);
+      border-left: 5px solid #764ba2;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 18px;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #333;
+    }
+
+    .rule-box b {
+      color: #764ba2;
+    }
+
+    .rule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 0.9em;
+    }
+
+    .rule-table th {
+      background: #764ba2;
+      color: white;
+      padding: 8px 12px;
+      text-align: left;
+      border-radius: 4px;
+    }
+
+    .rule-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #e0d0f5;
+    }
+
+    .rule-table tr:nth-child(even) td {
+      background: #f7f0ff;
+    }
+
+    /* TASK 2 – Choose correct */
+    .question-block {
+      background: #f9f6ff;
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 14px;
+    }
+
+    .question-text {
+      font-size: 1em;
+      color: #333;
+      margin-bottom: 10px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .options {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .opt-btn {
+      background: white;
+      border: 2px solid #c4a8f0;
+      color: #5a3e8f;
+      padding: 7px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9em;
+      font-weight: 600;
+      transition: all .2s;
+    }
+
+    .opt-btn:hover:not(:disabled) {
+      background: #ede0ff;
+    }
+
+    .opt-btn.correct {
+      background: #d4f5d4;
+      border-color: #4caf50;
+      color: #2e7d32;
+    }
+
+    .opt-btn.wrong {
+      background: #ffd6d6;
+      border-color: #f44336;
+      color: #c62828;
+    }
+
+    .feedback {
+      margin-top: 8px;
+      font-size: 0.85em;
+      font-weight: 600;
+      min-height: 18px;
+    }
+
+    .feedback.ok {
+      color: #2e7d32;
+    }
+
+    .feedback.no {
+      color: #c62828;
+    }
+
+    /* TASK 3 – Fill blank */
+    .fill-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      background: #f9f6ff;
+      padding: 12px 14px;
+      border-radius: 12px;
+    }
+
+    .fill-row span {
+      font-size: 0.95em;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .fill-input {
+      border: 2px solid #c4a8f0;
+      border-radius: 10px;
+      padding: 5px 10px;
+      font-size: 0.9em;
+      width: 110px;
+      outline: none;
+      color: #333;
+      font-weight: 600;
+      transition: border-color .2s;
+    }
+
+    .fill-input:focus {
+      border-color: #764ba2;
+    }
+
+    .fill-input.correct {
+      border-color: #4caf50;
+      background: #d4f5d4;
+    }
+
+    .fill-input.wrong {
+      border-color: #f44336;
+      background: #ffd6d6;
+    }
+
+    .hint {
+      font-size: 0.78em;
+      color: #888;
+      font-style: italic;
+    }
+
+    /* TASK 4 – Drag & sort */
+    .drag-area {
+      min-height: 50px;
+      border: 2px dashed #c4a8f0;
+      border-radius: 12px;
+      padding: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+      background: #faf7ff;
+      transition: background .2s;
+    }
+
+    .drag-area.over {
+      background: #ede0ff;
+    }
+
+    .word-chip {
+      background: linear-gradient(135deg, #764ba2, #667eea);
+      color: white;
+      padding: 7px 15px;
+      border-radius: 20px;
+      cursor: grab;
+      font-size: 0.9em;
+      font-weight: 600;
+      user-select: none;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      transition: transform .1s;
+    }
+
+    .word-chip:active {
+      cursor: grabbing;
+      transform: scale(1.05);
+    }
+
+    .sentence-result {
+      font-size: 0.95em;
+      color: #5a3e8f;
+      font-weight: 600;
+      padding: 8px 12px;
+      background: #f0e6ff;
+      border-radius: 10px;
+      min-height: 36px;
+      margin-bottom: 6px;
+    }
+
+    /* TASK 5 – Match */
+    .match-container {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .match-col {
+      flex: 1;
+      min-width: 140px;
+    }
+
+    .match-col h4 {
+      font-size: 0.85em;
+      color: #888;
+      margin-bottom: 8px;
+    }
+
+    .match-item {
+      background: #f0e6ff;
+      border: 2px solid #c4a8f0;
+      border-radius: 12px;
+      padding: 9px 14px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      font-size: 0.9em;
+      font-weight: 600;
+      color: #5a3e8f;
+      transition: all .2s;
+      text-align: center;
+    }
+
+    .match-item.selected {
+      background: #764ba2;
+      color: white;
+      border-color: #764ba2;
+    }
+
+    .match-item.matched-ok {
+      background: #d4f5d4;
+      border-color: #4caf50;
+      color: #2e7d32;
+      cursor: default;
+    }
+
+    .match-item.matched-no {
+      background: #ffd6d6;
+      border-color: #f44336;
+      color: #c62828;
+    }
+
+    /* Buttons */
+    .check-btn {
+      background: linear-gradient(135deg, #764ba2, #667eea);
+      color: white;
+      border: none;
+      padding: 11px 28px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 0.95em;
+      font-weight: 700;
+      margin-top: 10px;
+      transition: transform .1s, box-shadow .2s;
+      box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4);
+    }
+
+    .check-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(118, 75, 162, 0.5);
+    }
+
+    .reset-btn {
+      background: white;
+      color: #764ba2;
+      border: 2px solid #764ba2;
+      padding: 9px 22px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 0.88em;
+      font-weight: 700;
+      margin-top: 10px;
+      margin-left: 10px;
+      transition: all .2s;
+    }
+
+    .reset-btn:hover {
+      background: #f0e6ff;
+    }
+
+    /* Score */
+    .score-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #f0e6ff;
+      border-radius: 12px;
+      padding: 10px 16px;
+      margin-bottom: 18px;
+    }
+
+    .stars {
+      font-size: 1.4em;
+      letter-spacing: 2px;
+    }
+
+    .score-text {
+      font-size: 0.9em;
+      color: #5a3e8f;
+      font-weight: 700;
+    }
+
+    /* Congrats */
+    .congrats {
+      text-align: center;
+      padding: 20px;
+      display: none;
+    }
+
+    .congrats.show {
+      display: block;
+    }
+
+    .congrats-emoji {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+
+    .congrats h2 {
+      color: #5a3e8f;
+      font-size: 1.5em;
+    }
+  </style>
 </head>
+
 <body>
 
-<h1>🌟 Present Simple</h1>
-<p class="subtitle">3 клас · Англійська мова · НУШ</p>
+  <h1>🌟 Present Simple</h1>
+  <p class="subtitle">3 клас · Англійська мова · НУШ</p>
 
-<div class="tabs">
-  <div class="tab active" onclick="showTab(0)">📖 Правило</div>
-  <div class="tab" onclick="showTab(1)">✅ Вибери</div>
-  <div class="tab" onclick="showTab(2)">✏️ Встав слово</div>
-  <div class="tab" onclick="showTab(3)">🔀 Склади речення</div>
-  <div class="tab" onclick="showTab(4)">🔗 З'єднай</div>
-</div>
+  <div class="tabs">
+    <div class="tab active" onclick="showTab(0)">📖 Правило</div>
+    <div class="tab" onclick="showTab(1)">✅ Вибери</div>
+    <div class="tab" onclick="showTab(2)">✏️ Встав слово</div>
+    <div class="tab" onclick="showTab(3)">🔀 Склади речення</div>
+    <div class="tab" onclick="showTab(4)">🔗 З'єднай</div>
+  </div>
 
-<div class="card">
+  <div class="card">
 
-  <!-- SECTION 0: RULE -->
-  <div class="section active" id="sec0">
-    <div class="section-title">📖 Present Simple — як це працює?</div>
-    <div class="rule-box">
-      <b>Present Simple</b> — це теперішній час. Ми використовуємо його коли розповідаємо про те, що відбувається <b>кожного дня, завжди або часто</b>.<br><br>
-      🌞 I <b>eat</b> breakfast every day. — Я їм сніданок щодня.<br>
-      🐱 She <b>plays</b> with her cat. — Вона грає з котиком.
+    <!-- SECTION 0: RULE -->
+    <div class="section active" id="sec0">
+      <div class="section-title">📖 Present Simple — як це працює?</div>
+      <div class="rule-box">
+        <b>Present Simple</b> — це теперішній час. Ми використовуємо його коли розповідаємо про те, що відбувається
+        <b>кожного дня, завжди або часто</b>.<br><br>
+        🌞 I <b>eat</b> breakfast every day. — Я їм сніданок щодня.<br>
+        🐱 She <b>plays</b> with her cat. — Вона грає з котиком.
+      </div>
+      <table class="rule-table">
+        <tr>
+          <th>Хто?</th>
+          <th>Дієслово</th>
+          <th>Приклад</th>
+        </tr>
+        <tr>
+          <td>I / You / We / They</td>
+          <td>play</td>
+          <td>I <b>play</b> football.</td>
+        </tr>
+        <tr>
+          <td>He / She / It</td>
+          <td>play<b>s</b></td>
+          <td>She <b>plays</b> football.</td>
+        </tr>
+      </table>
+      <div class="rule-box" style="margin-top:12px">
+        ⭐ Запам'ятай: після <b>He / She / It</b> додаємо <b>-s</b> до дієслова!<br><br>
+        ⏰ Слова-підказки: <b>every day, always, usually, often, never, on Mondays</b>
+      </div>
     </div>
-    <table class="rule-table">
-      <tr><th>Хто?</th><th>Дієслово</th><th>Приклад</th></tr>
-      <tr><td>I / You / We / They</td><td>play</td><td>I <b>play</b> football.</td></tr>
-      <tr><td>He / She / It</td><td>play<b>s</b></td><td>She <b>plays</b> football.</td></tr>
-    </table>
-    <div class="rule-box" style="margin-top:12px">
-      ⭐ Запам'ятай: після <b>He / She / It</b> додаємо <b>-s</b> до дієслова!<br><br>
-      ⏰ Слова-підказки: <b>every day, always, usually, often, never, on Mondays</b>
+
+    <!-- SECTION 1: CHOOSE -->
+    <div class="section" id="sec1">
+      <div class="section-title">✅ Вибери правильну форму</div>
+      <div id="chooseContainer"></div>
+      <button class="reset-btn" onclick="resetChoose()">🔄 Спробувати ще раз</button>
     </div>
+
+    <!-- SECTION 2: FILL -->
+    <div class="section" id="sec2">
+      <div class="section-title">✏️ Встав правильне слово</div>
+      <div id="fillContainer"></div>
+      <button class="check-btn" onclick="checkFill()">Перевірити ✔</button>
+      <button class="reset-btn" onclick="resetFill()">🔄 Знову</button>
+      <div id="fillResult" style="margin-top:12px; font-weight:700; color:#5a3e8f;"></div>
+    </div>
+
+    <!-- SECTION 3: DRAG -->
+    <div class="section" id="sec3">
+      <div class="section-title">🔀 Склади речення з слів</div>
+      <div id="dragContainer"></div>
+    </div>
+
+    <!-- SECTION 4: MATCH -->
+    <div class="section" id="sec4">
+      <div class="section-title">🔗 З'єднай речення з перекладом</div>
+      <div id="matchContainer"></div>
+      <button class="check-btn" onclick="checkMatch()">Перевірити ✔</button>
+      <button class="reset-btn" onclick="resetMatch()">🔄 Знову</button>
+      <div id="matchResult" style="margin-top:12px; font-weight:700; color:#5a3e8f;"></div>
+    </div>
+
   </div>
 
-  <!-- SECTION 1: CHOOSE -->
-  <div class="section" id="sec1">
-    <div class="section-title">✅ Вибери правильну форму</div>
-    <div id="chooseContainer"></div>
-    <button class="reset-btn" onclick="resetChoose()">🔄 Спробувати ще раз</button>
-  </div>
+  <script>
+    // ========== TABS ==========
+    const tabs = document.querySelectorAll('.tab');
+    const secs = document.querySelectorAll('.section');
+    function showTab(i) {
+      tabs.forEach((t, j) => t.classList.toggle('active', i === j));
+      secs.forEach((s, j) => s.classList.toggle('active', i === j));
+    }
 
-  <!-- SECTION 2: FILL -->
-  <div class="section" id="sec2">
-    <div class="section-title">✏️ Встав правильне слово</div>
-    <div id="fillContainer"></div>
-    <button class="check-btn" onclick="checkFill()">Перевірити ✔</button>
-    <button class="reset-btn" onclick="resetFill()">🔄 Знову</button>
-    <div id="fillResult" style="margin-top:12px; font-weight:700; color:#5a3e8f;"></div>
-  </div>
+    // ========== TASK 1: CHOOSE ==========
+    const chooseQ = [
+      { q: "Tom ___ football every day.", opts: ["play", "plays", "playing"], ans: "plays", emoji: "⚽" },
+      { q: "I ___ to school in the morning.", opts: ["go", "goes", "going"], ans: "go", emoji: "🎒" },
+      { q: "My cat ___ milk every morning.", opts: ["drink", "drinks", "drinkes"], ans: "drinks", emoji: "🐱" },
+      { q: "We ___ our homework after school.", opts: ["do", "does", "doing"], ans: "do", emoji: "📚" },
+      { q: "She ___ a beautiful song.", opts: ["sing", "sings", "singes"], ans: "sings", emoji: "🎤" },
+      { q: "They ___ to the park on Sundays.", opts: ["go", "goes", "gos"], ans: "go", emoji: "🌳" },
+    ];
 
-  <!-- SECTION 3: DRAG -->
-  <div class="section" id="sec3">
-    <div class="section-title">🔀 Склади речення з слів</div>
-    <div id="dragContainer"></div>
-  </div>
-
-  <!-- SECTION 4: MATCH -->
-  <div class="section" id="sec4">
-    <div class="section-title">🔗 З'єднай речення з перекладом</div>
-    <div id="matchContainer"></div>
-    <button class="check-btn" onclick="checkMatch()">Перевірити ✔</button>
-    <button class="reset-btn" onclick="resetMatch()">🔄 Знову</button>
-    <div id="matchResult" style="margin-top:12px; font-weight:700; color:#5a3e8f;"></div>
-  </div>
-
-</div>
-
-<script>
-// ========== TABS ==========
-const tabs = document.querySelectorAll('.tab');
-const secs = document.querySelectorAll('.section');
-function showTab(i) {
-  tabs.forEach((t,j) => t.classList.toggle('active', i===j));
-  secs.forEach((s,j) => s.classList.toggle('active', i===j));
-}
-
-// ========== TASK 1: CHOOSE ==========
-const chooseQ = [
-  { q: "Tom ___ football every day.", opts: ["play","plays","playing"], ans: "plays", emoji: "⚽" },
-  { q: "I ___ to school in the morning.", opts: ["go","goes","going"], ans: "go", emoji: "🎒" },
-  { q: "My cat ___ milk every morning.", opts: ["drink","drinks","drinkes"], ans: "drinks", emoji: "🐱" },
-  { q: "We ___ our homework after school.", opts: ["do","does","doing"], ans: "do", emoji: "📚" },
-  { q: "She ___ a beautiful song.", opts: ["sing","sings","singes"], ans: "sings", emoji: "🎤" },
-  { q: "They ___ to the park on Sundays.", opts: ["go","goes","gos"], ans: "go", emoji: "🌳" },
-];
-
-function buildChoose() {
-  const c = document.getElementById('chooseContainer');
-  c.innerHTML = chooseQ.map((item, i) => `
+    function buildChoose() {
+      const c = document.getElementById('chooseContainer');
+      c.innerHTML = chooseQ.map((item, i) => `
     <div class="question-block" id="qb${i}">
       <div class="question-text">${item.emoji} ${item.q}</div>
       <div class="options">
@@ -386,39 +537,39 @@ function buildChoose() {
       <div class="feedback" id="fb${i}"></div>
     </div>
   `).join('');
-}
+    }
 
-function answerChoose(i, chosen) {
-  const item = chooseQ[i];
-  const btns = document.querySelectorAll(`#qb${i} .opt-btn`);
-  btns.forEach(b => {
-    b.disabled = true;
-    if (b.textContent === item.ans) b.classList.add('correct');
-    else if (b.textContent === chosen && chosen !== item.ans) b.classList.add('wrong');
-  });
-  const fb = document.getElementById(`fb${i}`);
-  if (chosen === item.ans) {
-    fb.textContent = '✅ Чудово!'; fb.className = 'feedback ok';
-  } else {
-    fb.textContent = `❌ Правильно: ${item.ans}`; fb.className = 'feedback no';
-  }
-}
+    function answerChoose(i, chosen) {
+      const item = chooseQ[i];
+      const btns = document.querySelectorAll(`#qb${i} .opt-btn`);
+      btns.forEach(b => {
+        b.disabled = true;
+        if (b.textContent === item.ans) b.classList.add('correct');
+        else if (b.textContent === chosen && chosen !== item.ans) b.classList.add('wrong');
+      });
+      const fb = document.getElementById(`fb${i}`);
+      if (chosen === item.ans) {
+        fb.textContent = '✅ Чудово!'; fb.className = 'feedback ok';
+      } else {
+        fb.textContent = `❌ Правильно: ${item.ans}`; fb.className = 'feedback no';
+      }
+    }
 
-function resetChoose() { buildChoose(); }
-buildChoose();
+    function resetChoose() { buildChoose(); }
+    buildChoose();
 
-// ========== TASK 2: FILL ==========
-const fillQ = [
-  { before: "🐶 My dog", hint: "(sleep)", ans: "sleeps", after: "a lot." },
-  { before: "🍎 I", hint: "(eat)", ans: "eat", after: "an apple every day." },
-  { before: "🧒 He", hint: "(like)", ans: "likes", after: "ice cream." },
-  { before: "👩‍👧 We", hint: "(love)", ans: "love", after: "our family." },
-  { before: "🐟 The fish", hint: "(swim)", ans: "swims", after: "in the sea." },
-];
+    // ========== TASK 2: FILL ==========
+    const fillQ = [
+      { before: "🐶 My dog", hint: "(sleep)", ans: "sleeps", after: "a lot." },
+      { before: "🍎 I", hint: "(eat)", ans: "eat", after: "an apple every day." },
+      { before: "🧒 He", hint: "(like)", ans: "likes", after: "ice cream." },
+      { before: "👩‍👧 We", hint: "(love)", ans: "love", after: "our family." },
+      { before: "🐟 The fish", hint: "(swim)", ans: "swims", after: "in the sea." },
+    ];
 
-function buildFill() {
-  const c = document.getElementById('fillContainer');
-  c.innerHTML = fillQ.map((item, i) => `
+    function buildFill() {
+      const c = document.getElementById('fillContainer');
+      c.innerHTML = fillQ.map((item, i) => `
     <div class="fill-row">
       <span>${item.before}</span>
       <input class="fill-input" id="fi${i}" placeholder="?" autocomplete="off">
@@ -426,180 +577,181 @@ function buildFill() {
       <span>${item.after}</span>
     </div>
   `).join('');
-  document.getElementById('fillResult').textContent = '';
-}
+      document.getElementById('fillResult').textContent = '';
+    }
 
-function checkFill() {
-  let score = 0;
-  fillQ.forEach((item, i) => {
-    const inp = document.getElementById(`fi${i}`);
-    const val = inp.value.trim().toLowerCase();
-    inp.classList.remove('correct','wrong');
-    if (val === item.ans) { inp.classList.add('correct'); score++; }
-    else { inp.classList.add('wrong'); }
-  });
-  const res = document.getElementById('fillResult');
-  const stars = '⭐'.repeat(score);
-  res.textContent = `${stars} Правильно: ${score} з ${fillQ.length}`;
-}
+    function checkFill() {
+      let score = 0;
+      fillQ.forEach((item, i) => {
+        const inp = document.getElementById(`fi${i}`);
+        const val = inp.value.trim().toLowerCase();
+        inp.classList.remove('correct', 'wrong');
+        if (val === item.ans) { inp.classList.add('correct'); score++; }
+        else { inp.classList.add('wrong'); }
+      });
+      const res = document.getElementById('fillResult');
+      const stars = '⭐'.repeat(score);
+      res.textContent = `${stars} Правильно: ${score} з ${fillQ.length}`;
+    }
 
-function resetFill() { buildFill(); }
-buildFill();
+    function resetFill() { buildFill(); }
+    buildFill();
 
-// ========== TASK 3: DRAG ==========
-const dragSentences = [
-  { words: ["She", "reads", "a", "book", "every", "night", "."], answer: "She reads a book every night ." },
-  { words: ["I", "brush", "my", "teeth", "in", "the", "morning", "."], answer: "I brush my teeth in the morning ." },
-  { words: ["He", "plays", "with", "his", "dog", "."], answer: "He plays with his dog ." },
-];
-let dragCurrent = 0, dragOrder = [];
+    // ========== TASK 3: DRAG ==========
+    const dragSentences = [
+      { words: ["She", "reads", "a", "book", "every", "night", "."], answer: "She reads a book every night ." },
+      { words: ["I", "brush", "my", "teeth", "in", "the", "morning", "."], answer: "I brush my teeth in the morning ." },
+      { words: ["He", "plays", "with", "his", "dog", "."], answer: "He plays with his dog ." },
+    ];
+    let dragCurrent = 0, dragOrder = [];
 
-function buildDrag() {
-  const item = dragSentences[dragCurrent];
-  const shuffled = [...item.words].sort(() => Math.random()-0.5);
-  dragOrder = [];
-  const c = document.getElementById('dragContainer');
-  c.innerHTML = `
-    <p style="font-size:.85em;color:#888;margin-bottom:10px;">Речення ${dragCurrent+1} з ${dragSentences.length} — перетягни слова у правильному порядку</p>
+    function buildDrag() {
+      const item = dragSentences[dragCurrent];
+      const shuffled = [...item.words].sort(() => Math.random() - 0.5);
+      dragOrder = [];
+      const c = document.getElementById('dragContainer');
+      c.innerHTML = `
+    <p style="font-size:.85em;color:#888;margin-bottom:10px;">Речення ${dragCurrent + 1} з ${dragSentences.length} — перетягни слова у правильному порядку</p>
     <div class="sentence-result" id="sentResult">➡️ Клікни на слова щоб складати речення...</div>
     <div style="margin-bottom:8px;font-size:.8em;color:#999;">Обране:</div>
     <div class="drag-area" id="chosenArea"></div>
     <div style="margin-bottom:8px;font-size:.8em;color:#999;">Слова:</div>
     <div class="drag-area" id="wordsArea">
-      ${shuffled.map((w,i)=>`<div class="word-chip" id="wc${i}" onclick="pickWord('${w}',${i})">${w}</div>`).join('')}
+      ${shuffled.map((w, i) => `<div class="word-chip" id="wc${i}" onclick="pickWord('${w}',${i})">${w}</div>`).join('')}
     </div>
     <div id="dragFb" style="margin-top:10px;font-weight:700;color:#5a3e8f;min-height:22px;"></div>
     <button class="check-btn" onclick="checkDrag()">Перевірити ✔</button>
     <button class="reset-btn" onclick="resetDragCurrent()">🔄 Знову</button>
-    ${dragCurrent>0?`<button class="reset-btn" onclick="prevDrag()">◀ Назад</button>`:''}
+    ${dragCurrent > 0 ? `<button class="reset-btn" onclick="prevDrag()">◀ Назад</button>` : ''}
   `;
-}
+    }
 
-function pickWord(w, idx) {
-  const chip = document.getElementById(`wc${idx}`);
-  if (!chip || chip.style.opacity === '0.3') return;
-  dragOrder.push({w, idx});
-  chip.style.opacity = '0.3';
-  chip.style.pointerEvents = 'none';
-  const chosen = document.getElementById('chosenArea');
-  const el = document.createElement('div');
-  el.className = 'word-chip';
-  el.textContent = w;
-  el.onclick = () => { 
-    dragOrder = dragOrder.filter(x => x.idx !== idx);
-    chip.style.opacity = '1'; chip.style.pointerEvents = 'auto';
-    el.remove();
-    updateSentResult();
-  };
-  chosen.appendChild(el);
-  updateSentResult();
-}
+    function pickWord(w, idx) {
+      const chip = document.getElementById(`wc${idx}`);
+      if (!chip || chip.style.opacity === '0.3') return;
+      dragOrder.push({ w, idx });
+      chip.style.opacity = '0.3';
+      chip.style.pointerEvents = 'none';
+      const chosen = document.getElementById('chosenArea');
+      const el = document.createElement('div');
+      el.className = 'word-chip';
+      el.textContent = w;
+      el.onclick = () => {
+        dragOrder = dragOrder.filter(x => x.idx !== idx);
+        chip.style.opacity = '1'; chip.style.pointerEvents = 'auto';
+        el.remove();
+        updateSentResult();
+      };
+      chosen.appendChild(el);
+      updateSentResult();
+    }
 
-function updateSentResult() {
-  document.getElementById('sentResult').textContent = dragOrder.length ? dragOrder.map(x=>x.w).join(' ') : '➡️ Клікни на слова щоб складати речення...';
-}
+    function updateSentResult() {
+      document.getElementById('sentResult').textContent = dragOrder.length ? dragOrder.map(x => x.w).join(' ') : '➡️ Клікни на слова щоб складати речення...';
+    }
 
-function checkDrag() {
-  const item = dragSentences[dragCurrent];
-  const built = dragOrder.map(x=>x.w).join(' ');
-  const fb = document.getElementById('dragFb');
-  if (built === item.answer) {
-    fb.textContent = '✅ Правильно! Молодець!';
-    fb.style.color = '#2e7d32';
-    setTimeout(() => {
-      if (dragCurrent < dragSentences.length-1) { dragCurrent++; buildDrag(); }
-      else { fb.textContent = '🏆 Усі речення складено! Ти супер!'; }
-    }, 1200);
-  } else {
-    fb.textContent = '❌ Спробуй ще раз!';
-    fb.style.color = '#c62828';
-  }
-}
+    function checkDrag() {
+      const item = dragSentences[dragCurrent];
+      const built = dragOrder.map(x => x.w).join(' ');
+      const fb = document.getElementById('dragFb');
+      if (built === item.answer) {
+        fb.textContent = '✅ Правильно! Молодець!';
+        fb.style.color = '#2e7d32';
+        setTimeout(() => {
+          if (dragCurrent < dragSentences.length - 1) { dragCurrent++; buildDrag(); }
+          else { fb.textContent = '🏆 Усі речення складено! Ти супер!'; }
+        }, 1200);
+      } else {
+        fb.textContent = '❌ Спробуй ще раз!';
+        fb.style.color = '#c62828';
+      }
+    }
 
-function resetDragCurrent() { buildDrag(); }
-function prevDrag() { if (dragCurrent>0) { dragCurrent--; buildDrag(); } }
-buildDrag();
+    function resetDragCurrent() { buildDrag(); }
+    function prevDrag() { if (dragCurrent > 0) { dragCurrent--; buildDrag(); } }
+    buildDrag();
 
-// ========== TASK 4: MATCH ==========
-const matchPairs = [
-  { en: "I go to school.", uk: "Я йду до школи." },
-  { en: "She likes cats.", uk: "Вона любить котів." },
-  { en: "We play outside.", uk: "Ми граємо надворі." },
-  { en: "He drinks water.", uk: "Він п'є воду." },
-  { en: "They run fast.", uk: "Вони бігають швидко." },
-];
-let matchSelected = { col: null, idx: null };
-let matchDone = new Set();
+    // ========== TASK 4: MATCH ==========
+    const matchPairs = [
+      { en: "I go to school.", uk: "Я йду до школи." },
+      { en: "She likes cats.", uk: "Вона любить котів." },
+      { en: "We play outside.", uk: "Ми граємо надворі." },
+      { en: "He drinks water.", uk: "Він п'є воду." },
+      { en: "They run fast.", uk: "Вони бігають швидко." },
+    ];
+    let matchSelected = { col: null, idx: null };
+    let matchDone = new Set();
 
-function buildMatch() {
-  matchSelected = { col: null, idx: null };
-  matchDone = new Set();
-  const shuffledUk = [...matchPairs].sort(()=>Math.random()-0.5);
-  document.getElementById('matchContainer').innerHTML = `
+    function buildMatch() {
+      matchSelected = { col: null, idx: null };
+      matchDone = new Set();
+      const shuffledUk = [...matchPairs].sort(() => Math.random() - 0.5);
+      document.getElementById('matchContainer').innerHTML = `
     <div class="match-container">
       <div class="match-col">
         <h4>🇬🇧 Англійська</h4>
-        ${matchPairs.map((p,i)=>`<div class="match-item" id="men${i}" onclick="selectMatch('en',${i},'${p.en}')">${p.en}</div>`).join('')}
+        ${matchPairs.map((p, i) => `<div class="match-item" id="men${i}" onclick="selectMatch('en',${i},'${p.en}')">${p.en}</div>`).join('')}
       </div>
       <div class="match-col">
         <h4>🇺🇦 Українська</h4>
-        ${shuffledUk.map((p,i)=>`<div class="match-item" id="muk${i}" onclick="selectMatch('uk',${i},'${p.uk}')" data-uk="${p.uk}">${p.uk}</div>`).join('')}
+        ${shuffledUk.map((p, i) => `<div class="match-item" id="muk${i}" onclick="selectMatch('uk',${i},'${p.uk}')" data-uk="${p.uk}">${p.uk}</div>`).join('')}
       </div>
     </div>
   `;
-  document.getElementById('matchResult').textContent = '';
-}
-
-function selectMatch(col, idx, val) {
-  const id = col+idx;
-  if (matchDone.has(id)) return;
-  const el = document.getElementById(`m${col}${idx}`);
-
-  if (matchSelected.col === null) {
-    // first pick
-    clearMatchHighlight();
-    matchSelected = { col, idx, val };
-    el.classList.add('selected');
-  } else if (matchSelected.col === col) {
-    // same column, switch
-    clearMatchHighlight();
-    matchSelected = { col, idx, val };
-    el.classList.add('selected');
-  } else {
-    // second pick, check
-    const a = matchSelected;
-    clearMatchHighlight();
-
-    let enVal, ukVal, enIdx, ukIdx;
-    if (a.col === 'en') { enVal = a.val; enIdx = a.idx; ukVal = val; ukIdx = idx; }
-    else { ukVal = a.val; ukIdx = a.idx; enVal = val; enIdx = idx; }
-
-    const correct = matchPairs.some(p => p.en === enVal && p.uk === ukVal);
-    const enEl = document.getElementById(`men${enIdx}`);
-    const ukEl = document.getElementById(`muk${ukIdx}`);
-    if (correct) {
-      enEl.classList.add('matched-ok'); ukEl.classList.add('matched-ok');
-      matchDone.add('en'+enIdx); matchDone.add('uk'+ukIdx);
-    } else {
-      enEl.classList.add('matched-no'); ukEl.classList.add('matched-no');
-      setTimeout(()=>{ enEl.classList.remove('matched-no'); ukEl.classList.remove('matched-no'); }, 900);
+      document.getElementById('matchResult').textContent = '';
     }
-    matchSelected = { col: null, idx: null, val: null };
-  }
-}
 
-function clearMatchHighlight() {
-  document.querySelectorAll('.match-item.selected').forEach(e=>e.classList.remove('selected'));
-}
+    function selectMatch(col, idx, val) {
+      const id = col + idx;
+      if (matchDone.has(id)) return;
+      const el = document.getElementById(`m${col}${idx}`);
 
-function checkMatch() {
-  const total = matchPairs.length;
-  const done = matchDone.size / 2;
-  document.getElementById('matchResult').textContent = done === total ? `🏆 Чудово! Усі пари знайдено!` : `✅ Знайдено ${done} з ${total} пар. Продовжуй!`;
-}
+      if (matchSelected.col === null) {
+        // first pick
+        clearMatchHighlight();
+        matchSelected = { col, idx, val };
+        el.classList.add('selected');
+      } else if (matchSelected.col === col) {
+        // same column, switch
+        clearMatchHighlight();
+        matchSelected = { col, idx, val };
+        el.classList.add('selected');
+      } else {
+        // second pick, check
+        const a = matchSelected;
+        clearMatchHighlight();
 
-function resetMatch() { buildMatch(); }
-buildMatch();
-</script>
+        let enVal, ukVal, enIdx, ukIdx;
+        if (a.col === 'en') { enVal = a.val; enIdx = a.idx; ukVal = val; ukIdx = idx; }
+        else { ukVal = a.val; ukIdx = a.idx; enVal = val; enIdx = idx; }
+
+        const correct = matchPairs.some(p => p.en === enVal && p.uk === ukVal);
+        const enEl = document.getElementById(`men${enIdx}`);
+        const ukEl = document.getElementById(`muk${ukIdx}`);
+        if (correct) {
+          enEl.classList.add('matched-ok'); ukEl.classList.add('matched-ok');
+          matchDone.add('en' + enIdx); matchDone.add('uk' + ukIdx);
+        } else {
+          enEl.classList.add('matched-no'); ukEl.classList.add('matched-no');
+          setTimeout(() => { enEl.classList.remove('matched-no'); ukEl.classList.remove('matched-no'); }, 900);
+        }
+        matchSelected = { col: null, idx: null, val: null };
+      }
+    }
+
+    function clearMatchHighlight() {
+      document.querySelectorAll('.match-item.selected').forEach(e => e.classList.remove('selected'));
+    }
+
+    function checkMatch() {
+      const total = matchPairs.length;
+      const done = matchDone.size / 2;
+      document.getElementById('matchResult').textContent = done === total ? `🏆 Чудово! Усі пари знайдено!` : `✅ Знайдено ${done} з ${total} пар. Продовжуй!`;
+    }
+
+    function resetMatch() { buildMatch(); }
+    buildMatch();
+  </script>
 </body>
+
 </html>
