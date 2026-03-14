@@ -44,33 +44,33 @@ body {
 
 /* Секція фільтрів */
 .filter-section {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto 32px;
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 10px;
     flex-wrap: wrap;
 }
 
 .filter-btn {
     background: white;
     border: none;
-    padding: 12px 28px;
+    padding: 10px 22px;
     border-radius: 40px;
-    font-weight: 800;
-    font-size: 1rem;
+    font-weight: 700;
+    font-size: 0.9rem;
     box-shadow: 0 6px 0 #bb9eff;
     border: 2px solid #8b5cf6;
     color: #4b2e8f;
     transition: all 0.1s ease;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     cursor: pointer;
 }
 
 .filter-btn i { 
-    font-size: 1.2rem; 
+    font-size: 1rem; 
 }
 
 .filter-btn.active {
@@ -86,9 +86,20 @@ body {
     box-shadow: 0 8px 0 #bb9eff;
 }
 
+.refresh-btn {
+    background: #ffd966;
+    border-color: #d48d00;
+    color: #4b2e1b;
+    box-shadow: 0 6px 0 #b87c00;
+}
+
+.refresh-btn:hover {
+    background: #ffe08a;
+}
+
 /* Сітка карток */
 .cards-grid {
-    max-width: 1300px;
+    max-width: 1400px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -98,7 +109,7 @@ body {
 
 /* Картка */
 .card-item {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(6px);
     border-radius: 32px;
     padding: 24px 20px 22px;
@@ -110,6 +121,7 @@ body {
     align-items: flex-start;
     position: relative;
     overflow: hidden;
+    animation: fadeIn 0.5s ease-out;
 }
 
 .card-item:hover {
@@ -247,6 +259,46 @@ body {
     }
 }
 
-.card-item {
-    animation: fadeIn 0.5s ease-out;
+/* Стилі для помилки */
+.error-card {
+    background: #fee2e2;
+    border: 3px solid #ef4444;
+    text-align: center;
+    padding: 40px 20px;
+    grid-column: 1 / -1;
+}
+
+.error-card i {
+    font-size: 3rem;
+    color: #ef4444;
+    margin-bottom: 15px;
+}
+
+.loading-card {
+    background: white;
+    text-align: center;
+    padding: 40px;
+    grid-column: 1 / -1;
+}
+
+.loading-card i {
+    font-size: 2rem;
+    color: #8b5cf6;
+    margin-bottom: 15px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Повідомлення про кількість */
+.file-count {
+    background: #8b5cf6;
+    color: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    margin-left: 5px;
 }
