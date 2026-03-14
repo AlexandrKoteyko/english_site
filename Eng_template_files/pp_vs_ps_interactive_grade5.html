@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Present Perfect vs Past Simple – 5 клас 🌍</title>
+<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;600;700&family=Lilita+One&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:     #0f1923;
+  --card:   #1a2535;
+  --card2:  #212f42;
+  --pp:     #f5a623;
+  --pp2:    #ffd07b;
+  --ps:     #38c9b0;
+  --ps2:    #7ee8d8;
+  --red:    #ff5c5c;
+  --green:  #4ade80;
+  --text:   #eef2f7;
+  --muted:  #607080;
+  --border: #2a3d55;
+  --gold:   #f5a623;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Cabin',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* star bg */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 10%, rgba(255,255,255,.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 55%, rgba(255,255,255,.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 70%, rgba(255,255,255,.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 85%, rgba(255,255,255,.3) 0%, transparent 100%),
+    radial-gradient(2px 2px at 55% 50%, rgba(255,255,255,.15) 0%, transparent 100%);
+  pointer-events:none;z-index:0;
+}
+
+/* HERO */
+.hero{
+  position:relative;z-index:1;
+  background:linear-gradient(160deg,#0f1923 0%,#1a3040 60%,#0f2535 100%);
+  padding:36px 20px 42px;
+  text-align:center;
+  border-bottom:2px solid var(--border);
+  overflow:hidden;
+}
+.hero::after{
+  content:'🌍';
+  position:absolute;font-size:12em;opacity:.04;
+  bottom:-30px;right:-20px;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(245,166,35,.12);
+  border:1.5px solid rgba(245,166,35,.3);
+  color:var(--pp2);font-size:.78em;font-weight:700;
+  padding:5px 16px;border-radius:20px;
+  letter-spacing:1px;margin-bottom:14px;
+}
+.hero h1{
+  font-family:'Lilita One',cursive;
+  font-size:clamp(1.8em,6vw,3.2em);
+  line-height:1.1;margin-bottom:10px;
+  letter-spacing:.5px;
+}
+.hero h1 .pp-c{color:var(--pp2);}
+.hero h1 .ps-c{color:var(--ps2);}
+.hero h1 .vs-c{
+  color:rgba(255,255,255,.4);font-size:.6em;
+  font-family:'Cabin',sans-serif;font-weight:700;
+  margin:0 10px;
+}
+.hero p{color:rgba(255,255,255,.5);font-size:.88em;font-weight:600;}
+
+/* SCORE */
+.score-bar{
+  position:relative;z-index:1;
+  display:flex;justify-content:center;gap:12px;flex-wrap:wrap;
+  padding:12px 16px;
+  background:var(--card);
+  border-bottom:1px solid var(--border);
+}
+.s-chip{
+  display:flex;align-items:center;gap:6px;
+  background:var(--card2);border:1px solid var(--border);
+  border-radius:25px;padding:6px 18px;
+  font-weight:700;font-size:.88em;
+}
+.s-chip .v{color:var(--gold);font-size:1.1em;}
+
+/* TABS */
+.tabs{
+  position:relative;z-index:1;
+  display:flex;overflow-x:auto;
+  background:var(--card);border-bottom:1px solid var(--border);
+  padding:0 16px;
+}
+.tabs::-webkit-scrollbar{height:0}
+.tab{
+  flex-shrink:0;padding:13px 18px;
+  font-family:'Cabin',sans-serif;font-size:.85em;font-weight:700;
+  color:var(--muted);cursor:pointer;
+  border-bottom:3px solid transparent;
+  transition:all .2s;white-space:nowrap;
+}
+.tab:hover{color:var(--pp2);}
+.tab.active{color:var(--pp2);border-bottom-color:var(--pp);}
+
+/* WRAP */
+.wrap{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:24px 16px 70px;}
+.sec{display:none;animation:fadeUp .3s ease;}
+.sec.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.sec-title{
+  font-family:'Lilita One',cursive;
+  font-size:1.4em;color:var(--pp2);
+  margin-bottom:4px;letter-spacing:.5px;
+}
+.sec-desc{color:var(--muted);font-size:.84em;font-weight:600;margin-bottom:20px;}
+
+/* CARD */
+.card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:20px;padding:22px 24px;margin-bottom:16px;
+  box-shadow:0 4px 24px rgba(0,0,0,.25);
+}
+
+/* ===== RULE ===== */
+.rule-cols{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px;}
+.rule-half{
+  flex:1;min-width:220px;border-radius:18px;padding:18px;border:1.5px solid;
+}
+.rule-half.pp-h{background:rgba(245,166,35,.07);border-color:rgba(245,166,35,.3);}
+.rule-half.ps-h{background:rgba(56,201,176,.07);border-color:rgba(56,201,176,.3);}
+.rule-half h3{
+  font-family:'Lilita One',cursive;
+  font-size:1.05em;margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;
+}
+.pp-h h3{color:var(--pp2);}
+.ps-h h3{color:var(--ps2);}
+.formula{
+  border-radius:10px;padding:8px 14px;
+  font-size:.87em;font-weight:700;font-family:monospace;
+  margin-bottom:10px;border:1px solid;
+}
+.pp-h .formula{background:rgba(245,166,35,.12);border-color:rgba(245,166,35,.25);color:var(--pp2);}
+.ps-h .formula{background:rgba(56,201,176,.12);border-color:rgba(56,201,176,.25);color:var(--ps2);}
+.rule-li{font-size:.84em;font-weight:600;color:#c0ccd8;margin-bottom:5px;padding-left:16px;position:relative;}
+.rule-li::before{content:'→';position:absolute;left:0;}
+.pp-h .rule-li::before{color:var(--pp2);}
+.ps-h .rule-li::before{color:var(--ps2);}
+.kw-strip{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.kw-box{flex:1;min-width:200px;border-radius:14px;padding:12px 14px;border:1px dashed;}
+.kw-box.pp-kw{border-color:rgba(245,166,35,.35);background:rgba(245,166,35,.05);}
+.kw-box.ps-kw{border-color:rgba(56,201,176,.35);background:rgba(56,201,176,.05);}
+.kw-box h4{font-size:.75em;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;}
+.pp-kw h4{color:var(--pp2);}
+.ps-kw h4{color:var(--ps2);}
+.kw-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.kw-chip{border-radius:16px;padding:3px 12px;font-size:.8em;font-weight:700;border:1px solid;}
+.pp-kw .kw-chip{background:rgba(245,166,35,.1);border-color:rgba(245,166,35,.3);color:var(--pp2);}
+.ps-kw .kw-chip{background:rgba(56,201,176,.1);border-color:rgba(56,201,176,.3);color:var(--ps2);}
+
+/* ===== STORY ===== */
+.story-card{
+  background:linear-gradient(135deg,#1a2a1a,#1a2535);
+  border:1.5px solid rgba(74,222,128,.2);
+  border-radius:20px;padding:22px 24px;
+  line-height:2;font-size:.93em;color:#c8d8c0;
+  margin-bottom:14px;
+}
+.story-card .s-title{
+  font-family:'Lilita One',cursive;
+  font-size:1.2em;color:var(--gold);
+  margin-bottom:14px;display:flex;align-items:center;gap:10px;
+}
+.hl-pp{color:var(--pp2);font-weight:700;}
+.hl-ps{color:var(--ps2);font-weight:700;}
+.legend{
+  display:flex;gap:14px;flex-wrap:wrap;
+  background:var(--card2);border-radius:12px;
+  padding:10px 14px;font-size:.82em;font-weight:600;
+  border:1px solid var(--border);
+}
+.leg{display:flex;align-items:center;gap:7px;}
+.ldot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.transl-box{
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  border-radius:14px;padding:14px 18px;margin-top:12px;
+  font-size:.85em;color:#8090a0;line-height:1.85;
+}
+
+/* ===== SHARED TASKS ===== */
+.q-block{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:16px 18px;margin-bottom:12px;
+  box-shadow:0 2px 12px rgba(0,0,0,.2);transition:border-color .2s;
+}
+.q-block.ok{border-color:var(--green);background:rgba(74,222,128,.05);}
+.q-block.no{border-color:var(--red);background:rgba(255,92,92,.05);}
+.q-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:24px;height:24px;border-radius:50%;
+  font-size:.75em;font-weight:700;margin-right:8px;
+  background:var(--pp);color:#000;flex-shrink:0;
+}
+.q-txt{font-weight:600;font-size:.93em;line-height:1.6;margin-bottom:12px;}
+.opts{display:flex;gap:8px;flex-wrap:wrap;margin-left:32px;}
+.opt{
+  background:var(--card2);border:1.5px solid var(--border);
+  color:var(--text);padding:7px 18px;border-radius:22px;
+  cursor:pointer;font-family:'Cabin',sans-serif;
+  font-size:.87em;font-weight:700;transition:all .18s;
+}
+.opt:hover:not(:disabled){border-color:var(--pp);color:var(--pp2);}
+.opt.correct{background:rgba(74,222,128,.15);border-color:var(--green);color:#4ade80;}
+.opt.wrong{background:rgba(255,92,92,.15);border-color:var(--red);color:#ff5c5c;}
+.q-fb{margin-top:8px;margin-left:32px;font-size:.82em;font-weight:700;min-height:16px;}
+.q-fb.ok{color:var(--green);}.q-fb.no{color:var(--red);}
+
+/* TF */
+.tf-row{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:13px 16px;margin-bottom:10px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  transition:border-color .2s;box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+.tf-row.ok{border-color:var(--green);background:rgba(74,222,128,.05);}
+.tf-row.no{border-color:var(--red);background:rgba(255,92,92,.05);}
+.tf-stmt{font-weight:600;font-size:.9em;flex:1;min-width:200px;line-height:1.5;}
+.tf-btns{display:flex;gap:8px;}
+.tf-btn{
+  background:var(--card2);border:1.5px solid var(--border);
+  color:var(--text);padding:6px 16px;border-radius:20px;cursor:pointer;
+  font-family:'Cabin',sans-serif;font-size:.85em;font-weight:700;transition:all .18s;
+}
+.tf-btn:hover:not(:disabled){border-color:var(--pp);color:var(--pp2);}
+.tf-btn.correct{background:rgba(74,222,128,.15);border-color:var(--green);color:#4ade80;}
+.tf-btn.wrong{background:rgba(255,92,92,.15);border-color:var(--red);color:#ff5c5c;}
+.tf-fb{font-size:.8em;font-weight:700;width:100%;margin-top:2px;}
+.tf-fb.ok{color:var(--green);}.tf-fb.no{color:var(--red);}
+
+/* FILL */
+.fill-row{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:13px 16px;margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  font-size:.92em;font-weight:600;
+  box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+.fill-inp{
+  border:none;border-bottom:2.5px solid var(--pp);
+  background:transparent;font-family:'Cabin',sans-serif;
+  font-size:.95em;font-weight:700;color:var(--pp2);
+  width:170px;outline:none;text-align:center;padding:2px 4px;
+  transition:border-color .2s;
+}
+.fill-inp:focus{border-color:var(--ps);color:var(--ps2);}
+.fill-inp.ok{border-color:var(--green);color:#4ade80;}
+.fill-inp.bad{border-color:var(--red);color:#ff5c5c;}
+.hint-tag{
+  background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.25);
+  border-radius:8px;padding:2px 10px;
+  font-size:.72em;color:var(--pp2);font-weight:600;
+}
+
+/* SORT */
+.sort-bins{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px;}
+.sort-bin{
+  flex:1;min-width:200px;border-radius:18px;
+  border:1.5px dashed;padding:14px;min-height:120px;
+}
+.sort-bin.pp-bin{border-color:rgba(245,166,35,.4);background:rgba(245,166,35,.04);}
+.sort-bin.ps-bin{border-color:rgba(56,201,176,.4);background:rgba(56,201,176,.04);}
+.sort-bin h3{font-family:'Lilita One',cursive;font-size:.95em;margin-bottom:10px;}
+.pp-bin h3{color:var(--pp2);}.ps-bin h3{color:var(--ps2);}
+.bin-items{display:flex;flex-wrap:wrap;gap:7px;min-height:36px;}
+.sort-pool{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-bottom:14px;}
+.sort-chip{
+  background:var(--card2);border:1.5px solid var(--border);
+  border-radius:20px;padding:8px 16px;cursor:pointer;
+  font-size:.87em;font-weight:700;transition:all .2s;
+  box-shadow:0 2px 8px rgba(0,0,0,.2);
+}
+.sort-chip:hover{transform:translateY(-2px);border-color:var(--pp);color:var(--pp2);}
+.bin-chip{
+  border-radius:16px;padding:7px 12px;font-size:.82em;
+  font-weight:700;cursor:pointer;border:1.5px solid;
+}
+.bin-chip.pp-p{background:rgba(245,166,35,.12);border-color:var(--pp);color:var(--pp2);}
+.bin-chip.ps-p{background:rgba(56,201,176,.12);border-color:var(--ps);color:var(--ps2);}
+.bin-chip.cor{background:rgba(74,222,128,.15);border-color:var(--green);color:#4ade80;}
+.bin-chip.wrn{background:rgba(255,92,92,.15);border-color:var(--red);color:#ff5c5c;}
+
+/* DRAG */
+.drag-prog{font-size:.82em;color:var(--muted);font-weight:600;margin-bottom:8px;}
+.built-box{
+  min-height:46px;background:rgba(245,166,35,.05);
+  border:1.5px dashed rgba(245,166,35,.3);
+  border-radius:14px;padding:10px 12px;
+  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;align-items:center;
+}
+.bank-lbl{font-size:.78em;color:var(--muted);font-weight:600;margin-bottom:6px;}
+.word-bank{
+  display:flex;flex-wrap:wrap;gap:8px;
+  background:var(--card2);border-radius:14px;
+  padding:10px;min-height:46px;margin-bottom:12px;
+}
+.w-chip{
+  background:linear-gradient(135deg,var(--pp),#e8860a);
+  color:#000;padding:7px 14px;border-radius:20px;cursor:pointer;
+  font-size:.87em;font-weight:700;user-select:none;
+  transition:transform .12s,opacity .2s;
+  box-shadow:0 2px 8px rgba(245,166,35,.3);
+}
+.w-chip:hover{transform:scale(1.06);}
+.w-chip.used{opacity:.2;pointer-events:none;}
+.chosen-chip{
+  background:var(--card2);border:1.5px solid var(--pp);
+  color:var(--pp2);padding:6px 12px;border-radius:16px;
+  font-size:.87em;font-weight:700;cursor:pointer;transition:background .15s;
+}
+.chosen-chip:hover{background:rgba(245,166,35,.12);}
+
+/* MATCH */
+.match-cols{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px;}
+.match-col{flex:1;min-width:140px;}
+.match-col h4{font-size:.75em;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+.m-item{
+  background:var(--card2);border:1.5px solid var(--border);
+  border-radius:12px;padding:10px 14px;margin-bottom:8px;
+  cursor:pointer;font-size:.87em;font-weight:700;
+  text-align:center;transition:all .18s;
+}
+.m-item:hover:not(.done){border-color:var(--pp);color:var(--pp2);}
+.m-item.sel{background:var(--pp);border-color:var(--pp);color:#000;}
+.m-item.ok{background:rgba(74,222,128,.15);border-color:var(--green);color:#4ade80;cursor:default;}
+.m-item.nope{background:rgba(255,92,92,.15);border-color:var(--red);color:#ff5c5c;}
+.m-item.done{cursor:default;}
+
+/* BUTTONS */
+.btn-check{
+  background:linear-gradient(135deg,var(--pp),#e8860a);
+  color:#000;border:none;padding:11px 26px;border-radius:25px;
+  cursor:pointer;font-family:'Cabin',sans-serif;
+  font-size:.9em;font-weight:700;margin-top:12px;
+  box-shadow:0 4px 16px rgba(245,166,35,.35);
+  transition:transform .15s,box-shadow .2s;
+}
+.btn-check:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(245,166,35,.5);}
+.btn-reset{
+  background:transparent;color:var(--muted);
+  border:1.5px solid var(--border);padding:9px 20px;
+  border-radius:25px;cursor:pointer;
+  font-family:'Cabin',sans-serif;font-size:.87em;font-weight:700;
+  margin-top:12px;margin-left:10px;transition:all .2s;
+}
+.btn-reset:hover{color:var(--text);border-color:var(--muted);}
+.result-line{margin-top:14px;font-weight:700;font-size:.93em;color:var(--gold);min-height:20px;}
+
+/* COMPARE TABLE */
+.cmp-table{width:100%;border-collapse:collapse;font-size:.87em;margin-top:12px;}
+.cmp-table th{padding:10px 14px;text-align:left;font-weight:700;border-bottom:1px solid var(--border);}
+.cmp-table th:first-child{color:var(--pp2);}
+.cmp-table th:last-child{color:var(--ps2);}
+.cmp-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:#a0b0c0;vertical-align:top;line-height:1.6;}
+.cmp-table tr:last-child td{border-bottom:none;}
+.cmp-table .uk{font-size:.78em;color:var(--muted);margin-top:3px;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge">🌍 5 КЛАС · НУШ · ГРАМАТИКА</div>
+  <h1>
+    <span class="pp-c">Present Perfect</span>
+    <span class="vs-c">VS</span>
+    <span class="ps-c">Past Simple</span>
+  </h1>
+  <p>Пригодницька подорож у часі · Adventure through tenses</p>
+</div>
+
+<div class="score-bar">
+  <div class="s-chip">⭐ Бали: <span class="v" id="sc">0</span></div>
+  <div class="s-chip">✅ Правильно: <span class="v" id="cr">0</span></div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab(0)">📖 Правила</div>
+  <div class="tab" onclick="showTab(1)">✈️ Текст</div>
+  <div class="tab" onclick="showTab(2)">✅ Вибери</div>
+  <div class="tab" onclick="showTab(3)">✏️ Встав форму</div>
+  <div class="tab" onclick="showTab(4)">☑️ True/False</div>
+  <div class="tab" onclick="showTab(5)">🗂️ Сортуй</div>
+  <div class="tab" onclick="showTab(6)">🔗 З'єднай</div>
+  <div class="tab" onclick="showTab(7)">🔀 Склади</div>
+</div>
+
+<div class="wrap">
+
+<!-- ===== 0: RULES ===== -->
+<div class="sec active" id="s0">
+  <div class="sec-title">📖 Правила — просто і чітко</div>
+  <p class="sec-desc">Порівняй два часи і запам'ятай різницю!</p>
+  <div class="rule-cols">
+    <div class="rule-half pp-h">
+      <h3>🟡 Present Perfect</h3>
+      <div class="formula">have / has + V³</div>
+      <div class="rule-li">Коли — <b>невідомо або неважливо</b></div>
+      <div class="rule-li">Результат відчувається <b>ЗАРАЗ</b></div>
+      <div class="rule-li">Дія <b>щойно</b> або <b>ніколи / вже / ще ні</b></div>
+      <div class="rule-li">Досвід у <b>житті</b> взагалі</div>
+    </div>
+    <div class="rule-half ps-h">
+      <h3>🩵 Past Simple</h3>
+      <div class="formula">V² або V + -ed</div>
+      <div class="rule-li">Знаємо <b>КОЛИ</b> саме це сталось</div>
+      <div class="rule-li">Конкретний <b>момент</b> у минулому</div>
+      <div class="rule-li">Закінчений <b>проміжок часу</b></div>
+      <div class="rule-li">Послідовність <b>подій</b> у розповіді</div>
+    </div>
+  </div>
+  <div class="kw-strip">
+    <div class="kw-box pp-kw">
+      <h4>🟡 Слова → Present Perfect</h4>
+      <div class="kw-chips">
+        <span class="kw-chip">already</span><span class="kw-chip">just</span>
+        <span class="kw-chip">yet</span><span class="kw-chip">ever</span>
+        <span class="kw-chip">never</span><span class="kw-chip">recently</span>
+        <span class="kw-chip">so far</span><span class="kw-chip">lately</span>
+      </div>
+    </div>
+    <div class="kw-box ps-kw">
+      <h4>🩵 Слова → Past Simple</h4>
+      <div class="kw-chips">
+        <span class="kw-chip">yesterday</span><span class="kw-chip">ago</span>
+        <span class="kw-chip">last week</span><span class="kw-chip">in 2020</span>
+        <span class="kw-chip">when I was...</span><span class="kw-chip">last night</span>
+      </div>
+    </div>
+  </div>
+  <table class="cmp-table">
+    <tr>
+      <th>🟡 Present Perfect</th>
+      <th>🩵 Past Simple</th>
+    </tr>
+    <tr>
+      <td>I <b>have visited</b> London.<div class="uk">Я відвідував Лондон (колись у житті)</div></td>
+      <td>I <b>visited</b> London <b>last summer</b>.<div class="uk">Я відвідав Лондон минулого літа</div></td>
+    </tr>
+    <tr>
+      <td>She <b>has already eaten</b>.<div class="uk">Вона вже поїла (результат зараз)</div></td>
+      <td>She <b>ate</b> at <b>7 o'clock</b>.<div class="uk">Вона їла о 7 годині (конкретно)</div></td>
+    </tr>
+    <tr>
+      <td>He <b>has never seen</b> snow.<div class="uk">Він ніколи не бачив снігу</div></td>
+      <td>He <b>didn't see</b> snow <b>yesterday</b>.<div class="uk">Він не бачив снігу вчора</div></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ===== 1: TEXT ===== -->
+<div class="sec" id="s1">
+  <div class="sec-title">✈️ Прочитай текст</div>
+  <p class="sec-desc">Знайди <span style="color:var(--pp2);font-weight:700">Present Perfect</span> та <span style="color:var(--ps2);font-weight:700">Past Simple</span> у тексті!</p>
+  <div class="story-card">
+    <div class="s-title">🌍 Jake — The Young Explorer</div>
+    Jake is only 14, but he is already a real explorer!
+    He <span class="hl-pp">has visited</span> seven countries in his life.
+    Last year, he <span class="hl-ps">travelled</span> to Egypt with his parents.
+    They <span class="hl-ps">saw</span> the pyramids and <span class="hl-ps">rode</span> camels in the desert. 🐪<br><br>
+    Jake <span class="hl-pp">has never been</span> to Australia, but it is his dream.
+    He <span class="hl-pp">has already bought</span> a book about the Great Barrier Reef.
+    His friend Mia <span class="hl-ps">went</span> to Sydney two years ago and <span class="hl-ps">told</span> him amazing stories.<br><br>
+    "Have you <span class="hl-pp">ever tried</span> diving?" Mia <span class="hl-ps">asked</span> him last Monday.
+    "No, I <span class="hl-pp">haven't</span>," Jake <span class="hl-ps">said</span>.
+    "But I <span class="hl-pp">have just signed</span> up for diving lessons — I start next week!" 🤿
+  </div>
+  <div class="legend">
+    <div class="leg"><div class="ldot" style="background:var(--pp2)"></div><span style="color:var(--pp2)">Present Perfect</span> — без конкретного часу / результат зараз</div>
+    <div class="leg"><div class="ldot" style="background:var(--ps2)"></div><span style="color:var(--ps2)">Past Simple</span> — конкретний час у минулому</div>
+  </div>
+  <div class="transl-box">
+    🇺🇦 <b>Переклад:</b><br>
+    Джейку лише 14, але він вже справжній мандрівник! Він відвідав сім країн у своєму житті. Минулого року він поїхав до Єгипту з батьками. Вони побачили піраміди і їздили верхи на верблюдах у пустелі.<br><br>
+    Джейк ніколи не був в Австралії, але це його мрія. Він вже купив книгу про Великий Бар'єрний риф. Його подруга Міа їздила до Сіднея два роки тому і розповіла йому неймовірні історії.<br><br>
+    "Ти коли-небудь пробував дайвінг?" — запитала його Міа минулого понеділка. "Ні," — сказав Джейк. "Але я щойно записався на уроки дайвінгу — починаю наступного тижня!"
+  </div>
+</div>
+
+<!-- ===== 2: CHOOSE ===== -->
+<div class="sec" id="s2">
+  <div class="sec-title">✅ Вибери правильний час</div>
+  <p class="sec-desc">Present Perfect чи Past Simple?</p>
+  <div id="chooseWrap"></div>
+  <button class="btn-reset" onclick="buildChoose()">🔄 Знову</button>
+</div>
+
+<!-- ===== 3: FILL ===== -->
+<div class="sec" id="s3">
+  <div class="sec-title">✏️ Встав правильну форму</div>
+  <p class="sec-desc">Постав дієслово у правильний час</p>
+  <div id="fillWrap"></div>
+  <button class="btn-check" onclick="checkFill()">Перевірити ✔</button>
+  <button class="btn-reset" onclick="buildFill()">🔄 Знову</button>
+  <div class="result-line" id="fillRes"></div>
+</div>
+
+<!-- ===== 4: TRUE FALSE ===== -->
+<div class="sec" id="s4">
+  <div class="sec-title">☑️ True чи False?</div>
+  <p class="sec-desc">Вірно чи хибно?</p>
+  <div id="tfWrap"></div>
+  <button class="btn-reset" onclick="buildTF()">🔄 Знову</button>
+</div>
+
+<!-- ===== 5: SORT ===== -->
+<div class="sec" id="s5">
+  <div class="sec-title">🗂️ Сортуй речення</div>
+  <p class="sec-desc">Клікни — речення потрапить у правильну колонку!</p>
+  <div class="sort-bins">
+    <div class="sort-bin pp-bin"><h3>🟡 Present Perfect</h3><div class="bin-items" id="ppBin"></div></div>
+    <div class="sort-bin ps-bin"><h3>🩵 Past Simple</h3><div class="bin-items" id="psBin"></div></div>
+  </div>
+  <div class="sort-pool" id="sortPool"></div>
+  <button class="btn-check" onclick="checkSort()">Перевірити ✔</button>
+  <button class="btn-reset" onclick="buildSort()">🔄 Знову</button>
+  <div class="result-line" id="sortRes"></div>
+</div>
+
+<!-- ===== 6: MATCH ===== -->
+<div class="sec" id="s6">
+  <div class="sec-title">🔗 З'єднай частини речення</div>
+  <p class="sec-desc">Клікни на початок, потім на закінчення!</p>
+  <div id="matchWrap"></div>
+  <div class="result-line" id="matchRes"></div>
+  <button class="btn-reset" onclick="buildMatch()">🔄 Знову</button>
+</div>
+
+<!-- ===== 7: DRAG ===== -->
+<div class="sec" id="s7">
+  <div class="sec-title">🔀 Склади речення</div>
+  <p class="sec-desc">Клікай на слова по порядку!</p>
+  <div id="dragWrap"></div>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+const tabs=document.querySelectorAll('.tab');
+const secs=document.querySelectorAll('.sec');
+function showTab(i){tabs.forEach((t,j)=>t.classList.toggle('active',i===j));secs.forEach((s,j)=>s.classList.toggle('active',i===j));}
+let score=0,correct=0;
+function addScore(s,c=1){score+=s;correct+=c;document.getElementById('sc').textContent=score;document.getElementById('cr').textContent=correct;}
+
+// ===== CHOOSE =====
+const chooseQ=[
+  {q:'Jake ___ seven countries in his life. 🌍',       opts:['visited','has visited','did visit'],    ans:'has visited',  hint:'в житті, без конкретного часу → PP'},
+  {q:'He ___ to Egypt last year. 🇪🇬',               opts:['has gone','went','has went'],           ans:'went',         hint:'last year → конкретний час → PS'},
+  {q:'___ you ever tried diving? 🤿',                  opts:['Did','Have','Was'],                     ans:'Have',         hint:'ever → PP'},
+  {q:'They ___ the pyramids in 2023. 🏛️',             opts:['have seen','saw','have saw'],           ans:'saw',          hint:'in 2023 → конкретний рік → PS'},
+  {q:'I ___ just signed up for lessons! 📝',           opts:['did','have','was'],                     ans:'have',         hint:'just → PP'},
+  {q:'Mia ___ to Sydney two years ago. 🦘',            opts:['has gone','went','have gone'],          ans:'went',         hint:'two years ago → PS'},
+  {q:'He ___ never been to Australia. 🌏',             opts:['did','has','was'],                      ans:'has',          hint:'never → PP'},
+  {q:'She ___ him amazing stories last week. 📖',      opts:['has told','told','have told'],          ans:'told',         hint:'last week → PS'},
+  {q:'I ___ already bought a travel guide. 🗺️',       opts:['did','have','was'],                     ans:'have',         hint:'already → PP'},
+  {q:'___ he finish the trip report yet? 📋',          opts:['Did','Has','Was'],                      ans:'Has',          hint:'yet → PP'},
+  {q:'They ___ camels in the desert last summer. 🐪',  opts:['have ridden','rode','has ridden'],      ans:'rode',         hint:'last summer → PS'},
+  {q:'She ___ recently started learning Arabic. 🌙',   opts:['did','was','has'],                      ans:'has',          hint:'recently → PP'},
+];
+function buildChoose(){
+  document.getElementById('chooseWrap').innerHTML=chooseQ.map((item,i)=>`
+    <div class="q-block" id="qb${i}">
+      <div class="q-txt"><span class="q-num">${i+1}</span>${item.q.replace('___','<span style="color:var(--muted);font-style:italic">___</span>')}</div>
+      <div class="opts">${item.opts.map(o=>`<button class="opt" onclick="ansC(${i},'${o}')">${o}</button>`).join('')}</div>
+      <div class="q-fb" id="qf${i}"></div>
+    </div>
+  `).join('');
+}
+function ansC(i,chosen){
+  const item=chooseQ[i];
+  document.querySelectorAll(`#qb${i} .opt`).forEach(b=>{
+    b.disabled=true;
+    if(b.textContent===item.ans) b.classList.add('correct');
+    else if(b.textContent===chosen&&chosen!==item.ans) b.classList.add('wrong');
+  });
+  const fb=document.getElementById(`qf${i}`),bl=document.getElementById(`qb${i}`);
+  if(chosen===item.ans){fb.innerHTML=`✅ Правильно! 💡 ${item.hint}`;fb.className='q-fb ok';bl.classList.add('ok');addScore(1);}
+  else{fb.innerHTML=`❌ Правильно: <b>${item.ans}</b> — ${item.hint}`;fb.className='q-fb no';bl.classList.add('no');}
+}
+buildChoose();
+
+// ===== FILL =====
+const fillQ=[
+  {pre:'🌍 Jake',        verb:'(visit)',      ans:'has visited',    post:'many countries.',            hint:'PP: have+V³'},
+  {pre:'🇪🇬 He',        verb:'(go)',         ans:'went',           post:'to Egypt last year.',        hint:'PS: 2 форма'},
+  {pre:'🐪 They',        verb:'(ride)',       ans:'rode',           post:'camels in the desert.',      hint:'PS: 2 форма'},
+  {pre:'🌏 He',          verb:'(never/be)',   ans:'has never been', post:'to Australia.',              hint:'PP: has+never+V³'},
+  {pre:'📚 She',         verb:'(tell)',       ans:'told',           post:'him stories two years ago.', hint:'PS: 2 форма'},
+  {pre:'🤿 I',           verb:'(just/sign)',  ans:'have just signed',post:'up for lessons.',           hint:'PP: have+just+V³'},
+  {pre:'📋',             verb:'(you/ever/try)',ans:'Have you ever tried', post:'diving?',             hint:'PP питання: Have+you+ever+V³'},
+  {pre:'🗺️ He',          verb:'(already/buy)',ans:'has already bought',post:'a travel guide.',        hint:'PP: has+already+V³'},
+];
+function buildFill(){
+  document.getElementById('fillWrap').innerHTML=fillQ.map((item,i)=>`
+    <div class="fill-row">
+      <span style="color:var(--muted);font-size:.85em;min-width:20px">${i+1}.</span>
+      <span>${item.pre}</span>
+      <input class="fill-inp" id="fi${i}" placeholder="?" autocomplete="off" spellcheck="false">
+      <span class="hint-tag">💡 ${item.verb}</span>
+      <span>${item.post}</span>
+    </div>
+  `).join('');
+  document.getElementById('fillRes').textContent='';
+}
+function checkFill(){
+  let s=0;
+  fillQ.forEach((item,i)=>{
+    const inp=document.getElementById(`fi${i}`);inp.classList.remove('ok','bad');
+    if(inp.value.trim().toLowerCase()===item.ans.toLowerCase()){inp.classList.add('ok');s++;}
+    else{inp.classList.add('bad');setTimeout(()=>{inp.value=item.ans;},700);}
+  });
+  addScore(s,s);
+  document.getElementById('fillRes').textContent=`${'⭐'.repeat(s)} ${s} з ${fillQ.length} правильно${s===fillQ.length?' 🎉 Відмінно!':''}`;
+}
+buildFill();
+
+// ===== TRUE FALSE =====
+const tfQ=[
+  {stmt:'"already" — слово-підказка Present Perfect.',                    ans:true},
+  {stmt:'"yesterday" — слово-підказка Present Perfect.',                  ans:false},
+  {stmt:'Past Simple вживаємо коли знаємо конкретний час.',               ans:true},
+  {stmt:'"I have went" — правильна форма Present Perfect.',               ans:false},
+  {stmt:'"two years ago" — слово-підказка Past Simple.',                  ans:true},
+  {stmt:'"ever" і "never" — слова-підказки Present Perfect.',             ans:true},
+  {stmt:'Jake went to Egypt last year — це Past Simple.',                  ans:true},
+  {stmt:'Present Perfect утворюється: did + інфінітив.',                  ans:false},
+  {stmt:'"He has never been" — правильна форма Present Perfect.',         ans:true},
+  {stmt:'"They were visited" — правильна форма Present Perfect.',         ans:false},
+];
+function buildTF(){
+  document.getElementById('tfWrap').innerHTML=tfQ.map((item,i)=>`
+    <div class="tf-row" id="tf${i}">
+      <div class="tf-stmt"><span class="q-num">${i+1}</span>${item.stmt}</div>
+      <div class="tf-btns">
+        <button class="tf-btn" onclick="ansTF(${i},true)">✅ True</button>
+        <button class="tf-btn" onclick="ansTF(${i},false)">❌ False</button>
+      </div>
+      <div class="tf-fb" id="tff${i}"></div>
+    </div>
+  `).join('');
+}
+function ansTF(i,chosen){
+  const item=tfQ[i];
+  document.querySelectorAll(`#tf${i} .tf-btn`).forEach((b,j)=>{
+    b.disabled=true;const isT=j===0;
+    if(isT===item.ans) b.classList.add('correct');
+    else if(isT===chosen&&chosen!==item.ans) b.classList.add('wrong');
+  });
+  const row=document.getElementById(`tf${i}`),fb=document.getElementById(`tff${i}`);
+  if(chosen===item.ans){fb.textContent='✅ Правильно!';fb.className='tf-fb ok';row.classList.add('ok');addScore(1);}
+  else{fb.textContent=`❌ Правильно: ${item.ans?'True':'False'}`;fb.className='tf-fb no';row.classList.add('no');}
+}
+buildTF();
+
+// ===== SORT =====
+const sortItems=[
+  {text:'I have already done my homework.',         ans:'pp', label:'already → PP'},
+  {text:'She visited Paris last year.',             ans:'ps', label:'last year → PS'},
+  {text:'Have you ever eaten sushi?',               ans:'pp', label:'ever → PP'},
+  {text:'They went to Egypt in 2022.',              ans:'ps', label:'in 2022 → PS'},
+  {text:'He has just called me.',                   ans:'pp', label:'just → PP'},
+  {text:'We bought tickets two days ago.',          ans:'ps', label:'two days ago → PS'},
+  {text:"I've never seen the ocean.",               ans:'pp', label:'never → PP'},
+  {text:'Jake rode a camel last summer.',           ans:'ps', label:'last summer → PS'},
+  {text:'She has recently started diving.',         ans:'pp', label:'recently → PP'},
+  {text:'Mia told him stories last Monday.',        ans:'ps', label:'last Monday → PS'},
+];
+let sortPlaced={};
+function buildSort(){
+  sortPlaced={};
+  document.getElementById('ppBin').innerHTML='';
+  document.getElementById('psBin').innerHTML='';
+  document.getElementById('sortRes').textContent='';
+  const sh=[...sortItems].sort(()=>Math.random()-.5);
+  document.getElementById('sortPool').innerHTML=sh.map(item=>{
+    const idx=sortItems.indexOf(item);
+    return `<div class="sort-chip" id="sc${idx}" onclick="placeS(${idx})">${item.text}</div>`;
+  }).join('');
+}
+function placeS(idx){
+  const item=sortItems[idx];
+  const chip=document.getElementById(`sc${idx}`);
+  if(!chip||sortPlaced[idx]) return;
+  sortPlaced[idx]=item.ans;chip.style.display='none';
+  const el=document.createElement('div');
+  el.className=`bin-chip ${item.ans}-p`;el.id=`bc${idx}`;
+  el.textContent=item.text;el.onclick=()=>removeS(idx);
+  document.getElementById(item.ans==='pp'?'ppBin':'psBin').appendChild(el);
+}
+function removeS(idx){
+  delete sortPlaced[idx];
+  const bc=document.getElementById(`bc${idx}`);if(bc)bc.remove();
+  const chip=document.getElementById(`sc${idx}`);if(chip){chip.style.display='';chip.className='sort-chip';}
+}
+function checkSort(){
+  let ok=0,total=Object.keys(sortPlaced).length;
+  sortItems.forEach((item,idx)=>{
+    const bc=document.getElementById(`bc${idx}`);
+    if(bc){bc.onclick=null;
+      if(sortPlaced[idx]===item.ans){bc.className='bin-chip cor';ok++;}
+      else bc.className='bin-chip wrn';
+    }
+  });
+  addScore(ok,ok);
+  document.getElementById('sortRes').textContent=`${'⭐'.repeat(ok)} ${ok} з ${total} правильно${ok===sortItems.length?' 🎉':''}`;
+}
+buildSort();
+
+// ===== MATCH =====
+const matchData=[
+  {left:'I have never ___',        right:'been to Australia.'},
+  {left:'She went to London ___',  right:'last summer.'},
+  {left:'Have you ever ___',       right:'tried Japanese food?'},
+  {left:'They bought tickets ___', right:'two days ago.'},
+  {left:'He has just ___',         right:'finished his homework.'},
+  {left:'Jake rode a camel ___',   right:'in the desert.'},
+];
+let mSel={col:null,idx:null,val:null},mDone=new Set(),mSh=[];
+function buildMatch(){
+  mSel={col:null,idx:null,val:null};mDone=new Set();
+  mSh=[...matchData].sort(()=>Math.random()-.5);
+  document.getElementById('matchWrap').innerHTML=`
+    <div class="match-cols">
+      <div class="match-col">
+        <h4>🟡🩵 Початок речення</h4>
+        ${matchData.map((p,i)=>`<div class="m-item" id="ml${i}" onclick="selM('l',${i},'${p.left.replace(/'/g,"\\'")}')">${p.left}</div>`).join('')}
+      </div>
+      <div class="match-col">
+        <h4>➡️ Закінчення</h4>
+        ${mSh.map((p,i)=>`<div class="m-item" id="mr${i}" onclick="selM('r',${i},'${p.right.replace(/'/g,"\\'")}')">${p.right}</div>`).join('')}
+      </div>
+    </div>
+  `;
+  document.getElementById('matchRes').textContent='';
+}
+function selM(col,idx,val){
+  if(mDone.has(col+idx)) return;
+  if(mSel.col===null){clearSel();mSel={col,idx,val};document.getElementById(`m${col}${idx}`).classList.add('sel');}
+  else if(mSel.col===col){clearSel();mSel={col,idx,val};document.getElementById(`m${col}${idx}`).classList.add('sel');}
+  else{
+    const a=mSel;clearSel();
+    let lV,rV,lI,rI;
+    if(a.col==='l'){lV=a.val;lI=a.idx;rV=val;rI=idx;}else{rV=a.val;rI=a.idx;lV=val;lI=idx;}
+    const ok=matchData.some(p=>p.left===lV&&p.right===rV);
+    const lEl=document.getElementById(`ml${lI}`),rEl=document.getElementById(`mr${rI}`);
+    if(ok){lEl.classList.add('ok','done');rEl.classList.add('ok','done');mDone.add('l'+lI);mDone.add('r'+rI);addScore(1);if(mDone.size===matchData.length*2)document.getElementById('matchRes').textContent='🏆 Всі пари знайдено!';}
+    else{lEl.classList.add('nope');rEl.classList.add('nope');setTimeout(()=>{lEl.classList.remove('nope');rEl.classList.remove('nope');},800);}
+    mSel={col:null,idx:null,val:null};
+  }
+}
+function clearSel(){document.querySelectorAll('.m-item.sel').forEach(e=>e.classList.remove('sel'));}
+buildMatch();
+
+// ===== DRAG =====
+const dragData=[
+  {words:['Jake','has','visited','seven','countries','.'],               answer:'Jake has visited seven countries .'},
+  {words:['She','went','to','Egypt','last','year','.'],                  answer:'She went to Egypt last year .'},
+  {words:['Have','you','ever','tried','diving','?'],                     answer:'Have you ever tried diving ?'},
+  {words:['He','has','never','been','to','Australia','.'],               answer:'He has never been to Australia .'},
+  {words:['I','have','just','signed','up','for','lessons','.'],          answer:'I have just signed up for lessons .'},
+];
+let dCur=0,dOrder=[];
+function buildDrag(){
+  dOrder=[];
+  const item=dragData[dCur];
+  const sh=[...item.words].sort(()=>Math.random()-.5);
+  const ispp=item.answer.includes('has')||item.answer.includes('have')||item.answer.includes('Have');
+  const label=ispp?'🟡 Present Perfect':'🩵 Past Simple';
+  document.getElementById('dragWrap').innerHTML=`
+    <div class="drag-prog">Речення ${dCur+1} з ${dragData.length} · <span style="color:var(--pp2)">${label}</span></div>
+    <div class="bank-lbl">📝 Твоє речення:</div>
+    <div class="built-box" id="dB"><span style="color:rgba(245,166,35,.3);font-style:italic;font-size:.88em;">Клікай на слова нижче...</span></div>
+    <div class="bank-lbl">🟡 Слова:</div>
+    <div class="word-bank" id="dW">
+      ${sh.map((w,i)=>`<div class="w-chip" id="dc${i}" onclick="pickC('${w.replace(/'/g,"\\'")}',${i})">${w}</div>`).join('')}
+    </div>
+    <div id="dFb" style="font-weight:700;font-size:.9em;min-height:20px;margin-bottom:8px;"></div>
+    <button class="btn-check" onclick="checkDrag()">Перевірити ✔</button>
+    <button class="btn-reset" onclick="buildDrag()">🔄 Знову</button>
+    ${dCur>0?`<button class="btn-reset" onclick="dCur--;buildDrag()">◀ Назад</button>`:''}
+  `;
+}
+function pickC(word,idx){
+  const c=document.getElementById(`dc${idx}`);
+  if(c.classList.contains('used')) return;
+  dOrder.push({word,idx});c.classList.add('used');renderB();
+}
+function renderB(){
+  const b=document.getElementById('dB');
+  if(!dOrder.length){b.innerHTML='<span style="color:rgba(245,166,35,.3);font-style:italic;font-size:.88em;">Клікай на слова нижче...</span>';return;}
+  b.innerHTML=dOrder.map(x=>`<span class="chosen-chip" onclick="removeC(${x.idx})">${x.word}</span>`).join('');
+}
+function removeC(idx){
+  dOrder=dOrder.filter(x=>x.idx!==idx);
+  const c=document.getElementById(`dc${idx}`);if(c)c.classList.remove('used');renderB();
+}
+function checkDrag(){
+  const built=dOrder.map(x=>x.word).join(' ');
+  const fb=document.getElementById('dFb');
+  if(built===dragData[dCur].answer){
+    fb.textContent='✅ Правильно! 🎉';fb.style.color='var(--green)';addScore(2);
+    setTimeout(()=>{
+      if(dCur<dragData.length-1){dCur++;buildDrag();}
+      else fb.textContent='🏆 Всі речення складено! Супер мандрівник! 🌍';
+    },1300);
+  }else{fb.textContent='❌ Спробуй ще раз!';fb.style.color='var(--red)';}
+}
+buildDrag();
+</script>
+</body>
+</html>

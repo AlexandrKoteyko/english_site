@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A or AN? – 2 клас 🍎</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
+  :root {
+    --red:    #FF5252;
+    --blue:   #2979FF;
+    --yellow: #FFD600;
+    --green:  #00C853;
+    --orange: #FF6D00;
+    --pink:   #F50057;
+    --bg:     #FFFDE7;
+    --card:   #ffffff;
+    --border: #FFE082;
+    --text:   #212121;
+    --muted:  #9E9E9E;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    background: var(--bg);
+    background-image:
+      radial-gradient(circle at 5% 8%,  #FFF9C4 0%, transparent 30%),
+      radial-gradient(circle at 95% 5%,  #E3F2FD 0%, transparent 30%),
+      radial-gradient(circle at 50% 96%, #F3E5F5 0%, transparent 30%);
+    min-height: 100vh;
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* floating items bg */
+  .floaters { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+  .floaters span {
+    position:absolute; font-size:2em; opacity:.07;
+    animation: floatUp 10s ease-in-out infinite;
+  }
+  .floaters span:nth-child(1){top:5%;left:3%;animation-delay:0s;font-size:2.5em}
+  .floaters span:nth-child(2){top:20%;left:90%;animation-delay:2s}
+  .floaters span:nth-child(3){top:45%;left:6%;animation-delay:4s;font-size:3em}
+  .floaters span:nth-child(4){top:60%;left:88%;animation-delay:1s;font-size:2.8em}
+  .floaters span:nth-child(5){top:78%;left:15%;animation-delay:3s}
+  .floaters span:nth-child(6){top:85%;left:80%;animation-delay:5s;font-size:2.4em}
+  @keyframes floatUp{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-20px) rotate(4deg)}}
+
+  /* HERO */
+  .hero {
+    position:relative; z-index:1;
+    background: linear-gradient(135deg, #FF5252 0%, #FF6D00 50%, #FFD600 100%);
+    padding: 32px 20px 44px;
+    text-align: center;
+    clip-path: ellipse(100% 86% at 50% 14%);
+  }
+  .hero-badge {
+    display:inline-block;
+    background:rgba(255,255,255,.25);
+    border:2px solid rgba(255,255,255,.4);
+    color:white; font-size:.8em;
+    padding:4px 18px; border-radius:20px;
+    margin-bottom:12px; letter-spacing:1px;
+  }
+  .hero h1 {
+    font-family:'Comic Sans MS','Comic Sans',cursive;
+    font-size: clamp(2.6em, 9vw, 4.8em);
+    color:white; line-height:1;
+    text-shadow: 4px 4px 0 rgba(0,0,0,.12);
+    margin-bottom:8px;
+  }
+  .hero h1 .a-w {
+    background:white; color:var(--red);
+    padding:2px 12px; border-radius:14px;
+    display:inline-block;
+  }
+  .hero h1 .an-w {
+    background:white; color:var(--blue);
+    padding:2px 12px; border-radius:14px;
+    display:inline-block;
+  }
+  .hero p { color:rgba(255,255,255,.9); font-size:1em; margin-top:6px; }
+
+  /* SCORE */
+  .score-bar {
+    position:relative; z-index:1;
+    display:flex; justify-content:center; gap:14px; flex-wrap:wrap;
+    padding:12px 16px; background:white;
+    border-bottom:3px solid var(--border);
+  }
+  .s-pill {
+    display:flex; align-items:center; gap:6px;
+    background:var(--bg); border:2.5px solid var(--border);
+    border-radius:30px; padding:6px 18px;
+    font-size:.9em;
+  }
+  .s-pill .v { color:var(--red); font-size:1.15em; }
+
+  /* TABS */
+  .tabs {
+    position:relative; z-index:1;
+    display:flex; overflow-x:auto; gap:0;
+    background:white; border-bottom:3px solid var(--border);
+    padding:0 16px;
+  }
+  .tabs::-webkit-scrollbar{height:0}
+  .tab {
+    flex-shrink:0; padding:12px 18px;
+    font-family:'Comic Sans MS','Comic Sans',cursive;
+    font-size:.88em;
+    color:var(--muted); cursor:pointer;
+    border-bottom:4px solid transparent;
+    transition:all .2s; white-space:nowrap;
+  }
+  .tab:hover{color:var(--red)}
+  .tab.active{color:var(--red); border-bottom-color:var(--red)}
+
+  /* WRAP */
+  .wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:22px 16px 70px}
+  .sec{display:none;animation:popIn .3s ease}
+  .sec.active{display:block}
+  @keyframes popIn{from{opacity:0;transform:scale(.97) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
+
+  .sec-title{
+    font-family:'Comic Sans MS','Comic Sans',cursive;
+    font-size:1.5em; color:var(--red);
+    margin-bottom:4px;
+  }
+  .sec-desc{color:var(--muted);font-size:.86em;margin-bottom:18px}
+
+  /* CARD */
+  .card{
+    background:white; border-radius:22px;
+    padding:22px 24px; margin-bottom:16px;
+    box-shadow:0 4px 20px rgba(0,0,0,.07);
+    border:2.5px solid #f5efd8;
+  }
+
+  /* ===== RULE ===== */
+  .rule-2col{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+  .rule-box{
+    flex:1;min-width:200px;border-radius:20px;padding:20px;text-align:center;border:3px solid;
+  }
+  .rule-box.a-b{background:#fff5f5;border-color:#FFCDD2}
+  .rule-box.an-b{background:#e8f4ff;border-color:#BBDEFB}
+  .rule-letter{
+    font-family:'Comic Sans MS','Comic Sans',cursive;
+    font-size:3.8em;line-height:1;margin-bottom:8px;
+  }
+  .a-b .rule-letter{color:var(--red)}
+  .an-b .rule-letter{color:var(--blue)}
+  .rule-text{font-size:.9em;color:#555;line-height:1.6}
+  .vowel-row{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+  .vchip{
+    background:var(--blue);color:white;
+    border-radius:8px;padding:3px 12px;font-size:1em;
+    font-family:'Comic Sans MS','Comic Sans',cursive;
+  }
+  .ex-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+  .ex-chip{
+    background:#fafafa;border:2px solid #eee;
+    border-radius:14px;padding:7px 14px;
+    font-size:.88em;display:flex;align-items:center;gap:6px;
+  }
+  .ex-chip .ea{color:var(--red);font-size:1.05em}
+  .ex-chip .ean{color:var(--blue);font-size:1.05em}
+  .tip-box{
+    background:#fffbf0;border:2.5px solid var(--yellow);
+    border-radius:16px;padding:12px 16px;font-size:.88em;color:#555;line-height:1.7;
+  }
+
+  /* ===== TEXT ===== */
+  .story-box{
+    background:linear-gradient(135deg,#fffde7,#fff8e1);
+    border:2.5px solid var(--yellow);
+    border-radius:20px;padding:20px 22px;
+    line-height:2;font-size:.96em;color:#333;margin-bottom:14px;
+  }
+  .story-box .s-title{
+    font-family:'Comic Sans MS','Comic Sans',cursive;
+    font-size:1.3em;color:var(--orange);margin-bottom:10px;
+  }
+  .ha{color:var(--red);font-size:1.08em}
+  .han{color:var(--blue);font-size:1.08em}
+  .legend{
+    display:flex;gap:14px;flex-wrap:wrap;
+    background:white;border-radius:14px;
+    padding:10px 16px;font-size:.84em;border:2px solid #eee;
+  }
+  .leg{display:flex;align-items:center;gap:7px}
+  .ldot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+
+  /* ===== PICTURE TASK ===== */
+  .pic-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
+    gap:12px;
+  }
+  .pic-item{
+    background:#fafafa;border:3px solid #eee;
+    border-radius:20px;padding:14px 10px 10px;
+    text-align:center;cursor:pointer;transition:all .2s;
+    position:relative;
+  }
+  .pic-item:hover:not(.answered){transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.1)}
+  .food-big{font-size:2.8em;display:block;margin-bottom:6px}
+  .food-name{font-size:.82em;color:#555;margin-bottom:10px}
+  .pic-btns{display:flex;gap:6px;justify-content:center}
+  .pic-btn{
+    border:2.5px solid #eee;background:white;
+    padding:5px 12px;border-radius:16px;
+    font-family:'Comic Sans MS','Comic Sans',cursive;
+    font-size:.85em;cursor:pointer;transition:all .18s;
+  }
+  .pic-btn.a-btn:hover:not(:disabled){border-color:var(--red);background:#fff5f5;color:var(--red)}
+  .pic-btn.an-btn:hover:not(:disabled){border-color:var(--blue);background:#e8f4ff;color:var(--blue)}
+  .pic-btn.correct{background:#d1fae5;border-color:#10b981;color:#065f46}
+  .pic-btn.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+  .pic-result{position:absolute;top:6px;right:8px;font-size:1.2em}
+
+  /* ===== CHOOSE ===== */
+  .q-row{
+    background:#fafafa;border:2.5px solid #eee;
+    border-radius:18px;padding:14px 16px;margin-bottom:12px;
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    transition:border-color .2s;
+  }
+  .q-row.ok{border-color:#10b981;background:#f0fdf4}
+  .q-row.no{border-color:#ef4444;background:#fff5f5}
+  .q-emoji{font-size:2em;flex-shrink:0}
+  .q-text{font-size:.94em;color:var(--text);flex:1;min-width:120px;line-height:1.5}
+  .q-opts{display:flex;gap:8px}
+  .q-opt{
+    border:2.5px solid #ddd;background:white;
+    padding:6px 18px;border-radius:20px;
+    font-family:'Comic Sans MS','Comic Sans',cursive;
+    font-size:.9em;cursor:pointer;transition:all .18s;
+  }
+  .q-opt.a-opt:hover:not(:disabled){border-color:var(--red);background:#fff5f5;color:var(--red)}
+  .q-opt.an-opt:hover:not(:disabled){border-color:var(--blue);background:#e8f4ff;color:var(--blue)}
+  .q-opt.correct{background:#d1fae5;border-color:#10b981;color:#065f46}
+  .q-opt.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+  .q-fb{font-size:.8em;width:100%;margin-top:4px}
+  .q-fb.ok{color:#059669} .q-fb.no{color:#dc2626}
+
+  /* ===== SORT ===== */
+  .sort-area{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+  .sort-bin{
+    flex:1;min-width:150px;border-radius:20px;
+    border:3px dashed;padding:14px 12px;min-height:140px;
+  }
+  .sort-bin.a-bin{border-color:#FFCDD2;background:#fff5f5}
+  .sort-bin.an-bin{border-color:#BBDEFB;background:#e8f4ff}
+  .sort-bin h3{
+    font-family:'Comic Sans MS','Comic Sans',cursive;
+    text-align:center;font-size:2em;margin-bottom:10px;
+  }
+  .a-bin h3{color:var(--red)} .an-bin h3{color:var(--blue)}
+  .bin-items{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;min-height:50px}
+  .sort-pool{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:14px}
+  .sort-chip{
+    background:white;border:2.5px solid #ddd;
+    border-radius:20px;padding:8px 16px;cursor:pointer;
+    font-family:'Comic Sans MS','Comic Sans',cursive;
+    font-size:.9em;transition:all .2s;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+  }
+  .sort-chip:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.1)}
+  .bin-chip{
+    background:white;border:2px solid #ddd;
+    border-radius:16px;padding:6px 12px;
+    font-family:'Comic Sans MS','Comic Sans',cursive;
+    font-size:.82em;cursor:pointer;transition:all .15s;
+  }
+  .bin-chip:hover{background:#fee2e2}
+  .bin-chip.correct-c{background:#d1fae5;border-color:#10b981;color:#065f46}
+  .bin-chip.wrong-c{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+
+  /* ===== FILL ===== */
+  .fill-story{
+    background:linear-gradient(135deg,#f0fff4,#e6ffed);
+    border:2.5px solid #86efac;border-radius:20px;
+    padding:18px 22px;line-height:2.3;font-size:.95em;
+    color:#333;margin-bottom:14px;
+  }
+  .f-inp{
+    border:none;border-bottom:3px solid var(--green);
+    background:transparent;
+    font-family:'Comic Sans MS','Comic Sans',cursive;
+    font-size:1em;color:var(--green);
+    width:52px;outline:none;text-align:center;padding:0 2px;
+    transition:border-color .2s;
+  }
+  .f-inp:focus{border-color:var(--blue);color:var(--blue)}
+  .f-inp.ok{border-color:#10b981;color:#059669}
+  .f-inp.bad{border-color:#ef4444;color:#dc2626}
+
+  /* BUTTONS */
+  .btn{
+    background:linear-gradient(135deg,var(--red),var(--orange));
+    color:white;border:none;
+    padding:12px 28px;border-radius:28px;cursor:pointer;
+    font-family:'Comic Sans MS','Comic Sans',cursive;
+    font-size:.95em;
+    box-shadow:0 4px 18px rgba(255,82,82,.35);
+    transition:transform .15s,box-shadow .2s;margin-top:10px;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(255,82,82,.45)}
+  .btn-ghost{
+    background:white;color:var(--muted);
+    border:2.5px solid #eee;padding:10px 22px;
+    border-radius:28px;cursor:pointer;
+    font-family:'Comic Sans MS','Comic Sans',cursive;
+    font-size:.88em;margin-top:10px;margin-left:10px;transition:all .2s;
+  }
+  .btn-ghost:hover{color:var(--text);border-color:#ccc}
+  .result-msg{margin-top:14px;font-size:1em;color:var(--red);min-height:22px}
+
+  /* CONFETTI */
+  .confetti-banner{
+    background:linear-gradient(135deg,#fff9f9,#fff8e8,#f0fff4);
+    border:3px solid var(--yellow);border-radius:20px;
+    padding:16px;text-align:center;margin-top:14px;
+    display:none;animation:popIn .4s ease;
+  }
+  .confetti-banner.show{display:block}
+  .confetti-banner p{
+    font-family:'Comic Sans MS','Comic Sans',cursive;
+    font-size:1.4em;color:var(--red);
+  }
+</style>
+</head>
+<body>
+
+<div class="floaters">
+  <span>🍎</span><span>🍌</span><span>🍊</span>
+  <span>🥕</span><span>🍓</span><span>🥚</span>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">2 КЛАС · НУШ · АНГЛІЙСЬКА</div>
+  <h1><span class="a-w">A</span> or <span class="an-w">AN</span>? 🍎</h1>
+  <p>Артиклі з їжею · Articles with food</p>
+</div>
+
+<!-- SCORE -->
+<div class="score-bar">
+  <div class="s-pill">⭐ Бали: <span class="v" id="sc">0</span></div>
+  <div class="s-pill">✅ Правильно: <span class="v" id="cr">0</span></div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="showTab(0)">📖 Правило</div>
+  <div class="tab" onclick="showTab(1)">📚 Читання</div>
+  <div class="tab" onclick="showTab(2)">🖼️ Картинки</div>
+  <div class="tab" onclick="showTab(3)">✅ Вибери</div>
+  <div class="tab" onclick="showTab(4)">🗂️ Сортуй</div>
+  <div class="tab" onclick="showTab(5)">✏️ Встав</div>
+  <div class="tab" onclick="showTab(6)">🍽️ Їжа</div>
+</div>
+
+<div class="wrap">
+
+  <!-- ===== 0: RULE ===== -->
+  <div class="sec active" id="s0">
+    <div class="card">
+      <div class="sec-title">📖 Правило</div>
+      <div class="rule-2col">
+        <div class="rule-box a-b">
+          <div class="rule-letter">A</div>
+          <div class="rule-text">
+            Перед словами що починаються на<br>
+            <b>приголосний звук</b><br>
+            <small style="color:#aaa">(всі букви, крім a, e, i, o, u)</small>
+          </div>
+        </div>
+        <div class="rule-box an-b">
+          <div class="rule-letter">AN</div>
+          <div class="rule-text">
+            Перед словами що починаються на<br>
+            <b>голосний звук</b><br>
+            <div class="vowel-row">
+              <span class="vchip">A</span>
+              <span class="vchip">E</span>
+              <span class="vchip">I</span>
+              <span class="vchip">O</span>
+              <span class="vchip">U</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ex-row">
+        <div class="ex-chip">🍌 <span class="ea">a</span> banana</div>
+        <div class="ex-chip">🍰 <span class="ea">a</span> cake</div>
+        <div class="ex-chip">🍓 <span class="ea">a</span> strawberry</div>
+        <div class="ex-chip">🥕 <span class="ea">a</span> carrot</div>
+        <div class="ex-chip">🍎 <span class="ean">an</span> apple</div>
+        <div class="ex-chip">🥚 <span class="ean">an</span> egg</div>
+        <div class="ex-chip">🍊 <span class="ean">an</span> orange</div>
+        <div class="ex-chip">🍦 <span class="ean">an</span> ice cream</div>
+        <div class="ex-chip">🧅 <span class="ean">an</span> onion</div>
+        <div class="ex-chip">🥑 <span class="ean">an</span> avocado</div>
+      </div>
+      <div class="tip-box">
+        💡 <b>Запитай себе:</b> яка перша БУКВА?<br>
+        🔴 <b>B C D F G H J K L M N P Q R S T V W X Y Z</b> → <span style="color:var(--red);font-size:1.1em"><b>A</b></span><br>
+        🔵 <b>A E I O U</b> → <span style="color:var(--blue);font-size:1.1em"><b>AN</b></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 1: TEXT ===== -->
+  <div class="sec" id="s1">
+    <div class="card">
+      <div class="sec-title">📚 Читай та знаходь A і AN</div>
+      <p class="sec-desc">🔴 <b style="color:var(--red)">A</b> — перед приголосним · 🔵 <b style="color:var(--blue)">AN</b> — перед голосним</p>
+      <div class="story-box">
+        <div class="s-title">🛒 Sam's Lunch — Обід Сема</div>
+        Hello! My name is Sam. I am seven years old.<br>
+        Today I have <span class="han">an</span> apple and <span class="ha">a</span> banana in my bag.<br>
+        Mum gave me <span class="han">an</span> egg sandwich and <span class="ha">a</span> bottle of water.<br>
+        For dessert I want <span class="han">an</span> ice cream or <span class="ha">a</span> cookie.<br>
+        My friend Lucy has <span class="ha">a</span> carrot, <span class="han">an</span> orange<br>
+        and <span class="han">an</span> avocado. She loves healthy food!<br>
+        I also see <span class="ha">a</span> cake on the table. Yummy! 🎂
+      </div>
+      <div class="legend">
+        <div class="leg"><div class="ldot" style="background:var(--red)"></div><span style="color:var(--red)"><b>A</b></span> — banana, bottle, cookie, carrot, cake</div>
+        <div class="leg"><div class="ldot" style="background:var(--blue)"></div><span style="color:var(--blue)"><b>AN</b></span> — apple, egg, ice cream, orange, avocado</div>
+      </div>
+      <div style="background:#f9f9f9;border-radius:16px;padding:14px 18px;margin-top:14px;font-size:.88em;line-height:1.9;border:2px solid #eee">
+        <b>🇺🇦 Переклад:</b><br>
+        Привіт! Мене звати Сем. Мені сім років.<br>
+        Сьогодні у моєму рюкзаку є яблуко і банан.<br>
+        Мама дала мені бутерброд з яйцем і пляшку води.<br>
+        На десерт я хочу морозиво або печиво.<br>
+        Моя подруга Люсі має моркву, апельсин і авокадо. Вона любить здорову їжу!<br>
+        Я також бачу торт на столі. Смачно!
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 2: PICTURE ===== -->
+  <div class="sec" id="s2">
+    <div class="card">
+      <div class="sec-title">🖼️ Картинки — A чи AN?</div>
+      <p class="sec-desc">Подивись і натисни правильний артикль!</p>
+      <div class="pic-grid" id="picGrid"></div>
+      <div class="confetti-banner" id="picBanner">
+        <p>🎉 Чудово! Всі правильно! 🎉</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 3: CHOOSE ===== -->
+  <div class="sec" id="s3">
+    <div class="card">
+      <div class="sec-title">✅ Вибери A або AN</div>
+      <p class="sec-desc">Прочитай і вибери правильний артикль!</p>
+      <div id="chooseWrap"></div>
+      <button class="btn-ghost" onclick="buildChoose()">🔄 Знову</button>
+    </div>
+  </div>
+
+  <!-- ===== 4: SORT ===== -->
+  <div class="sec" id="s4">
+    <div class="card">
+      <div class="sec-title">🗂️ Розсортуй слова</div>
+      <p class="sec-desc">Клікни на слово — воно потрапить у правильну колонку!</p>
+      <div class="sort-area">
+        <div class="sort-bin a-bin">
+          <h3>A 🔴</h3>
+          <div class="bin-items" id="aBin"></div>
+        </div>
+        <div class="sort-bin an-bin">
+          <h3>AN 🔵</h3>
+          <div class="bin-items" id="anBin"></div>
+        </div>
+      </div>
+      <div class="sort-pool" id="sortPool"></div>
+      <button class="btn" onclick="checkSort()">Перевірити ✔</button>
+      <button class="btn-ghost" onclick="buildSort()">🔄 Знову</button>
+      <div class="result-msg" id="sortRes"></div>
+    </div>
+  </div>
+
+  <!-- ===== 5: FILL ===== -->
+  <div class="sec" id="s5">
+    <div class="card">
+      <div class="sec-title">✏️ Встав A або AN</div>
+      <p class="sec-desc">Напиши <b>a</b> або <b>an</b> у пропуск!</p>
+      <div class="fill-story" id="fillStory"></div>
+      <button class="btn" onclick="checkFill()">Перевірити ✔</button>
+      <button class="btn-ghost" onclick="buildFill()">🔄 Знову</button>
+      <div class="result-msg" id="fillRes"></div>
+    </div>
+  </div>
+
+  <!-- ===== 6: MEALS ===== -->
+  <div class="sec" id="s6">
+
+    <!-- MEAL VOCAB -->
+    <div class="card">
+      <div class="sec-title">🍽️ Breakfast · Lunch · Dinner</div>
+      <p class="sec-desc">Дізнайся нові слова і виконай завдання!</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px">
+        <div style="flex:1;min-width:140px;background:linear-gradient(135deg,#FFF9C4,#FFF176);border:3px solid #FFD600;border-radius:20px;padding:16px;text-align:center">
+          <div style="font-size:2.8em">🌅</div>
+          <div style="font-size:1.3em;color:#F57F17;margin:6px 0"><b>Breakfast</b></div>
+          <div style="font-size:.85em;color:#777">сніданок</div>
+          <div style="font-size:.78em;color:#999;margin-top:4px">вранці · in the morning</div>
+        </div>
+        <div style="flex:1;min-width:140px;background:linear-gradient(135deg,#E8F5E9,#C8E6C9);border:3px solid #4CAF50;border-radius:20px;padding:16px;text-align:center">
+          <div style="font-size:2.8em">☀️</div>
+          <div style="font-size:1.3em;color:#2E7D32;margin:6px 0"><b>Lunch</b></div>
+          <div style="font-size:.85em;color:#777">обід</div>
+          <div style="font-size:.78em;color:#999;margin-top:4px">вдень · in the afternoon</div>
+        </div>
+        <div style="flex:1;min-width:140px;background:linear-gradient(135deg,#E8EAF6,#C5CAE9);border:3px solid #3F51B5;border-radius:20px;padding:16px;text-align:center">
+          <div style="font-size:2.8em">🌙</div>
+          <div style="font-size:1.3em;color:#1A237E;margin:6px 0"><b>Dinner</b></div>
+          <div style="font-size:.85em;color:#777">вечеря</div>
+          <div style="font-size:.78em;color:#999;margin-top:4px">ввечері · in the evening</div>
+        </div>
+      </div>
+
+      <!-- MEAL TEXT -->
+      <div class="story-box" style="margin-bottom:14px">
+        <div class="s-title">🍴 My Day — Мій день</div>
+        In the morning I have <b>breakfast</b>. 🌅<br>
+        I eat <span class="han">an</span> egg and <span class="han">an</span> apple.<br>
+        I drink <span class="ha">a</span> glass of milk. 🥛<br><br>
+        At school I have <b>lunch</b>. ☀️<br>
+        I eat <span class="ha">a</span> sandwich and <span class="ha">a</span> banana.<br>
+        I also eat <span class="han">an</span> orange. 🍊<br><br>
+        In the evening I have <b>dinner</b>. 🌙<br>
+        Mum cooks <span class="ha">a</span> soup and <span class="ha">a</span> salad.<br>
+        For dessert I have <span class="han">an</span> ice cream! 🍦
+      </div>
+      <div style="background:#f9f9f9;border-radius:14px;padding:12px 16px;font-size:.84em;line-height:1.9;border:2px solid #eee;margin-bottom:4px">
+        🇺🇦 <b>Переклад:</b><br>
+        Вранці я снідаю. Я їм яйце і яблуко. Я п'ю склянку молока.<br>
+        У школі я обідаю. Я їм бутерброд і банан. Я також їм апельсин.<br>
+        Ввечері я вечеряю. Мама готує суп і салат. На десерт я їм морозиво!
+      </div>
+    </div>
+
+    <!-- MEAL CHOOSE -->
+    <div class="card">
+      <div class="sec-title" style="font-size:1.2em">✅ Завдання 1 — Вибери правильний артикль</div>
+      <p class="sec-desc">Прочитай речення про їжу і вибери A або AN!</p>
+      <div id="mealChooseWrap"></div>
+      <button class="btn-ghost" onclick="buildMealChoose()">🔄 Знову</button>
+    </div>
+
+    <!-- MEAL MATCH -->
+    <div class="card">
+      <div class="sec-title" style="font-size:1.2em">🔗 Завдання 2 — З'єднай їжу з прийомом їжі</div>
+      <p class="sec-desc">Клікни на їжу, потім на Breakfast / Lunch / Dinner!</p>
+      <div id="mealMatchWrap"></div>
+      <button class="btn-ghost" onclick="buildMealMatch()">🔄 Знову</button>
+      <div class="result-msg" id="matchRes"></div>
+    </div>
+
+    <!-- MEAL FILL -->
+    <div class="card">
+      <div class="sec-title" style="font-size:1.2em">✏️ Завдання 3 — Встав слово</div>
+      <p class="sec-desc">Напиши <b>breakfast</b>, <b>lunch</b> або <b>dinner</b>!</p>
+      <div id="mealFillWrap"></div>
+      <button class="btn" onclick="checkMealFill()">Перевірити ✔</button>
+      <button class="btn-ghost" onclick="buildMealFill()">🔄 Знову</button>
+      <div class="result-msg" id="mealFillRes"></div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+// TABS
+const tabs=document.querySelectorAll('.tab');
+const secs=document.querySelectorAll('.sec');
+function showTab(i){tabs.forEach((t,j)=>t.classList.toggle('active',i===j));secs.forEach((s,j)=>s.classList.toggle('active',i===j));}
+
+let score=0,correct=0;
+function addScore(s,c=1){score+=s;correct+=c;document.getElementById('sc').textContent=score;document.getElementById('cr').textContent=correct;}
+
+// ===== PICTURE =====
+const picItems=[
+  {emoji:'🍎',name:'apple',ans:'an'},
+  {emoji:'🍌',name:'banana',ans:'a'},
+  {emoji:'🥚',name:'egg',ans:'an'},
+  {emoji:'🍊',name:'orange',ans:'an'},
+  {emoji:'🥕',name:'carrot',ans:'a'},
+  {emoji:'🧅',name:'onion',ans:'an'},
+  {emoji:'🍋',name:'lemon',ans:'a'},
+  {emoji:'🍦',name:'ice cream',ans:'an'},
+  {emoji:'🍰',name:'cake',ans:'a'},
+  {emoji:'🥑',name:'avocado',ans:'an'},
+  {emoji:'🍓',name:'strawberry',ans:'a'},
+  {emoji:'🍇',name:'grape',ans:'a'},
+];
+let picDone=0;
+function buildPic(){
+  picDone=0;
+  document.getElementById('picBanner').classList.remove('show');
+  document.getElementById('picGrid').innerHTML=picItems.map((item,i)=>`
+    <div class="pic-item" id="pi${i}">
+      <span class="food-big">${item.emoji}</span>
+      <div class="food-name">${item.name}</div>
+      <div class="pic-btns">
+        <button class="pic-btn a-btn" onclick="ansP(${i},'a')">a</button>
+        <button class="pic-btn an-btn" onclick="ansP(${i},'an')">an</button>
+      </div>
+      <div class="pic-result" id="pr${i}"></div>
+    </div>
+  `).join('');
+}
+function ansP(i,chosen){
+  const item=picItems[i];
+  const card=document.getElementById(`pi${i}`);
+  if(card.classList.contains('answered')) return;
+  card.classList.add('answered');
+  card.querySelectorAll('.pic-btn').forEach(b=>{
+    b.disabled=true;
+    if(b.textContent===item.ans) b.classList.add('correct');
+    else if(b.textContent===chosen) b.classList.add('wrong');
+  });
+  const res=document.getElementById(`pr${i}`);
+  if(chosen===item.ans){res.textContent='✅';addScore(1);picDone++;}
+  else{res.textContent='❌';picDone++;}
+  if(picDone===picItems.length) setTimeout(()=>document.getElementById('picBanner').classList.add('show'),400);
+}
+buildPic();
+
+// ===== CHOOSE =====
+const chooseQ=[
+  {emoji:'🍎',text:'I eat ___ apple every day.',ans:'an',hint:'apple → A'},
+  {emoji:'🍌',text:'She has ___ banana.',ans:'a',hint:'banana → B'},
+  {emoji:'🥚',text:'He wants ___ egg.',ans:'an',hint:'egg → E'},
+  {emoji:'🍊',text:'I drink ___ orange juice.',ans:'an',hint:'orange → O'},
+  {emoji:'🥕',text:'My rabbit eats ___ carrot.',ans:'a',hint:'carrot → C'},
+  {emoji:'🍦',text:'I love ___ ice cream!',ans:'an',hint:'ice cream → I'},
+  {emoji:'🍋',text:'Can I have ___ lemon?',ans:'a',hint:'lemon → L'},
+  {emoji:'🧅',text:'Mum cuts ___ onion.',ans:'an',hint:'onion → O'},
+  {emoji:'🍓',text:'___ strawberry is red.',ans:'a',hint:'strawberry → S'},
+  {emoji:'🥑',text:'I want ___ avocado.',ans:'an',hint:'avocado → A'},
+];
+function buildChoose(){
+  document.getElementById('chooseWrap').innerHTML=chooseQ.map((item,i)=>`
+    <div class="q-row" id="qr${i}">
+      <div class="q-emoji">${item.emoji}</div>
+      <div class="q-text">${item.text.replace('___','<span style="color:var(--muted);font-style:italic">___</span>')}</div>
+      <div class="q-opts">
+        <button class="q-opt a-opt" onclick="ansC(${i},'a')">a</button>
+        <button class="q-opt an-opt" onclick="ansC(${i},'an')">an</button>
+      </div>
+      <div class="q-fb" id="qf${i}"></div>
+    </div>
+  `).join('');
+}
+function ansC(i,chosen){
+  const item=chooseQ[i];
+  const row=document.getElementById(`qr${i}`);
+  if(row.classList.contains('ok')||row.classList.contains('no')) return;
+  row.querySelectorAll('.q-opt').forEach(b=>{
+    b.disabled=true;
+    if(b.textContent===item.ans) b.classList.add('correct');
+    else if(b.textContent===chosen) b.classList.add('wrong');
+  });
+  const fb=document.getElementById(`qf${i}`);
+  if(chosen===item.ans){fb.innerHTML=`✅ Правильно! 💡 ${item.hint}`;fb.className='q-fb ok';row.classList.add('ok');addScore(1);}
+  else{fb.innerHTML=`❌ Правильно: <b>${item.ans}</b> — ${item.hint}`;fb.className='q-fb no';row.classList.add('no');}
+}
+buildChoose();
+
+// ===== SORT =====
+const sortWords=[
+  {emoji:'🍎',word:'apple',ans:'an'},
+  {emoji:'🍌',word:'banana',ans:'a'},
+  {emoji:'🥚',word:'egg',ans:'an'},
+  {emoji:'🥕',word:'carrot',ans:'a'},
+  {emoji:'🍊',word:'orange',ans:'an'},
+  {emoji:'🍰',word:'cake',ans:'a'},
+  {emoji:'🧅',word:'onion',ans:'an'},
+  {emoji:'🍋',word:'lemon',ans:'a'},
+  {emoji:'🍦',word:'ice cream',ans:'an'},
+  {emoji:'🍓',word:'strawberry',ans:'a'},
+];
+let sortPlaced={};
+function buildSort(){
+  sortPlaced={};
+  document.getElementById('aBin').innerHTML='';
+  document.getElementById('anBin').innerHTML='';
+  document.getElementById('sortRes').textContent='';
+  const sh=[...sortWords].sort(()=>Math.random()-.5);
+  document.getElementById('sortPool').innerHTML=sh.map(item=>{
+    const idx=sortWords.indexOf(item);
+    return `<div class="sort-chip" id="sc${idx}" onclick="placeWord(${idx})">${item.emoji} ${item.word}</div>`;
+  }).join('');
+}
+function placeWord(idx){
+  const item=sortWords[idx];
+  const chip=document.getElementById(`sc${idx}`);
+  if(!chip||sortPlaced[idx]) return;
+  sortPlaced[idx]=item.ans; chip.style.display='none';
+  const el=document.createElement('div');
+  el.className='bin-chip'; el.id=`bc${idx}`;
+  el.textContent=`${item.emoji} ${item.word}`;
+  el.onclick=()=>removeWord(idx);
+  document.getElementById(item.ans==='a'?'aBin':'anBin').appendChild(el);
+}
+function removeWord(idx){
+  delete sortPlaced[idx];
+  const bc=document.getElementById(`bc${idx}`); if(bc) bc.remove();
+  const chip=document.getElementById(`sc${idx}`); if(chip){chip.style.display='';chip.className='sort-chip';}
+}
+function checkSort(){
+  let ok=0;
+  sortWords.forEach((item,idx)=>{
+    const bc=document.getElementById(`bc${idx}`);
+    if(bc){
+      bc.onclick=null;
+      if(sortPlaced[idx]===item.ans){bc.classList.add('correct-c');ok++;}
+      else bc.classList.add('wrong-c');
+    }
+  });
+  addScore(ok,ok);
+  const total=Object.keys(sortPlaced).length;
+  document.getElementById('sortRes').textContent=`${'⭐'.repeat(ok)} ${ok} з ${total} правильно${ok===sortWords.length?' 🎉':''}`;
+}
+buildSort();
+
+// ===== FILL =====
+const fillSentences=[
+  {before:'I eat',ans:'an',word:'apple',after:'every morning. 🍎'},
+  {before:'She has',ans:'a',word:'banana',after:'in her bag. 🍌'},
+  {before:'He drinks',ans:'an',word:'orange',after:'juice. 🍊'},
+  {before:'I want',ans:'a',word:'cake',after:'for my birthday. 🎂'},
+  {before:'Mum buys',ans:'an',word:'onion',after:'at the shop. 🧅'},
+  {before:'My cat eats',ans:'a',word:'strawberry',after:'! 🍓'},
+  {before:'Can I have',ans:'an',word:'ice cream',after:'please? 🍦'},
+  {before:'Dad cooks',ans:'an',word:'egg',after:'for breakfast. 🥚'},
+];
+function buildFill(){
+  document.getElementById('fillRes').textContent='';
+  document.getElementById('fillStory').innerHTML=fillSentences.map((item,i)=>`
+    <span>${item.before} <input class="f-inp" id="fi${i}" maxlength="2" placeholder="?"> ${item.word} ${item.after}</span><br>
+  `).join('');
+}
+function checkFill(){
+  let ok=0;
+  fillSentences.forEach((item,i)=>{
+    const inp=document.getElementById(`fi${i}`);
+    inp.classList.remove('ok','bad');
+    if(inp.value.trim().toLowerCase()===item.ans){inp.classList.add('ok');ok++;}
+    else{inp.classList.add('bad');setTimeout(()=>{inp.value=item.ans;},700);}
+  });
+  addScore(ok,ok);
+  document.getElementById('fillRes').textContent=`${'⭐'.repeat(ok)} ${ok} з ${fillSentences.length} правильно${ok===fillSentences.length?' 🎉 Відмінно!':''}`;
+}
+buildFill();
+
+// ===== MEAL CHOOSE =====
+const mealChooseQ=[
+  {emoji:'🌅',text:'For breakfast I eat ___ egg.',ans:'an',hint:'egg → E → AN'},
+  {emoji:'🌅',text:'I drink ___ glass of milk in the morning.',ans:'a',hint:'glass → G → A'},
+  {emoji:'☀️',text:'For lunch I have ___ apple.',ans:'an',hint:'apple → A → AN'},
+  {emoji:'☀️',text:'I eat ___ sandwich for lunch.',ans:'a',hint:'sandwich → S → A'},
+  {emoji:'🌙',text:'We have ___ onion soup for dinner.',ans:'an',hint:'onion → O → AN'},
+  {emoji:'🌙',text:'Mum makes ___ omelette for dinner.',ans:'an',hint:'omelette → O → AN'},
+  {emoji:'🌅',text:'I eat ___ orange for breakfast.',ans:'an',hint:'orange → O → AN'},
+  {emoji:'☀️',text:'I have ___ banana at lunch.',ans:'a',hint:'banana → B → A'},
+  {emoji:'🌙',text:'Dad cooks ___ salad for dinner.',ans:'a',hint:'salad → S → A'},
+  {emoji:'🌅',text:'We eat ___ avocado toast for breakfast.',ans:'an',hint:'avocado → A → AN'},
+];
+function buildMealChoose(){
+  document.getElementById('mealChooseWrap').innerHTML=mealChooseQ.map((item,i)=>`
+    <div class="q-row" id="mr${i}">
+      <div class="q-emoji">${item.emoji}</div>
+      <div class="q-text">${item.text.replace('___','<span style="color:var(--muted);font-style:italic">___</span>')}</div>
+      <div class="q-opts">
+        <button class="q-opt a-opt" onclick="ansMC(${i},'a')">a</button>
+        <button class="q-opt an-opt" onclick="ansMC(${i},'an')">an</button>
+      </div>
+      <div class="q-fb" id="mf${i}"></div>
+    </div>
+  `).join('');
+}
+function ansMC(i,chosen){
+  const item=mealChooseQ[i];
+  const row=document.getElementById(`mr${i}`);
+  if(row.classList.contains('ok')||row.classList.contains('no')) return;
+  row.querySelectorAll('.q-opt').forEach(b=>{
+    b.disabled=true;
+    if(b.textContent===item.ans) b.classList.add('correct');
+    else if(b.textContent===chosen) b.classList.add('wrong');
+  });
+  const fb=document.getElementById(`mf${i}`);
+  if(chosen===item.ans){fb.innerHTML=`✅ Правильно! 💡 ${item.hint}`;fb.className='q-fb ok';row.classList.add('ok');addScore(1);}
+  else{fb.innerHTML=`❌ Правильно: <b>${item.ans}</b> — ${item.hint}`;fb.className='q-fb no';row.classList.add('no');}
+}
+buildMealChoose();
+
+// ===== MEAL MATCH =====
+const mealMatchData=[
+  {food:'🥚 egg',         meal:'breakfast'},
+  {food:'🍌 banana',      meal:'lunch'},
+  {food:'🍲 soup',        meal:'dinner'},
+  {food:'🍎 apple',       meal:'breakfast'},
+  {food:'🥪 sandwich',    meal:'lunch'},
+  {food:'🥗 salad',       meal:'dinner'},
+];
+let mmSel=null, mmDone=new Set();
+function buildMealMatch(){
+  mmSel=null; mmDone=new Set();
+  document.getElementById('matchRes').textContent='';
+  const sh=[...mealMatchData].sort(()=>Math.random()-.5);
+  document.getElementById('mealMatchWrap').innerHTML=`
+    <div style="margin-bottom:14px">
+      <div style="font-size:.82em;color:var(--muted);margin-bottom:8px">🍴 Їжа — клікни спочатку:</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px" id="foodItems">
+        ${sh.map((item,i)=>`<div class="sort-chip" id="fi${i}" onclick="selFood(${i},'${item.food}','${item.meal}')">${item.food}</div>`).join('')}
+      </div>
+      <div style="font-size:.82em;color:var(--muted);margin-bottom:8px">🕐 Прийом їжі — клікни потім:</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <div class="sort-chip" id="mb_breakfast" onclick="selMeal('breakfast')" style="background:#FFF9C4;border-color:#FFD600;color:#F57F17;font-size:1em">🌅 Breakfast</div>
+        <div class="sort-chip" id="mb_lunch"     onclick="selMeal('lunch')"     style="background:#E8F5E9;border-color:#4CAF50;color:#2E7D32;font-size:1em">☀️ Lunch</div>
+        <div class="sort-chip" id="mb_dinner"    onclick="selMeal('dinner')"    style="background:#E8EAF6;border-color:#3F51B5;color:#1A237E;font-size:1em">🌙 Dinner</div>
+      </div>
+    </div>
+  `;
+}
+function selFood(i,food,meal){
+  if(mmDone.has('f'+i)) return;
+  document.querySelectorAll('#foodItems .sort-chip').forEach(c=>c.style.outline='');
+  mmSel={i,food,meal};
+  document.getElementById(`fi${i}`).style.outline='3px solid var(--red)';
+}
+function selMeal(chosenMeal){
+  if(!mmSel) return;
+  const {i,food,meal}=mmSel;
+  const fc=document.getElementById(`fi${i}`);
+  fc.style.outline='';
+  if(chosenMeal===meal){
+    fc.style.background='#d1fae5'; fc.style.borderColor='#10b981'; fc.style.color='#065f46';
+    fc.onclick=null; mmDone.add('f'+i); addScore(1);
+    if(mmDone.size===mealMatchData.length) document.getElementById('matchRes').textContent='🏆 Всі пари знайдено! 🎉';
+  } else {
+    fc.style.background='#fee2e2'; fc.style.borderColor='#ef4444'; fc.style.color='#991b1b';
+    setTimeout(()=>{fc.style.background='';fc.style.borderColor='';fc.style.color='';},800);
+  }
+  mmSel=null;
+}
+buildMealMatch();
+
+// ===== MEAL FILL =====
+const mealFillQ=[
+  {pre:'🌅 In the morning I have',ans:'breakfast',post:'.',hint:'вранці'},
+  {pre:'☀️ At school I eat',ans:'lunch',post:'with my friends.',hint:'вдень'},
+  {pre:'🌙 In the evening our family has',ans:'dinner',post:'together.',hint:'ввечері'},
+  {pre:'🌅 I eat an egg and an apple for',ans:'breakfast',post:'.',hint:'перший прийом їжі'},
+  {pre:'☀️ My favourite',ans:'lunch',post:'is a sandwich and juice.',hint:'обід'},
+  {pre:'🌙 Mum cooks soup for',ans:'dinner',post:'every day.',hint:'останній прийом їжі'},
+];
+function buildMealFill(){
+  document.getElementById('mealFillRes').textContent='';
+  document.getElementById('mealFillWrap').innerHTML=mealFillQ.map((item,i)=>`
+    <div class="fill-row">
+      <span style="color:var(--muted);font-weight:800;font-size:.85em;min-width:20px">${i+1}.</span>
+      <span>${item.pre}</span>
+      <input class="f-inp" id="mfi${i}" placeholder="?" autocomplete="off" spellcheck="false" style="width:100px">
+      <span class="hint-tag" style="background:#e8f4ff;border:1.5px solid #90CAF9;border-radius:8px;padding:2px 9px;font-size:.72em;color:var(--blue)">💡 ${item.hint}</span>
+      <span>${item.post}</span>
+    </div>
+  `).join('');
+}
+function checkMealFill(){
+  let s=0;
+  mealFillQ.forEach((item,i)=>{
+    const inp=document.getElementById(`mfi${i}`); inp.classList.remove('ok','bad');
+    if(inp.value.trim().toLowerCase()===item.ans){inp.classList.add('ok');s++;}
+    else{inp.classList.add('bad');setTimeout(()=>{inp.value=item.ans;},700);}
+  });
+  addScore(s,s);
+  document.getElementById('mealFillRes').textContent=`${'⭐'.repeat(s)} ${s} з ${mealFillQ.length} правильно${s===mealFillQ.length?' 🎉 Відмінно!':''}`;
+}
+buildMealFill();
+</script>
+</body>
+</html>
