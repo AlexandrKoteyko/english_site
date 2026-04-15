@@ -897,7 +897,7 @@ function startTimer() {
     updateTimerDisplay();
 
     // Kolya comes out at exactly 10 seconds remaining — НЕВЧАСНО
-    if (timerSeconds === 10 && !kolyaTriggered) {
+    if (timerSeconds === 50 && !kolyaTriggered) {
       kolyaTriggered = true;
       document.getElementById('timerStatus').textContent = 'КОЛЯ СКАЗАВ ЩОСЬ НЕВЧАСНО';
       const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
