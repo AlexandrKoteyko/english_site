@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>КОЛЯ — Персонаж</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Russo+One&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --paper: #111;
+      --accent: #c8f;
+      --yellow: #ffe600;
+      --red: #ff2244;
+      --dim: #333;
+      --text: #eee;
+      --muted: #666;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Mono', monospace;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* ---- NOISE OVERLAY ---- */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: .35;
+    }
+
+    /* ---- HERO ---- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, #1a0028 0%, var(--bg) 70%);
+    }
+
+    .tag {
+      font-size: .7rem;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--dim);
+      padding: .3em 1em;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(7rem, 22vw, 18rem);
+      line-height: .85;
+      letter-spacing: -.02em;
+      position: relative;
+      color: var(--text);
+    }
+
+    .hero-title span {
+      display: block;
+      color: var(--yellow);
+      -webkit-text-stroke: 2px var(--yellow);
+      text-shadow: 0 0 60px #ffe60088;
+    }
+
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: .9rem;
+      color: var(--muted);
+      max-width: 420px;
+      line-height: 1.8;
+      position: relative;
+    }
+
+    .hero-sub strong { color: var(--accent); }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      font-size: .65rem;
+      letter-spacing: .3em;
+      color: var(--muted);
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+
+    /* ---- EMOTION SCALE ---- */
+    .section {
+      padding: 6rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: .65rem;
+      letter-spacing: .5em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--dim);
+    }
+
+    .scale-wrapper {
+      position: relative;
+      padding: 3rem 0;
+    }
+
+    .scale-bar {
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, #0044ff, #8800ff, #ff2244);
+      border-radius: 3px;
+      position: relative;
+      margin: 3rem 0;
+    }
+
+    .scale-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: .7rem;
+      color: var(--muted);
+      margin-top: .5rem;
+    }
+
+    .scale-needle {
+      position: absolute;
+      top: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .needle-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      color: var(--yellow);
+      white-space: nowrap;
+      animation: wiggle 3s ease-in-out infinite;
+    }
+
+    .needle-line {
+      width: 2px;
+      height: 54px;
+      background: var(--yellow);
+      box-shadow: 0 0 10px var(--yellow);
+    }
+
+    .needle-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--yellow);
+      margin-top: -2px;
+      box-shadow: 0 0 12px var(--yellow);
+    }
+
+    @keyframes wiggle {
+      0%,100%{transform:translateX(-50%) rotate(0)} 
+      25%{transform:translateX(calc(-50% + 3px)) rotate(1deg)} 
+      75%{transform:translateX(calc(-50% - 3px)) rotate(-1deg)}
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 2rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .compare-box {
+      border: 1px solid var(--dim);
+      padding: 2rem;
+      position: relative;
+    }
+
+    .compare-box.kolya { border-color: var(--yellow); }
+    .compare-box.kolya::before {
+      content: 'КОЛЯ';
+      position: absolute;
+      top: -1px; left: 1.5rem;
+      background: var(--bg);
+      padding: 0 .5rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      color: var(--yellow);
+    }
+
+    .compare-box.human::before {
+      content: 'НОРМАЛЬНА ЛЮДИНА';
+      position: absolute;
+      top: -1px; left: 1.5rem;
+      background: var(--bg);
+      padding: 0 .5rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      color: var(--muted);
+    }
+
+    .range-display {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      line-height: 1;
+    }
+
+    .compare-box.kolya .range-display { color: var(--yellow); }
+    .compare-box.human .range-display { color: var(--muted); }
+
+    .vs {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--dim);
+    }
+
+    /* ---- WHEEL ---- */
+    .wheel-section {
+      background: var(--paper);
+      padding: 6rem 2rem;
+      border-top: 1px solid var(--dim);
+      border-bottom: 1px solid var(--dim);
+    }
+
+    .wheel-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .wheel-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 6vw, 4rem);
+      letter-spacing: .05em;
+      margin-bottom: .5rem;
+    }
+
+    .wheel-sub { color: var(--muted); font-size: .8rem; margin-bottom: 3rem; }
+
+    .wheel-container {
+      position: relative;
+      width: 340px;
+      height: 340px;
+      margin: 0 auto 3rem;
+    }
+
+    canvas#wheel {
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+    }
+
+    .wheel-pointer {
+      position: absolute;
+      top: 50%;
+      right: -20px;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-top: 16px solid transparent;
+      border-bottom: 16px solid transparent;
+      border-right: 28px solid var(--yellow);
+      filter: drop-shadow(0 0 8px var(--yellow));
+    }
+
+    .spin-btn {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: .1em;
+      padding: .6em 2.5em;
+      border: 2px solid var(--yellow);
+      background: transparent;
+      color: var(--yellow);
+      cursor: pointer;
+      transition: all .2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .spin-btn:hover { background: var(--yellow); color: var(--bg); }
+    .spin-btn:disabled { opacity: .4; cursor: not-allowed; }
+
+    .wheel-result {
+      margin-top: 2rem;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .result-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: var(--accent);
+      text-shadow: 0 0 30px var(--accent);
+      opacity: 0;
+      transform: scale(.8);
+      transition: all .3s cubic-bezier(.175,.885,.32,1.275);
+    }
+
+    .result-text.show { opacity: 1; transform: scale(1); }
+
+    /* ---- NEVCHESNO TIMER ---- */
+    .timer-section {
+      padding: 6rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .timer-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: .5rem;
+    }
+
+    .timer-sub {
+      color: var(--muted);
+      font-size: .8rem;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .timer-box {
+      border: 1px solid var(--dim);
+      padding: 3rem;
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .timer-box::before {
+      content: 'ТАЙМЕР КОЛЯ';
+      position: absolute;
+      top: -1px; left: 2rem;
+      background: var(--bg);
+      padding: 0 .5rem;
+      font-family: 'Bebas Neue', sans-serif;
+      color: var(--red);
+      letter-spacing: .1em;
+    }
+
+    .timer-display {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 7rem;
+      line-height: 1;
+      letter-spacing: -.02em;
+      color: var(--text);
+      transition: color .3s;
+      position: relative;
+    }
+
+    .timer-display.panic { color: var(--red); text-shadow: 0 0 30px var(--red); animation: shake .1s infinite; }
+
+    @keyframes shake {
+      0%,100%{transform:translateX(0)} 25%{transform:translateX(-3px)} 75%{transform:translateX(3px)}
+    }
+
+    .timer-status {
+      font-size: .75rem;
+      color: var(--muted);
+      margin-top: 1rem;
+      min-height: 1.5em;
+      letter-spacing: .1em;
+    }
+
+    .timer-controls {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: .1em;
+      padding: .5em 1.8em;
+      border: 2px solid var(--dim);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .btn:hover { border-color: var(--text); }
+    .btn.primary { border-color: var(--accent); color: var(--accent); }
+    .btn.primary:hover { background: var(--accent); color: var(--bg); }
+    .btn.danger { border-color: var(--red); color: var(--red); }
+    .btn.danger:hover { background: var(--red); color: #fff; }
+    .btn:disabled { opacity: .3; cursor: not-allowed; }
+
+    /* KOLYA INTERRUPTION POPUP */
+    .kolya-popup {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,.85);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s;
+    }
+
+    .kolya-popup.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .popup-card {
+      border: 2px solid var(--yellow);
+      background: var(--bg);
+      padding: 3rem 4rem;
+      text-align: center;
+      position: relative;
+      max-width: 500px;
+      width: 90%;
+      transform: scale(.9) translateY(20px);
+      transition: transform .3s cubic-bezier(.175,.885,.32,1.275);
+    }
+
+    .kolya-popup.show .popup-card { transform: scale(1) translateY(0); }
+
+    .popup-emoji {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    .popup-phrase {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      color: var(--yellow);
+      line-height: 1;
+      text-shadow: 0 0 40px var(--yellow);
+      margin-bottom: 1rem;
+    }
+
+    .popup-context {
+      font-size: .75rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .popup-close {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: .1em;
+      padding: .5em 2em;
+      border: 1px solid var(--dim);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .popup-close:hover { color: var(--text); border-color: var(--text); }
+
+    /* ---- PHRASES GRID ---- */
+    .phrases-section {
+      padding: 6rem 2rem;
+      background: var(--paper);
+      border-top: 1px solid var(--dim);
+    }
+
+    .phrases-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .phrases-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1px;
+      background: var(--dim);
+      border: 1px solid var(--dim);
+      margin-top: 3rem;
+    }
+
+    .phrase-cell {
+      background: var(--paper);
+      padding: 2rem;
+      cursor: pointer;
+      transition: background .2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .phrase-cell::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+
+    .phrase-cell:hover::before { opacity: .04; }
+    .phrase-cell:active::before { opacity: .1; }
+
+    .phrase-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: .03em;
+      color: var(--text);
+      position: relative;
+    }
+
+    .phrase-context {
+      font-size: .65rem;
+      color: var(--muted);
+      margin-top: .5rem;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    .phrase-usage {
+      font-size: .6rem;
+      color: var(--dim);
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      margin-top: .8rem;
+      position: relative;
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--dim);
+      text-align: center;
+      font-size: .65rem;
+      color: var(--muted);
+      letter-spacing: .2em;
+    }
+
+    /* ---- FLOATING CIGARETTE ---- */
+    .cig {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      font-size: 2rem;
+      opacity: .15;
+      pointer-events: none;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100%{transform:translateY(0) rotate(-15deg)} 
+      50%{transform:translateY(-10px) rotate(-10deg)}
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="tag">персонаж · документація · версія 1.0</div>
+  <h1 class="hero-title">
+    КО<span>ЛЯ</span>
+  </h1>
+  <p class="hero-sub">
+    Емоційний діапазон: <strong>-0.1 до 0.1</strong><br>
+    Кількість унікальних реакцій: <strong>7</strong><br>
+    Здатність з'явитись невчасно: <strong>100%</strong>
+  </p>
+  <div class="scroll-hint">↓ гортай вниз ↓</div>
+</section>
+
+<!-- SCALE SECTION -->
+<div class="section">
+  <div class="section-label">діагностика емоцій</div>
+  <div class="scale-wrapper">
+    <div style="font-family:'Bebas Neue',sans-serif; font-size:clamp(1.5rem,4vw,2.5rem); margin-bottom:2rem; line-height:1.2">
+      Емоційна шкала людства.<br>
+      <span style="color:var(--muted); font-size:.6em">І де у цій шкалі Коля.</span>
+    </div>
+    <div class="scale-bar">
+      <div class="scale-needle">
+        <span class="needle-label">КОЛЯ</span>
+        <div class="needle-line"></div>
+        <div class="needle-dot"></div>
+      </div>
+    </div>
+    <div class="scale-labels">
+      <span>-100 (Глибока депресія)</span>
+      <span>0</span>
+      <span>+100 (Ейфорія)</span>
+    </div>
+
+    <div class="comparison">
+      <div class="compare-box human">
+        <div class="range-display">−100<br>до<br>+100</div>
+        <p style="font-size:.7rem; color:var(--muted); margin-top:1rem">Повний спектр людських переживань. Радість, горе, злість, любов, страх...</p>
+      </div>
+      <div class="vs">VS</div>
+      <div class="compare-box kolya">
+        <div class="range-display">−0.1<br>до<br>+0.1</div>
+        <p style="font-size:.7rem; color:var(--muted); margin-top:1rem">Коля. Сім фраз на всі випадки. Абсолютно рівний стан духу. Не поколивається.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHEEL SECTION -->
+<div class="wheel-section">
+  <div class="wheel-inner">
+    <div class="section-label" style="justify-content:center">колесо долі коля</div>
+    <h2 class="wheel-title">Що Коля скаже<br>на <span style="color:var(--yellow)">все</span>?</h2>
+    <p class="wheel-sub">Крути колесо. Отримай реакцію Колі на будь-яку подію твого життя.</p>
+
+    <div class="wheel-container">
+      <canvas id="wheel" width="340" height="340"></canvas>
+      <div class="wheel-pointer"></div>
+    </div>
+
+    <button class="spin-btn" id="spinBtn" onclick="spinWheel()">КРУТИТИ</button>
+
+    <div class="wheel-result">
+      <div class="result-text" id="resultText"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PHRASES SECTION -->
+<div class="phrases-section">
+  <div class="phrases-inner">
+    <div class="section-label">весь словниковий запас</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif; font-size:clamp(2rem,5vw,3rem); margin-bottom:.5rem">
+      7 фраз.<br>Нескінченні ситуації.
+    </h2>
+    <p style="color:var(--muted); font-size:.8rem;">Клікай на будь-яку — Коля скаже її голосом свого серця (тобто монотонно).</p>
+    <div class="phrases-grid" id="phrasesGrid"></div>
+  </div>
+</div>
+
+<!-- TIMER SECTION -->
+<div class="timer-section">
+  <div class="section-label" style="justify-content:center">невчасний модуль</div>
+  <h2 class="timer-title">Таймер<br><span style="color:var(--red)">Невчасно</span></h2>
+  <p class="timer-sub">
+    Запусти на хвилину. Коля скаже фігню нечасно<br>
+    Тому що він завжди так робить.<br>
+    <span style="color:var(--muted); font-size:.7em">Ще б 10 секунд... ні, Коля.</span>
+  </p>
+
+  <div class="timer-box">
+    <div class="timer-display" id="timerDisplay">01:00</div>
+    <div class="timer-status" id="timerStatus">готовий до запуску</div>
+  </div>
+
+  <div class="timer-controls">
+    <button class="btn primary" id="startBtn" onclick="startTimer()">СТАРТ</button>
+    <button class="btn" id="resetBtn" onclick="resetTimer()" disabled>СКИНУТИ</button>
+  </div>
+</div>
+
+<!-- KOLYA POPUP -->
+<div class="kolya-popup" id="kolyaPopup">
+  <div class="popup-card">
+    <div class="popup-emoji">🚬</div>
+    <div class="popup-phrase" id="popupPhrase">Піду покурю</div>
+    <div class="popup-context" id="popupContext">
+      До кінця ще багато багато часу.<br>
+      Але Коля вже тут.<br>
+      Він завжди каже фігню невчасно.
+    </div>
+    <button class="popup-close" onclick="closePopup()">ок коля ок</button>
+  </div>
+</div>
+
+<!-- FLOATING CIG -->
+<div class="cig">🚬</div>
+
+<footer>
+  КОЛЯ · ЕМОЦІЙНИЙ ДІАПАЗОН -0.1 TO 0.1 · ПЕРСОНАЖ · ALL REACTIONS RESERVED
+</footer>
+
+<script>
+// ---- PHRASES DATA ----
+const phrases = [
+  {
+    text: "Піздєц",
+    context: "Коли щось пішло не так. Або пішло добре. Або нічого не сталось.",
+    usage: "на все підряд"
+  },
+  {
+    text: "Єбать",
+    context: "Глибоке здивування. Або повна відсутність здивування.",
+    usage: "замість будь-якої емоції"
+  },
+  {
+    text: "Ахуєть",
+    context: "Технічно відрізняється від 'Єбать'. Практично — ні.",
+    usage: "синонім попередньої"
+  },
+  {
+    text: "Піду покурю",
+    context: "Спосіб завершити розмову. Почати розмову. Або просто існувати.",
+    usage: "завжди невчасно"
+  },
+  {
+    text: "Ти як?",
+    context: "Питання без очікування відповіді. Ритуал існування.",
+    usage: "коли треба щось сказати"
+  },
+  {
+    text: "Як день пройшов",
+    context: "Глибокий інтерес до твого дня. Або ні. Важко сказати.",
+    usage: "після довгої паузи"
+  },
+  {
+    text: "Харош",
+    context: "Найвищий рівень схвалення в діапазоні Колі. Це +0.1.",
+    usage: "рідко, але метко"
+  }
+];
+
+// ---- RENDER PHRASES ----
+const grid = document.getElementById('phrasesGrid');
+phrases.forEach(p => {
+  const cell = document.createElement('div');
+  cell.className = 'phrase-cell';
+  cell.innerHTML = `
+    <div class="phrase-text">${p.text}</div>
+    <div class="phrase-context">${p.context}</div>
+    <div class="phrase-usage">${p.usage}</div>
+  `;
+  cell.onclick = () => showKolyaPopup(p.text, p.context);
+  grid.appendChild(cell);
+});
+
+// ---- WHEEL ----
+const wheelPhrases = phrases.map(p => p.text);
+const wheelColors = [
+  '#1a0028','#0d1a00','#001a1a','#1a0000','#0d0d1a','#1a1a00','#000d1a'
+];
+const accentColors = ['#c8f','#ffe600','#ff2244','#0af','#f80','#0f8','#f0a'];
+
+let currentRotation = 0;
+let isSpinning = false;
+
+function drawWheel() {
+  const canvas = document.getElementById('wheel');
+  const ctx = canvas.getContext('2d');
+  const cx = 170, cy = 170, r = 160;
+  const sliceAngle = (2 * Math.PI) / wheelPhrases.length;
+
+  ctx.clearRect(0, 0, 340, 340);
+
+  wheelPhrases.forEach((phrase, i) => {
+    const start = i * sliceAngle + currentRotation;
+    const end = start + sliceAngle;
+
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, r, start, end);
+    ctx.closePath();
+    ctx.fillStyle = wheelColors[i];
+    ctx.fill();
+    ctx.strokeStyle = '#222';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Text
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(start + sliceAngle / 2);
+    ctx.textAlign = 'right';
+    ctx.fillStyle = accentColors[i];
+    ctx.font = "bold 15px 'IBM Plex Mono', monospace";
+    ctx.fillText(phrase, r - 15, 6);
+    ctx.restore();
+  });
+
+  // Center circle
+  ctx.beginPath();
+  ctx.arc(cx, cy, 22, 0, 2 * Math.PI);
+  ctx.fillStyle = '#0d0d0d';
+  ctx.fill();
+  ctx.strokeStyle = '#333';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+}
+
+drawWheel();
+
+function spinWheel() {
+  if (isSpinning) return;
+  isSpinning = true;
+  document.getElementById('spinBtn').disabled = true;
+
+  const resultEl = document.getElementById('resultText');
+  resultEl.classList.remove('show');
+
+  const spinAmount = 360 * (5 + Math.random() * 5) + Math.random() * 360;
+  const duration = 3000 + Math.random() * 1000;
+  const startTime = performance.now();
+  const startRot = currentRotation;
+  const targetRot = startRot + (spinAmount * Math.PI / 180);
+
+  function easeOut(t) {
+    return 1 - Math.pow(1 - t, 4);
+  }
+
+  function animate(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    currentRotation = startRot + (targetRot - startRot) * easeOut(progress);
+    drawWheel();
+
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      isSpinning = false;
+      document.getElementById('spinBtn').disabled = false;
+
+      // Figure out which slice is at the pointer (right side = angle 0)
+      const normalized = (((-currentRotation) % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+      const sliceAngle = (2 * Math.PI) / wheelPhrases.length;
+      const index = Math.floor(normalized / sliceAngle) % wheelPhrases.length;
+
+      setTimeout(() => {
+        resultEl.textContent = wheelPhrases[index];
+        resultEl.classList.add('show');
+      }, 200);
+    }
+  }
+
+  requestAnimationFrame(animate);
+}
+
+// ---- TIMER ----
+let timerInterval = null;
+let timerSeconds = 60;
+let timerRunning = false;
+let kolyaTriggered = false;
+
+function formatTime(s) {
+  const m = Math.floor(s / 60).toString().padStart(2, '0');
+  const sec = (s % 60).toString().padStart(2, '0');
+  return `${m}:${sec}`;
+}
+
+function updateTimerDisplay() {
+  const display = document.getElementById('timerDisplay');
+  display.textContent = formatTime(timerSeconds);
+  if (timerSeconds <= 50 && timerRunning) {
+    display.classList.add('panic');
+  } else {
+    display.classList.remove('panic');
+  }
+}
+
+function startTimer() {
+  if (timerRunning) return;
+  timerRunning = true;
+  kolyaTriggered = false;
+  document.getElementById('startBtn').disabled = true;
+  document.getElementById('resetBtn').disabled = false;
+  document.getElementById('timerStatus').textContent = 'таймер запущено...';
+
+  timerInterval = setInterval(() => {
+    timerSeconds--;
+    updateTimerDisplay();
+
+    // Kolya comes out at exactly 10 seconds remaining — НЕВЧАСНО
+    if (timerSeconds === 10 && !kolyaTriggered) {
+      kolyaTriggered = true;
+      document.getElementById('timerStatus').textContent = 'КОЛЯ СКАЗАВ ЩОСЬ НЕВЧАСНО';
+      const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+      showKolyaPopup(
+        randomPhrase.text,
+        `До кінця ще багато часу секунд.\nАле Коля вже тут.\nВін завжди каже фігню невчасно.`
+      );
+    }
+
+    if (timerSeconds <= 0) {
+      clearInterval(timerInterval);
+      timerRunning = false;
+      document.getElementById('timerStatus').textContent = 'час вийшов. Коля вже давно пішов покурити.';
+      document.getElementById('startBtn').disabled = false;
+    }
+  }, 1000);
+}
+
+function resetTimer() {
+  clearInterval(timerInterval);
+  timerRunning = false;
+  timerSeconds = 60;
+  kolyaTriggered = false;
+  updateTimerDisplay();
+  document.getElementById('timerDisplay').classList.remove('panic');
+  document.getElementById('timerStatus').textContent = 'готовий до запуску';
+  document.getElementById('startBtn').disabled = false;
+  document.getElementById('resetBtn').disabled = true;
+}
+
+// ---- KOLYA POPUP ----
+function showKolyaPopup(phrase, context) {
+  document.getElementById('popupPhrase').textContent = phrase;
+  document.getElementById('popupContext').innerHTML = context.replace(/\n/g, '<br>');
+  document.getElementById('kolyaPopup').classList.add('show');
+}
+
+function closePopup() {
+  document.getElementById('kolyaPopup').classList.remove('show');
+}
+
+// Close on backdrop click
+document.getElementById('kolyaPopup').addEventListener('click', function(e) {
+  if (e.target === this) closePopup();
+});
+
+// Init
+updateTimerDisplay();
+</script>
+</body>
+</html>
